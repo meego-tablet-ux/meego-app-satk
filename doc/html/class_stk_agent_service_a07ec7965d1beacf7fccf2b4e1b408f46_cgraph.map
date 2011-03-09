@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_stk_ofono_utils.html#ae3b04923d228a253b1816ff85b24c1be" title="StkOfonoUtils::findIcon" alt="" coords="295,5,460,35"/>
+<area shape="rect" id="node5" href="$class_stk_dialog.html#a6c3dac6592a33f14e3757ce1bf6ea2bc" title="StkDialog::getAgentResponse" alt="" coords="272,59,483,88"/>
+<area shape="rect" id="node7" href="$class_stk_dialog.html#a9559bc5e7e8f85eaf8b3b8bf9875df3e" title="StkDialog::getResponseData" alt="" coords="276,112,479,141"/>
+<area shape="rect" id="node9" href="$class_stk_input_text.html#ac47a982266119fa36b6202a2985afbf7" title="StkInputText::setCharBounds" alt="" coords="275,165,480,195"/>
+<area shape="rect" id="node11" href="$class_stk_input_text.html#aa3f0bb2aca237c0f80349a3a2b91766e" title="StkInputText::setDefaultText" alt="" coords="279,219,476,248"/>
+<area shape="rect" id="node13" href="$class_stk_input_text.html#aad351ad3393ab5d84d987702625b0b7f" title="StkInputText::setHideTyping" alt="" coords="280,272,475,301"/>
+<area shape="rect" id="node15" href="$class_stk_input_text.html#a1938d6488df8d856796c3d59fc50c8ec" title="StkInputText::setNumeric" alt="" coords="287,325,468,355"/>
+</map>

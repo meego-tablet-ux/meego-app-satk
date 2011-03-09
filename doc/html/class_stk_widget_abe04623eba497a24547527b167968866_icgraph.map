@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_stk_input_key.html#a1f359ae1868685405abbff2dffa9ad45" title="StkInputKey::StkInputKey" alt="" coords="212,5,391,35"/>
+<area shape="rect" id="node5" href="$class_stk_input_text.html#ac69b961bff748be10abf5c65aab6927f" title="StkInputText::StkInputText" alt="" coords="208,59,395,88"/>
+<area shape="rect" id="node7" href="$class_stk_menu.html#af36cb509aba3cf5133fd0578626064c7" title="StkMenu::StkMenu" alt="" coords="231,112,372,141"/>
+<area shape="rect" id="node9" href="$class_stk_popup.html#ab894005f1f275f7f9509deb915632a2c" title="StkPopup::StkPopup" alt="" coords="225,165,377,195"/>
+<area shape="rect" id="node11" href="$class_stk_yes_no.html#a342a3c495ff0ee8e20109067c5b9b3c6" title="StkYesNo::StkYesNo" alt="" coords="228,219,375,248"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_stk_agent_service.html#a7d315acb0454418cde6a094e576893a3" title="StkAgentService::ConfirmCallSetup" alt="" coords="247,5,492,35"/>
+<area shape="rect" id="node5" href="$class_stk_agent_service.html#a3715e4af467eff9e5a63c9cd46483e3d" title="StkAgentService::ConfirmLaunchBrowser" alt="" coords="228,59,511,88"/>
+<area shape="rect" id="node7" href="$class_stk_agent_service.html#a6b2f9e7624f5ee9951e628e6baea72bb" title="StkAgentService::DisplayActionInformation" alt="" coords="223,112,516,141"/>
+<area shape="rect" id="node9" href="$class_stk_agent_service.html#ab7ecde3bd50a736acb68df15fe6fdd83" title="StkAgentService::DisplayText" alt="" coords="267,165,472,195"/>
+<area shape="rect" id="node11" href="$class_stk_agent_service.html#a5a4dca75f105a3ccecaba29f6c221f96" title="StkAgentService::LoopTone" alt="" coords="272,219,467,248"/>
+<area shape="rect" id="node13" href="$class_stk_ofono_properties.html#a7b7f767050d95c9093c56c117a804542" title="StkOfonoProperties::mainMenuIcon" alt="" coords="247,272,492,301"/>
+<area shape="rect" id="node17" href="$class_stk_ofono_properties.html#afef61153d9da53decb5a585ba9b3fe5c" title="StkOfonoProperties::mainMenuItems" alt="" coords="241,325,497,355"/>
+<area shape="rect" id="node20" href="$class_stk_agent_service.html#af6fed8eef74da16c1de3ca5d48af79fc" title="StkAgentService::PlayTone" alt="" coords="275,379,464,408"/>
+<area shape="rect" id="node22" href="$class_stk_agent_service.html#a1568e3809ba2aaf8a58b5b3aa6a8380a" title="StkAgentService::RequestConfirmation" alt="" coords="235,432,504,461"/>
+<area shape="rect" id="node24" href="$class_stk_agent_service.html#a44eb42152171bb0f1f4dc080493ef51f" title="StkAgentService::RequestDigit" alt="" coords="261,485,477,515"/>
+<area shape="rect" id="node26" href="$class_stk_agent_service.html#af9c368d4faeeca5b3c9a025472899f68" title="StkAgentService::RequestDigits" alt="" coords="259,539,480,568"/>
+<area shape="rect" id="node28" href="$class_stk_agent_service.html#a07ec7965d1beacf7fccf2b4e1b408f46" title="StkAgentService::RequestInput" alt="" coords="260,592,479,621"/>
+<area shape="rect" id="node30" href="$class_stk_agent_service.html#acb7667eda8dcbd7129668227cd88bc2c" title="StkAgentService::RequestKey" alt="" coords="265,645,473,675"/>
+<area shape="rect" id="node32" href="$class_stk_agent_service.html#a8c76a5808817aa054b5ce952f7739570" title="StkAgentService::RequestSelection" alt="" coords="247,699,492,728"/>
+<area shape="rect" id="node15" href="$class_stk_main_window.html#a6e4161d64d5ce85fc358d6435fad7050" title="StkMainWindow::StkMainWindow" alt="" coords="567,299,791,328"/>
+</map>

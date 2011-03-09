@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_stk_agent_service.html#a44eb42152171bb0f1f4dc080493ef51f" title="StkAgentService::RequestDigit" alt="" coords="275,5,491,35"/>
+<area shape="rect" id="node5" href="$class_stk_agent_service.html#af9c368d4faeeca5b3c9a025472899f68" title="StkAgentService::RequestDigits" alt="" coords="272,59,493,88"/>
+<area shape="rect" id="node7" href="$class_stk_agent_service.html#a07ec7965d1beacf7fccf2b4e1b408f46" title="StkAgentService::RequestInput" alt="" coords="273,112,492,141"/>
+<area shape="rect" id="node9" href="$class_stk_agent_service.html#acb7667eda8dcbd7129668227cd88bc2c" title="StkAgentService::RequestKey" alt="" coords="279,165,487,195"/>
+<area shape="rect" id="node11" href="$class_stk_agent_service.html#a8c76a5808817aa054b5ce952f7739570" title="StkAgentService::RequestSelection" alt="" coords="260,219,505,248"/>
+</map>

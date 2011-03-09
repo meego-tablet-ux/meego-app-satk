@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_stk_agent_service.html#a7d315acb0454418cde6a094e576893a3" title="StkAgentService::ConfirmCallSetup" alt="" coords="283,5,528,35"/>
+<area shape="rect" id="node5" href="$class_stk_agent_service.html#a3715e4af467eff9e5a63c9cd46483e3d" title="StkAgentService::ConfirmLaunchBrowser" alt="" coords="264,59,547,88"/>
+<area shape="rect" id="node7" href="$class_stk_agent_service.html#a1568e3809ba2aaf8a58b5b3aa6a8380a" title="StkAgentService::RequestConfirmation" alt="" coords="271,112,540,141"/>
+<area shape="rect" id="node9" href="$class_stk_agent_service.html#a44eb42152171bb0f1f4dc080493ef51f" title="StkAgentService::RequestDigit" alt="" coords="297,165,513,195"/>
+<area shape="rect" id="node11" href="$class_stk_agent_service.html#af9c368d4faeeca5b3c9a025472899f68" title="StkAgentService::RequestDigits" alt="" coords="295,219,516,248"/>
+<area shape="rect" id="node13" href="$class_stk_agent_service.html#a07ec7965d1beacf7fccf2b4e1b408f46" title="StkAgentService::RequestInput" alt="" coords="296,272,515,301"/>
+<area shape="rect" id="node15" href="$class_stk_agent_service.html#acb7667eda8dcbd7129668227cd88bc2c" title="StkAgentService::RequestKey" alt="" coords="301,325,509,355"/>
+<area shape="rect" id="node17" href="$class_stk_agent_service.html#a8c76a5808817aa054b5ce952f7739570" title="StkAgentService::RequestSelection" alt="" coords="283,379,528,408"/>
+</map>

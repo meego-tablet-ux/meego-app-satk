@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_stk_dialog.html#aa039ee5c3d52b268d8a4dfce2ef13622" title="StkDialog::responseBack" alt="" coords="241,5,423,35"/>
+<area shape="rect" id="node5" href="$class_stk_dialog.html#a0da17089ccd0d210d91b3ea2b257eea3" title="StkDialog::responseEnd" alt="" coords="245,59,419,88"/>
+<area shape="rect" id="node7" href="$class_stk_dialog.html#a3bf19ffcefea3de2e0d62ffb9ead38db" title="StkDialog::responseNo" alt="" coords="248,112,416,141"/>
+<area shape="rect" id="node9" href="$class_stk_dialog.html#a1e1395242e442acc5132877b76cae1a1" title="StkDialog::responseOkWithSelection" alt="" coords="205,165,459,195"/>
+<area shape="rect" id="node11" href="$class_stk_dialog.html#a1a925e6a9aa505220f130c6c8cb5de49" title="StkDialog::responseOkWithText" alt="" coords="223,219,441,248"/>
+<area shape="rect" id="node13" href="$class_stk_dialog.html#ab863d25087221d0edb8d2d1d97c50dc6" title="StkDialog::responseYes" alt="" coords="247,272,417,301"/>
+</map>
