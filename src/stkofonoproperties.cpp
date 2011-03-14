@@ -43,7 +43,7 @@ QList<QListWidgetItem *> StkOfonoProperties::mainMenuItems()
     // "MainMenu" property
     QVariant varMenu = mProperties.value("MainMenu");
     QDBusArgument arg = varMenu.value<QDBusArgument>();
-    // demarshall a{sy} QDBusArgument to a QMap<QString,uchar> registered as OfonoMenuList
+    // demarshall a(sy) QDBusArgument to a QList<OfonoMenuEntry> registered as OfonoMenuList
     OfonoMenuList menuList;
     arg >> menuList;
     foreach (const OfonoMenuEntry entry, menuList)

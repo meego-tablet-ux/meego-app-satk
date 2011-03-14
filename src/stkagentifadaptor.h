@@ -9,8 +9,8 @@
  * before re-generating it.
  */
 
-#ifndef STKAGENTIFADAPTOR_H_1299149971
-#define STKAGENTIFADAPTOR_H_1299149971
+#ifndef STKAGENTIFADAPTOR_H_1300118444
+#define STKAGENTIFADAPTOR_H_1300118444
 
 #include <QtCore/QObject>
 #include <QtDBus/QtDBus>
@@ -35,7 +35,7 @@ class StkAgentIfAdaptor: public QDBusAbstractAdaptor
 "      <annotation value=\"OfonoMenuList\" name=\"com.trolltech.QtDBus.QtTypeName.In2\"/>\n"
 "      <arg direction=\"in\" type=\"s\" name=\"title\"/>\n"
 "      <arg direction=\"in\" type=\"y\" name=\"icon\"/>\n"
-"      <arg direction=\"in\" type=\"a{sy}\" name=\"items\"/>\n"
+"      <arg direction=\"in\" type=\"a(sy)\" name=\"items\"/>\n"
 "      <arg direction=\"in\" type=\"n\" name=\"defaultValue\"/>\n"
 "      <arg direction=\"out\" type=\"y\"/>\n"
 "    </method>\n"

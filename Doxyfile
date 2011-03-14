@@ -31,7 +31,7 @@ PROJECT_NAME           = "SIM Application Toolkit"
 # This could be handy for archiving the generated documentation or 
 # if some version control system is used.
 
-PROJECT_NUMBER         = 73e0ee444f67e41ddbece3a672255003564a5802
+PROJECT_NUMBER         = 0a588ef16fb4efecc46b01b29cf9f9c7ca7decab
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) 
 # base path where the generated documentation will be put. 

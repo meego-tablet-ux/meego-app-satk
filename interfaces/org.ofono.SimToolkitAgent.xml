@@ -6,7 +6,7 @@
                     <annotation name="com.trolltech.QtDBus.QtTypeName.In2" value="OfonoMenuList"/>
                     <arg type="s" direction="in" name="title" />
                     <arg type="y" direction="in" name="icon" />
-                    <arg type="a{sy}" direction="in" name="items" />
+                    <arg type="a(sy)" direction="in" name="items" />
                     <arg type="n" direction="in" name="defaultValue" />
                     <arg type="y" direction="out"/>
                 </method>

@@ -82,7 +82,7 @@ inline const QDBusArgument &operator>>(const QDBusArgument &arg,OfonoMenuEntry &
 }
 
 typedef QList<OfonoMenuEntry> OfonoMenuList;
-Q_DECLARE_METATYPE(OfonoMenuList)       /* a{sy} */
+Q_DECLARE_METATYPE(OfonoMenuList)       /* a(sy) */
 
 
 /* Register all meta types declared above */
