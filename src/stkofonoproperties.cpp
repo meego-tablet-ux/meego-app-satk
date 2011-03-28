@@ -37,9 +37,9 @@ StkOfonoProperties::StkOfonoProperties(StkIf *stkIf, QObject *parent) :
 }
 
 
-QList<QListWidgetItem *> StkOfonoProperties::mainMenuItems()
+QList<StkMenuItem> StkOfonoProperties::mainMenuItems()
 {
-    QList<QListWidgetItem *> items;
+    QList<StkMenuItem> items;
     // "MainMenu" property
     QVariant varMenu = mProperties.value("MainMenu");
     QDBusArgument arg = varMenu.value<QDBusArgument>();
@@ -47,7 +47,7 @@ QList<QListWidgetItem *> StkOfonoProperties::mainMenuItems()
     OfonoMenuList menuList;
     arg >> menuList;
     foreach (const OfonoMenuEntry entry, menuList)
-        items.append(new QListWidgetItem(QIcon(StkOfonoUtils::findIcon(entry.icon)), entry.label));
+        items.append(StkMenuItem(StkOfonoUtils::findIconUrl(entry.icon), entry.label));
     return items;
 }
 
@@ -58,7 +58,7 @@ QString StkOfonoProperties::mainMenuTitle()
 }
 
 
-QPixmap StkOfonoProperties::mainMenuIcon()
+QString StkOfonoProperties::mainMenuIconUrl()
 {
-    return StkOfonoUtils::findIcon((uchar)mProperties.value("MainMenuIcon").toChar().toAscii());
+    return StkOfonoUtils::findIconUrl((uchar)mProperties.value("MainMenuIcon").toChar().toAscii());
 }

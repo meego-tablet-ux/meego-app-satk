@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += core gui
+QT += core gui declarative
 
 CONFIG += qdbus
 
@@ -29,7 +29,9 @@ SOURCES += main.cpp \
     stkdialog.cpp \
     stkmainwindow.cpp \
     stkofonoutils.cpp \
-    stkofonoproperties.cpp
+    stkofonoproperties.cpp \
+    stkmenumodel.cpp \
+    stkmenuitem.cpp
 
 HEADERS += \
     stkmessage.h \
@@ -48,10 +50,22 @@ HEADERS += \
     stkdefines.h \
     stkmainwindow.h \
     stkofonoutils.h \
-    stkofonoproperties.h
+    stkofonoproperties.h \
+    stkmenumodel.h \
+    stkmenuitem.h
 
 OTHER_FILES += \
     ../interfaces/org.ofono.SimToolkit.xml \
     ../interfaces/org.ofono.SimToolkitAgent.xml \
     ../interfaces/org.ofono.Manager.xml \
-    qtc_packaging/meego.spec
+    qtc_packaging/meego.spec \
+    stkyesno.qml \
+    stkpopup.qml \
+    stkmessage.qml \
+    stkmenu.qml \
+    stkinputtext.qml \
+    stkinputkey.qml \
+    sim_32x32.png
+
+RESOURCES += \
+    resources.qrc

@@ -16,8 +16,13 @@
 
 
 QPixmap StkOfonoUtils::findIcon(uchar id)
-{
+{ // #### TODO implement
     return TEST_PIXMAP;
+}
+
+QString StkOfonoUtils::findIconUrl(uchar id)
+{ // #### TODO implement
+    return TEST_ICON_URL;
 }
 
 QList<StkIf*> StkOfonoUtils::findSimToolkitInterfaces(const QDBusConnection &connection, MgrIf *mgrIf)

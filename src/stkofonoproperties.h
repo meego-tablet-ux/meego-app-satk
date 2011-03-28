@@ -17,7 +17,7 @@
 #include <QString>
 #include <QPixmap>
 #include <QList>
-#include <QListWidgetItem>
+#include "stkmenuitem.h"
 #include "stkif.h"
 
 
@@ -26,9 +26,9 @@ class StkOfonoProperties : public QObject
     Q_OBJECT
 public:
     explicit StkOfonoProperties(StkIf *stkIf, QObject *parent = 0);
-    QList<QListWidgetItem *> mainMenuItems();
+    QList<StkMenuItem> mainMenuItems();
     QString mainMenuTitle();
-    QPixmap mainMenuIcon();
+    QString mainMenuIconUrl();
 
 signals:
 

@@ -22,6 +22,7 @@ class StkOfonoUtils
 {
 public:
     static QPixmap findIcon(uchar id);
+    static QString findIconUrl(uchar id);
     static QList<StkIf*> findSimToolkitInterfaces(const QDBusConnection &connection, MgrIf *mgrIf);
 };
 

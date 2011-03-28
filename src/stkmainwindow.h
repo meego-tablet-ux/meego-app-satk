@@ -14,25 +14,26 @@
 #define STKMAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtDeclarative/QDeclarativeView>
 #include "stkif.h"
 #include "stkofonoproperties.h"
-#include "stkmenu.h"
 
 class StkMainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
     explicit StkMainWindow(StkIf *stkIf, QWidget *parent = 0);
+    ~StkMainWindow();
 
 signals:
 
 private:
     StkIf *mStkIf;
-    StkOfonoProperties * mStkProperties;
-    StkMenu *mStkMenu;
+    StkOfonoProperties *mStkProperties;
+    QDeclarativeView *mView;
 
 private slots:
-    void responseOkWithSelection(uchar selection);
+    void responseOkWithSelection(int selection);
 };
 
 #endif // STKMAINWINDOW_H

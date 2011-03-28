@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>stkyesno.qml</file>
+        <file>stkinputkey.qml</file>
+        <file>stkinputtext.qml</file>
+        <file>stkmenu.qml</file>
+        <file>stkmessage.qml</file>
+        <file>stkpopup.qml</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>sim_32x32.png</file>
+    </qresource>
+</RCC>

@@ -29,6 +29,7 @@ typedef enum {
 
 #define TEST_STRING "This is a dummy message text.\nSeveral lines, no special characters.\n"
 #define TEST_PIXMAP QPixmap(32,32)
+#define TEST_ICON_URL "qrc:/images/sim_32x32.png"
 
 
 #endif // STKDEFINES_H

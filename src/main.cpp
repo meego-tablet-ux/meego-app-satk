@@ -96,37 +96,11 @@ int main(int argc, char *argv[])
         return mainErr;
     }
 
-    // SimToolkit main window
+    // open SimToolkit main window
     StkMainWindow mainWindow(stkIfP);
     mainWindow.show();
 
-/*
-    // Test all widgets
-
-    QList<QListWidgetItem *> items;
-    items.append(new QListWidgetItem(QIcon(TEST_PIXMAP), "One item"));
-    items.append(new QListWidgetItem(QIcon(TEST_PIXMAP), "Another one"));
-    items.append(new QListWidgetItem(QIcon(TEST_PIXMAP), "One more"));
-    items.append(new QListWidgetItem(QIcon(TEST_PIXMAP), "A last item"));
-    StkMenu menu('\0',TEST_STRING,items,NULL);
-    menu.show();
-
-    StkMessage message(TEST_PIXMAP,TEST_STRING,NULL);
-    message.show();
-
-    StkYesNo yesno(TEST_PIXMAP,TEST_STRING,NULL);
-    yesno.show();
-
-    StkPopup popup(TEST_PIXMAP,TEST_STRING,NULL);
-    popup.show();
-
-    StkInputKey inputkey(TEST_PIXMAP,TEST_STRING,NULL);
-    inputkey.show();
-
-    StkInputText inputtext(TEST_PIXMAP,TEST_STRING,NULL);
-    inputtext.show();
-*/
-
+    // run SimToolkit application
     mainErr = a.exec();
 
     stkRegisterCall = stkIfP->UnregisterAgent(stkAgentPath);
