@@ -82,7 +82,7 @@ Rectangle {
         width: 80
         height: 30
         color: "#20408000"
-        anchors.top: parent.top
+        anchors.top: title.bottom
         anchors.topMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10

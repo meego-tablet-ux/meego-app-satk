@@ -35,7 +35,9 @@ StkDialog::StkDialog(StkWidget * stkWidget, QWidget *parent) :
 }
 
 StkDialog::StkDialog(const QString &iconUrl, const QString &title, const QString &qmlViewUrl,
-          const QList<StkMenuItem> &menuItems, QWidget *parent) :
+                     const QString &defaultText,
+          const QList<StkMenuItem> &menuItems, const int selection,
+          QWidget *parent) :
     QDialog(parent)
 {
     // Create QML View as central widget
@@ -56,14 +58,20 @@ StkDialog::StkDialog(const QString &iconUrl, const QString &title, const QString
     if (object)
         object->setProperty("text", title);
     // SIM Toolkit Menu
-    object = root->findChild<QObject*>("menuView");
-    if (object) {
+    QObject * menuView = root->findChild<QObject*>("menuView");
+    if (menuView) {
         // set model "menuModel" for ListView "menuView"
         QDeclarativeContext *context = mView->rootContext();
         StkMenuModel * menuModel = new StkMenuModel();
         menuModel->setMenuItems(menuItems);
         context->setContextProperty("menuModel",menuModel);
         connect(root, SIGNAL(itemSelected(int)), this, SLOT(responseOkWithSelection(int)));
+    }
+    // Text edit / input
+    QObject * editText = root->findChild<QObject*>("editText");
+    if (editText) {
+        editText->setProperty("text",defaultText);
+        connect(root, SIGNAL(textEntered(QString)), this, SLOT(responseOkWithText(QString)));
     }
     // End button
     object = root->findChild<QObject*>("endRect");
@@ -81,7 +89,10 @@ StkDialog::StkDialog(const QString &iconUrl, const QString &title, const QString
     object = root->findChild<QObject*>("noRect");
     if (object)
         connect(root, SIGNAL(rejected()), this, SLOT(responseNo()));
-// #### TODO   connect(mStkWidget, SIGNAL(textEntered(QString)), this, SLOT(responseOkWithText(QString)));
+    // Ok button
+    object = root->findChild<QObject*>("okRect");
+    if (object && !menuView && !editText)
+        connect(root, SIGNAL(accepted()), this, SLOT(responseYes()));
     // default response: end session
     agentResponse = End;
 }

@@ -7,6 +7,8 @@ Rectangle {
     height: 320
     color: "#20400080"
 
+    signal accepted()
+    onAccepted: console.log("Accepted")
     signal goBack()
     onGoBack: console.log("Go back")
     signal endSession()
@@ -42,7 +44,7 @@ Rectangle {
         width: 80
         height: 30
         color: "#20408000"
-        anchors.top: parent.top
+        anchors.top: title.bottom
         anchors.topMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
@@ -80,6 +82,28 @@ Rectangle {
         MouseArea {
             anchors.fill: parent
             onClicked: view.goBack()
+        }
+    }
+
+    Rectangle {
+        id: okRect
+        objectName: "okRect"
+        width: 80
+        height: 30
+        color: "#20408000"
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 10
+        Text {
+            id: okText
+            text: "Ok"
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            anchors.fill: parent
+        }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: view.accepted()
         }
     }
 

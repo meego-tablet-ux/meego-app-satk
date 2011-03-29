@@ -21,8 +21,6 @@
 #include "stkofonoutils.h"
 
 /* SIM Toolkit widgets */
-#include "stkinputkey.h"
-#include "stkinputtext.h"
 #include "stkmenumodel.h"
 /* SIM Toolkit generic container dialog */
 #include "stkdialog.h"
@@ -141,7 +139,7 @@ void StkAgentService::PlayTone(const QString &tone, const QString &text, uchar i
     // handle method call org.ofono.SimToolkitAgent.PlayTone
 qDebug() << "PlayTone: " << tone << " : " << text << "(" << icon << ")";
     closeLastWidget();
-    StkDialog dlg(StkOfonoUtils::findIconUrl(icon),text + "(playing: " + tone + ")","qrc:/stkmessage.qml");
+    StkDialog dlg(StkOfonoUtils::findIconUrl(icon),text + "(playing: " + tone + ")","qrc:/stkpopup.qml");
     dlg.exec();
 }
 
@@ -190,7 +188,9 @@ QString StkAgentService::RequestDigit(const QString &title, uchar icon)
     QString out0 = FALLBACK_QSTRING;
 qDebug() << "RequestDigit: " << title << "(" << icon << ")";
     closeLastWidget();
-    StkDialog dlg(new StkInputKey(StkOfonoUtils::findIcon(icon),title));
+    /* #### TODO #### handle numeric and boundaries constraints
+    StkDialog dlg(new StkInputKey(StkOfonoUtils::findIcon(icon),title));*/
+    StkDialog dlg(StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkinputkey.qml");
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
@@ -213,12 +213,14 @@ QString StkAgentService::RequestDigits(const QString &title, uchar icon, const Q
     QString out0 = defaultValue;
 qDebug() << "RequestDigits: " << title << "(" << icon << ")" << " (" << defaultValue << ") [" << minChars << ".." << maxChars << "] passwd:" << hideTyping;
     closeLastWidget();
+    /* #### TODO #### handle numeric and boundaries constraints
     StkInputText * inputText = new StkInputText(StkOfonoUtils::findIcon(icon),title);
     inputText->setDefaultText(defaultValue);
     inputText->setCharBounds(minChars,maxChars);
     inputText->setHideTyping(hideTyping);
     inputText->setNumeric(true);
-    StkDialog dlg(inputText);
+    StkDialog dlg(inputText);*/
+    StkDialog dlg(StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkinputtext.qml",defaultValue);
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
@@ -241,12 +243,14 @@ QString StkAgentService::RequestInput(const QString &title, uchar icon, const QS
     QString out0 = defaultValue;
 qDebug() << "RequestInput: " << title << "(" << icon << ")" << " (" << defaultValue << ") [" << minChars << ".." << maxChars << "] passwd:" << hideTyping;
     closeLastWidget();
+    /* #### TODO #### handle numeric and boundaries constraints
     StkInputText * inputText = new StkInputText(StkOfonoUtils::findIcon(icon),title);
     inputText->setDefaultText(defaultValue);
     inputText->setCharBounds(minChars,maxChars);
     inputText->setHideTyping(hideTyping);
     inputText->setNumeric(false);
-    StkDialog dlg(inputText);
+    StkDialog dlg(inputText);*/
+    StkDialog dlg(StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkinputtext.qml",defaultValue);
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
@@ -269,7 +273,9 @@ QString StkAgentService::RequestKey(const QString &title, uchar icon)
     QString out0 = FALLBACK_QSTRING;
 qDebug() << "RequestKey: " << title << "(" << icon << ")";
     closeLastWidget();
-    StkDialog dlg(new StkInputKey(StkOfonoUtils::findIcon(icon),title));
+    /* #### TODO #### handle numeric and boundaries constraints
+    StkDialog dlg(new StkInputKey(StkOfonoUtils::findIcon(icon),title));*/
+    StkDialog dlg(StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkinputkey.qml");
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
@@ -295,8 +301,7 @@ qDebug() << "RequestSelection: " << title << "(" << icon << ")" << " default: " 
      QList<StkMenuItem> dlgitems;
     foreach (const OfonoMenuEntry entry, items)
         dlgitems.append(StkMenuItem(StkOfonoUtils::findIconUrl(entry.icon), entry.label));
-    // #### TODO #### menu->setCurrentRow(int(defaultValue));
-    StkDialog dlg(StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkmenu.qml",dlgitems);
+    StkDialog dlg(StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkmenu.qml","",dlgitems,int(defaultValue));
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {

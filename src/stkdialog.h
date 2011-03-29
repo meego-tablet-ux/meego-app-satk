@@ -31,7 +31,9 @@ class StkDialog : public QDialog
 public:
     explicit StkDialog(StkWidget * stkWidget, QWidget *parent = 0);
     explicit StkDialog(const QString &iconUrl, const QString &title, const QString &qmlViewUrl,
-                       const QList<StkMenuItem> &menuItems = QList<StkMenuItem>(), QWidget *parent = 0);
+                       const QString &defaultText = "",
+            const QList<StkMenuItem> &menuItems = QList<StkMenuItem>(), const int selection =-1,
+            QWidget *parent = 0);
 
     inline AgentResponse getAgentResponse()
     {
