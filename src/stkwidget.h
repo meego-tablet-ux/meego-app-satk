@@ -26,7 +26,7 @@ signals:
     void rejected();
     void goBack();
     void endSession();
-    void itemSelected(uchar selection);
+    void itemSelected(int selection);
     void textEntered(QString text);
 };
 

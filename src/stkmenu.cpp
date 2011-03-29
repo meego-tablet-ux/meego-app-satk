@@ -85,5 +85,5 @@ void StkMenu::setCurrentRow(int row)
 
 void StkMenu::itemSelected()
 {
-    emit StkWidget::itemSelected((uchar)mMenuList->currentRow());
+    emit StkWidget::itemSelected(mMenuList->currentRow());
 }

@@ -37,13 +37,9 @@ StkMainWindow::StkMainWindow(StkIf *stkIf, QWidget *parent) :
     menuModel->setMenuItems(mStkProperties->mainMenuItems());
     context->setContextProperty("menuModel",menuModel);
     // connect signals
-    QObject * view = root/*->findChild<QObject*>("view")*/;
-qDebug() << "View:" << view;
-    if (view) {
-        connect(view, SIGNAL(itemSelected(int)), this, SLOT(responseOkWithSelection(int)));
-        connect(view, SIGNAL(goBack()), this, SLOT(close()));
-        connect(view, SIGNAL(endSession()), this, SLOT(close()));
-    }
+    connect(root, SIGNAL(itemSelected(int)), this, SLOT(responseOkWithSelection(int)));
+    connect(root, SIGNAL(goBack()), this, SLOT(close()));
+    connect(root, SIGNAL(endSession()), this, SLOT(close()));
 }
 
 StkMainWindow::~StkMainWindow()

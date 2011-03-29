@@ -18,15 +18,20 @@
 #include <QtGui/QDialog>
 #include <QtCore/QString>
 #include <QtCore/QVariant>
+#include <QtDeclarative/QDeclarativeView>
+#include <QList>
 
 #include "stkwidget.h"
 #include "stkdefines.h"
+#include "stkmenuitem.h"
 
 class StkDialog : public QDialog
 {
     Q_OBJECT
 public:
     explicit StkDialog(StkWidget * stkWidget, QWidget *parent = 0);
+    explicit StkDialog(const QString &iconUrl, const QString &title, const QString &qmlViewUrl,
+                       const QList<StkMenuItem> &menuItems = QList<StkMenuItem>(), QWidget *parent = 0);
 
     inline AgentResponse getAgentResponse()
     {
@@ -43,6 +48,7 @@ private:
     AgentResponse agentResponse;
     QVariant responseData;
     StkWidget * mStkWidget;
+    QDeclarativeView *mView;
 
 public slots:
     inline void responseYes()
@@ -57,7 +63,7 @@ public slots:
         reject();
     }
 
-    inline void responseOkWithSelection(uchar selection)
+    inline void responseOkWithSelection(int selection)
     {
         agentResponse = Ok;
         responseData = selection;

@@ -16,19 +16,14 @@
 #include <QtDebug>
 #include <QtGui/QApplication>
 #include <QIcon>
-#include <QListWidget>
-#include <QListWidgetItem>
 
 /* oFono SIM Toolkit utilities*/
 #include "stkofonoutils.h"
 
 /* SIM Toolkit widgets */
-#include "stkmessage.h"
-#include "stkyesno.h"
-#include "stkpopup.h"
 #include "stkinputkey.h"
 #include "stkinputtext.h"
-#include "stkmenu.h"
+#include "stkmenumodel.h"
 /* SIM Toolkit generic container dialog */
 #include "stkdialog.h"
 
@@ -58,7 +53,7 @@ bool StkAgentService::ConfirmCallSetup(const QString &info, uchar icon)
     bool out0 = FALLBACK_BOOL;
 qDebug() << "ConfirmCallSetup: " << info << "(" << icon << ")";
     closeLastWidget();
-    StkDialog dlg(new StkYesNo(StkOfonoUtils::findIcon(icon),info));
+    StkDialog dlg(StkOfonoUtils::findIconUrl(icon),info,"qrc:/stkyesno.qml");
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
@@ -85,7 +80,7 @@ bool StkAgentService::ConfirmLaunchBrowser(const QString &info, uchar icon, cons
     bool out0 = FALLBACK_BOOL;
 qDebug() << "ConfirmLaunchBrowser: " << info << "(" << icon << ")" << " -- url: " << url;
     closeLastWidget();
-    StkDialog dlg(new StkYesNo(StkOfonoUtils::findIcon(icon),info));
+    StkDialog dlg(StkOfonoUtils::findIconUrl(icon),info,"qrc:/stkyesno.qml");
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
@@ -110,7 +105,7 @@ void StkAgentService::DisplayActionInformation(const QString &text, uchar icon)
     // handle method call org.ofono.SimToolkitAgent.DisplayActionInformation
 qDebug() << "DisplayActionInformation: " << text << "(" << icon << ")";
     closeLastWidget();
-    StkDialog *dlg = new StkDialog(new StkMessage(StkOfonoUtils::findIcon(icon),text));
+    StkDialog *dlg = new StkDialog(StkOfonoUtils::findIconUrl(icon),text,"qrc:/stkmessage.qml");
     widgetStack.append(dlg);
     dlg->show();
 }
@@ -122,7 +117,7 @@ void StkAgentService::DisplayText(const QString &title, uchar icon, bool urgent)
     // handle method call org.ofono.SimToolkitAgent.DisplayText
 qDebug() << "DisplayText: " << title << "(" << icon << ")" << " urgent: " << urgent;
     closeLastWidget();
-    StkDialog *dlg = new StkDialog(new StkMessage(StkOfonoUtils::findIcon(icon),title));
+    StkDialog *dlg = new StkDialog(StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkmessage.qml");
     widgetStack.append(dlg);
     dlg->show();
 }
@@ -134,7 +129,7 @@ void StkAgentService::LoopTone(const QString &tone, const QString &text, uchar i
     // handle method call org.ofono.SimToolkitAgent.LoopTone
 qDebug() << "LoopTone: " << tone << " : " << text << "(" << icon << ")";
     closeLastWidget();
-    StkDialog *dlg = new StkDialog(new StkMessage(StkOfonoUtils::findIcon(icon),text + "(playing: " + tone + ")"));
+    StkDialog *dlg = new StkDialog(StkOfonoUtils::findIconUrl(icon),text + "(playing: " + tone + ")","qrc:/stkmessage.qml");
     widgetStack.append(dlg);
     dlg->show();
 }
@@ -146,7 +141,7 @@ void StkAgentService::PlayTone(const QString &tone, const QString &text, uchar i
     // handle method call org.ofono.SimToolkitAgent.PlayTone
 qDebug() << "PlayTone: " << tone << " : " << text << "(" << icon << ")";
     closeLastWidget();
-    StkDialog dlg(new StkPopup(StkOfonoUtils::findIcon(icon),text + "(playing: " + tone + ")"));
+    StkDialog dlg(StkOfonoUtils::findIconUrl(icon),text + "(playing: " + tone + ")","qrc:/stkmessage.qml");
     dlg.exec();
 }
 
@@ -166,7 +161,7 @@ bool StkAgentService::RequestConfirmation(const QString &title, uchar icon)
     bool out0 = FALLBACK_BOOL;
 qDebug() << "RequestConfirmation: " << title << "(" << icon << ")";
     closeLastWidget();
-    StkDialog dlg(new StkPopup(StkOfonoUtils::findIcon(icon),title));
+    StkDialog dlg(StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkpopup.qml");
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
@@ -297,17 +292,16 @@ uchar StkAgentService::RequestSelection(const QString &title, uchar icon, OfonoM
     uchar out0 = FALLBACK_UCHAR;
 qDebug() << "RequestSelection: " << title << "(" << icon << ")" << " default: " << defaultValue;
     closeLastWidget();
-    QList<QListWidgetItem *> dlgitems;
+     QList<StkMenuItem> dlgitems;
     foreach (const OfonoMenuEntry entry, items)
-        dlgitems.append(new QListWidgetItem(QIcon(StkOfonoUtils::findIcon(entry.icon)), entry.label));
-    StkMenu * menu = new StkMenu(StkOfonoUtils::findIcon(icon),title,dlgitems);
-    menu->setCurrentRow(int(defaultValue));
-    StkDialog dlg(menu);
+        dlgitems.append(StkMenuItem(StkOfonoUtils::findIconUrl(entry.icon), entry.label));
+    // #### TODO #### menu->setCurrentRow(int(defaultValue));
+    StkDialog dlg(StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkmenu.qml",dlgitems);
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
     case Ok:
-        out0 = (uchar)dlg.getResponseData().toChar().toAscii();
+        out0 = (uchar)dlg.getResponseData().toInt();
        break;
     case Back:
         connection().send(message().createErrorReply(STK_ERR_BACK,""));
