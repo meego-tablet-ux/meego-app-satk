@@ -15,25 +15,6 @@
 #include "stkdialog.h"
 #include "stkmenumodel.h"
 
-StkDialog::StkDialog(StkWidget * stkWidget, QWidget *parent) :
-    QDialog(parent)
-{
-    mStkWidget = stkWidget;
-    // layout widget
-    QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(mStkWidget);
-    setLayout(layout);
-    // connect signals
-    connect(mStkWidget, SIGNAL(accepted()), this, SLOT(responseYes()));
-    connect(mStkWidget, SIGNAL(rejected()), this, SLOT(responseNo()));
-    connect(mStkWidget, SIGNAL(goBack()), this, SLOT(responseBack()));
-    connect(mStkWidget, SIGNAL(endSession()), this, SLOT(responseEnd()));
-    connect(mStkWidget, SIGNAL(itemSelected(int)), this, SLOT(responseOkWithSelection(int)));
-    connect(mStkWidget, SIGNAL(textEntered(QString)), this, SLOT(responseOkWithText(QString)));
-    // default response: end session
-    agentResponse = End;
-}
-
 StkDialog::StkDialog(const QString &iconUrl, const QString &title, const QString &qmlViewUrl,
                      const QString &defaultText,
           const QList<StkMenuItem> &menuItems, const int selection,

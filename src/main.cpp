@@ -15,14 +15,6 @@
 #include <QDBusConnection>
 #include <QListWidgetItem>
 
-/* SIM Toolkit widgets */
-#include "stkmessage.h"
-#include "stkyesno.h"
-#include "stkpopup.h"
-#include "stkinputkey.h"
-#include "stkinputtext.h"
-#include "stkmenu.h"
-
 /* SIM Toolkit main window */
 #include "stkmainwindow.h"
 

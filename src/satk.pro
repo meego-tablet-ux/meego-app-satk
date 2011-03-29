@@ -15,17 +15,10 @@ INSTALLS=target
 
 
 SOURCES += main.cpp \
-    stkmessage.cpp \
-    stkyesno.cpp \
-    stkpopup.cpp \
-    stkinputkey.cpp \
-    stkinputtext.cpp \
-    stkmenu.cpp \
     stkif.cpp \
     stkagentifadaptor.cpp \
     mgrif.cpp \
     stkagentservice.cpp \
-    stkwidget.cpp \
     stkdialog.cpp \
     stkmainwindow.cpp \
     stkofonoutils.cpp \
@@ -34,18 +27,11 @@ SOURCES += main.cpp \
     stkmenuitem.cpp
 
 HEADERS += \
-    stkmessage.h \
-    stkyesno.h \
-    stkpopup.h \
-    stkinputkey.h \
-    stkinputtext.h \
-    stkmenu.h \
     stkif.h \
     stkagentifadaptor.h \
     mgrif.h \
     ofonodbustypes.h \
     stkagentservice.h \
-    stkwidget.h \
     stkdialog.h \
     stkdefines.h \
     stkmainwindow.h \

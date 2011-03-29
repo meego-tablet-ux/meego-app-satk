@@ -21,7 +21,6 @@
 #include <QtDeclarative/QDeclarativeView>
 #include <QList>
 
-#include "stkwidget.h"
 #include "stkdefines.h"
 #include "stkmenuitem.h"
 
@@ -29,7 +28,6 @@ class StkDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit StkDialog(StkWidget * stkWidget, QWidget *parent = 0);
     explicit StkDialog(const QString &iconUrl, const QString &title, const QString &qmlViewUrl,
                        const QString &defaultText = "",
             const QList<StkMenuItem> &menuItems = QList<StkMenuItem>(), const int selection =-1,
@@ -49,7 +47,6 @@ public:
 private:
     AgentResponse agentResponse;
     QVariant responseData;
-    StkWidget * mStkWidget;
     QDeclarativeView *mView;
 
 public slots:
