@@ -1,3 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1" href="$class_stk_main_window.html" title="StkMainWindow" alt="" coords="5,5,125,35"/>
+<area shape="rect" id="node1" href="$class_q_d_bus_context.html" title="QDBusContext" alt="" coords="7,5,121,35"/>
+<area shape="rect" id="node3" href="$class_stk_agent_service.html" title="StkAgentService" alt="" coords="180,5,308,35"/>
+<area shape="rect" id="node4" href="$class_q_object.html" title="QObject" alt="" coords="28,59,100,88"/>
+<area shape="rect" id="node7" href="$class_stk_ofono_properties.html" title="StkOfonoProperties" alt="" coords="171,59,317,88"/>
 </map>

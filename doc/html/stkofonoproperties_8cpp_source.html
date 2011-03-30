@@ -50,8 +50,8 @@
 <a name="l00020"></a>00020 <span class="preprocessor">#include &quot;<a class="code" href="stkofonoproperties_8h.html">stkofonoproperties.h</a>&quot;</span>
 <a name="l00021"></a>00021 
 <a name="l00022"></a>00022 
-<a name="l00023"></a><a class="code" href="class_stk_ofono_properties.html#ae42f4277cdd8ab4335aeacd3232f6b90">00023</a> <a class="code" href="class_stk_ofono_properties.html#ae42f4277cdd8ab4335aeacd3232f6b90">StkOfonoProperties::StkOfonoProperties</a>(<a class="code" href="class_stk_if.html">StkIf</a> *stkIf, QObject *parent) :
-<a name="l00024"></a>00024     QObject(parent)
+<a name="l00023"></a><a class="code" href="class_stk_ofono_properties.html#ae42f4277cdd8ab4335aeacd3232f6b90">00023</a> <a class="code" href="class_stk_ofono_properties.html#ae42f4277cdd8ab4335aeacd3232f6b90">StkOfonoProperties::StkOfonoProperties</a>(<a class="code" href="class_stk_if.html">StkIf</a> *stkIf, <a class="code" href="class_q_object.html">QObject</a> *parent) :
+<a name="l00024"></a>00024     <a class="code" href="class_q_object.html">QObject</a>(parent)
 <a name="l00025"></a>00025 {
 <a name="l00026"></a>00026     <span class="comment">// org.ofono.SimToolkit interface GetProperties method</span>
 <a name="l00027"></a>00027     QDBusPendingReply&lt;QVariantMap&gt; stkPropsCall = stkIf-&gt;<a class="code" href="class_stk_if.html#a57f0f94f0443008c165d618d3a2469f0">GetProperties</a>();
@@ -67,9 +67,9 @@
 <a name="l00037"></a>00037 }
 <a name="l00038"></a>00038 
 <a name="l00039"></a>00039 
-<a name="l00040"></a><a class="code" href="class_stk_ofono_properties.html#afef61153d9da53decb5a585ba9b3fe5c">00040</a> QList&lt;QListWidgetItem *&gt; <a class="code" href="class_stk_ofono_properties.html#afef61153d9da53decb5a585ba9b3fe5c">StkOfonoProperties::mainMenuItems</a>()
+<a name="l00040"></a><a class="code" href="class_stk_ofono_properties.html#ac4588fc709ec7c9ff74a90ada77248ff">00040</a> QList&lt;StkMenuItem&gt; <a class="code" href="class_stk_ofono_properties.html#ac4588fc709ec7c9ff74a90ada77248ff">StkOfonoProperties::mainMenuItems</a>()
 <a name="l00041"></a>00041 {
-<a name="l00042"></a>00042     QList&lt;QListWidgetItem *&gt; items;
+<a name="l00042"></a>00042     QList&lt;StkMenuItem&gt; items;
 <a name="l00043"></a>00043     <span class="comment">// &quot;MainMenu&quot; property</span>
 <a name="l00044"></a>00044     QVariant varMenu = mProperties.value(<span class="stringliteral">&quot;MainMenu&quot;</span>);
 <a name="l00045"></a>00045     QDBusArgument arg = varMenu.value&lt;QDBusArgument&gt;();
@@ -77,7 +77,7 @@
 <a name="l00047"></a>00047     OfonoMenuList menuList;
 <a name="l00048"></a>00048     arg &gt;&gt; menuList;
 <a name="l00049"></a>00049     <span class="keywordflow">foreach</span> (<span class="keyword">const</span> <a class="code" href="ofonodbustypes_8h.html#ab60b16230e5ea20f9960b3b235479751">OfonoMenuEntry</a> entry, menuList)
-<a name="l00050"></a>00050         items.append(<span class="keyword">new</span> QListWidgetItem(QIcon(<a class="code" href="class_stk_ofono_utils.html#ae3b04923d228a253b1816ff85b24c1be">StkOfonoUtils::findIcon</a>(entry.icon)), entry.label));
+<a name="l00050"></a>00050         items.append(<a class="code" href="class_stk_menu_item.html">StkMenuItem</a>(<a class="code" href="class_stk_ofono_utils.html#a1b7c488b552641c2a7f607e5cd16f380">StkOfonoUtils::findIconUrl</a>(entry.icon), entry.label));
 <a name="l00051"></a>00051     <span class="keywordflow">return</span> items;
 <a name="l00052"></a>00052 }
 <a name="l00053"></a>00053 
@@ -88,13 +88,13 @@
 <a name="l00058"></a>00058 }
 <a name="l00059"></a>00059 
 <a name="l00060"></a>00060 
-<a name="l00061"></a><a class="code" href="class_stk_ofono_properties.html#a7b7f767050d95c9093c56c117a804542">00061</a> QPixmap <a class="code" href="class_stk_ofono_properties.html#a7b7f767050d95c9093c56c117a804542">StkOfonoProperties::mainMenuIcon</a>()
+<a name="l00061"></a><a class="code" href="class_stk_ofono_properties.html#ae78d234eaef56ea857e1dc5dfe632ed0">00061</a> QString <a class="code" href="class_stk_ofono_properties.html#ae78d234eaef56ea857e1dc5dfe632ed0">StkOfonoProperties::mainMenuIconUrl</a>()
 <a name="l00062"></a>00062 {
-<a name="l00063"></a>00063     <span class="keywordflow">return</span> <a class="code" href="class_stk_ofono_utils.html#ae3b04923d228a253b1816ff85b24c1be">StkOfonoUtils::findIcon</a>((uchar)mProperties.value(<span class="stringliteral">&quot;MainMenuIcon&quot;</span>).toChar().toAscii());
+<a name="l00063"></a>00063     <span class="keywordflow">return</span> <a class="code" href="class_stk_ofono_utils.html#a1b7c488b552641c2a7f607e5cd16f380">StkOfonoUtils::findIconUrl</a>((uchar)mProperties.value(<span class="stringliteral">&quot;MainMenuIcon&quot;</span>).toChar().toAscii());
 <a name="l00064"></a>00064 }
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 17:10:14 for SIM Application Toolkit by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 30 2011 10:01:53 for SIM Application Toolkit by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

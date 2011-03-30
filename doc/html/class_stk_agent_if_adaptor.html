@@ -33,8 +33,17 @@
 <h1>StkAgentIfAdaptor Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="StkAgentIfAdaptor" -->
+<!-- doxytag: class="StkAgentIfAdaptor" --><!-- doxytag: inherits="QDBusAbstractAdaptor" -->
 <p><code>#include &lt;<a class="el" href="stkagentifadaptor_8h_source.html">stkagentifadaptor.h</a>&gt;</code></p>
+
+<p>Inherits <a class="el" href="class_q_d_bus_abstract_adaptor.html">QDBusAbstractAdaptor</a>.</p>
+<div class="dynheader">
+Collaboration diagram for StkAgentIfAdaptor:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_stk_agent_if_adaptor__coll__graph.png" border="0" usemap="#_stk_agent_if_adaptor_coll__map" alt="Collaboration graph"/></div>
+<map name="_stk_agent_if_adaptor_coll__map" id="_stk_agent_if_adaptor_coll__map">
+<area shape="rect" id="node2" href="class_q_d_bus_abstract_adaptor.html" title="{QDBusAbstractAdaptor\n||}" alt="" coords="23,5,193,91"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="class_stk_agent_if_adaptor-members.html">List of all members.</a></p>
 <table class="memberdecls">
@@ -76,6 +85,12 @@ Public Slots</h2></td></tr>
 
 <p>Definition at line <a class="el" href="stkagentifadaptor_8cpp_source.html#l00036">36</a> of file <a class="el" href="stkagentifadaptor_8cpp_source.html">stkagentifadaptor.cpp</a>.</p>
 
+<p><div class="fragment"><pre class="fragment">{
+    <span class="comment">// handle method call org.ofono.SimToolkitAgent.Cancel</span>
+    QMetaObject::invokeMethod(parent(), <span class="stringliteral">&quot;Cancel&quot;</span>);
+}
+</pre></div></p>
+
 </div>
 </div>
 <a class="anchor" id="a39e47042aeb40b11a3a9e778510142ba"></a><!-- doxytag: member="StkAgentIfAdaptor::ConfirmCallSetup" ref="a39e47042aeb40b11a3a9e778510142ba" args="(const QString &amp;info, uchar icon)" -->
@@ -104,6 +119,14 @@ Public Slots</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="stkagentifadaptor_8cpp_source.html#l00042">42</a> of file <a class="el" href="stkagentifadaptor_8cpp_source.html">stkagentifadaptor.cpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment">{
+    <span class="comment">// handle method call org.ofono.SimToolkitAgent.ConfirmCallSetup</span>
+    <span class="keywordtype">bool</span> out0;
+    QMetaObject::invokeMethod(parent(), <span class="stringliteral">&quot;ConfirmCallSetup&quot;</span>, Q_RETURN_ARG(<span class="keywordtype">bool</span>, out0), Q_ARG(QString, info), Q_ARG(uchar, icon));
+    <span class="keywordflow">return</span> out0;
+}
+</pre></div></p>
 
 </div>
 </div>
@@ -140,6 +163,14 @@ Public Slots</h2></td></tr>
 
 <p>Definition at line <a class="el" href="stkagentifadaptor_8cpp_source.html#l00050">50</a> of file <a class="el" href="stkagentifadaptor_8cpp_source.html">stkagentifadaptor.cpp</a>.</p>
 
+<p><div class="fragment"><pre class="fragment">{
+    <span class="comment">// handle method call org.ofono.SimToolkitAgent.ConfirmLaunchBrowser</span>
+    <span class="keywordtype">bool</span> out0;
+    QMetaObject::invokeMethod(parent(), <span class="stringliteral">&quot;ConfirmLaunchBrowser&quot;</span>, Q_RETURN_ARG(<span class="keywordtype">bool</span>, out0), Q_ARG(QString, info), Q_ARG(uchar, icon), Q_ARG(QString, url));
+    <span class="keywordflow">return</span> out0;
+}
+</pre></div></p>
+
 </div>
 </div>
 <a class="anchor" id="a22fdc76fac5c6b6766fefdc5ba7805eb"></a><!-- doxytag: member="StkAgentIfAdaptor::DisplayActionInformation" ref="a22fdc76fac5c6b6766fefdc5ba7805eb" args="(const QString &amp;text, uchar icon)" -->
@@ -168,6 +199,12 @@ Public Slots</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="stkagentifadaptor_8cpp_source.html#l00058">58</a> of file <a class="el" href="stkagentifadaptor_8cpp_source.html">stkagentifadaptor.cpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment">{
+    <span class="comment">// handle method call org.ofono.SimToolkitAgent.DisplayActionInformation</span>
+    QMetaObject::invokeMethod(parent(), <span class="stringliteral">&quot;DisplayActionInformation&quot;</span>, Q_ARG(QString, text), Q_ARG(uchar, icon));
+}
+</pre></div></p>
 
 </div>
 </div>
@@ -204,6 +241,12 @@ Public Slots</h2></td></tr>
 
 <p>Definition at line <a class="el" href="stkagentifadaptor_8cpp_source.html#l00064">64</a> of file <a class="el" href="stkagentifadaptor_8cpp_source.html">stkagentifadaptor.cpp</a>.</p>
 
+<p><div class="fragment"><pre class="fragment">{
+    <span class="comment">// handle method call org.ofono.SimToolkitAgent.DisplayText</span>
+    QMetaObject::invokeMethod(parent(), <span class="stringliteral">&quot;DisplayText&quot;</span>, Q_ARG(QString, title), Q_ARG(uchar, icon), Q_ARG(<span class="keywordtype">bool</span>, urgent));
+}
+</pre></div></p>
+
 </div>
 </div>
 <a class="anchor" id="ace8a18901699a0987e41e94bdfec6fce"></a><!-- doxytag: member="StkAgentIfAdaptor::LoopTone" ref="ace8a18901699a0987e41e94bdfec6fce" args="(const QString &amp;tone, const QString &amp;text, uchar icon)" -->
@@ -238,6 +281,12 @@ Public Slots</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="stkagentifadaptor_8cpp_source.html#l00070">70</a> of file <a class="el" href="stkagentifadaptor_8cpp_source.html">stkagentifadaptor.cpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment">{
+    <span class="comment">// handle method call org.ofono.SimToolkitAgent.LoopTone</span>
+    QMetaObject::invokeMethod(parent(), <span class="stringliteral">&quot;LoopTone&quot;</span>, Q_ARG(QString, tone), Q_ARG(QString, text), Q_ARG(uchar, icon));
+}
+</pre></div></p>
 
 </div>
 </div>
@@ -274,6 +323,12 @@ Public Slots</h2></td></tr>
 
 <p>Definition at line <a class="el" href="stkagentifadaptor_8cpp_source.html#l00076">76</a> of file <a class="el" href="stkagentifadaptor_8cpp_source.html">stkagentifadaptor.cpp</a>.</p>
 
+<p><div class="fragment"><pre class="fragment">{
+    <span class="comment">// handle method call org.ofono.SimToolkitAgent.PlayTone</span>
+    QMetaObject::invokeMethod(parent(), <span class="stringliteral">&quot;PlayTone&quot;</span>, Q_ARG(QString, tone), Q_ARG(QString, text), Q_ARG(uchar, icon));
+}
+</pre></div></p>
+
 </div>
 </div>
 <a class="anchor" id="a8190264a7fe1d034933233377c72a5dd"></a><!-- doxytag: member="StkAgentIfAdaptor::Release" ref="a8190264a7fe1d034933233377c72a5dd" args="()" -->
@@ -292,6 +347,12 @@ Public Slots</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="stkagentifadaptor_8cpp_source.html#l00082">82</a> of file <a class="el" href="stkagentifadaptor_8cpp_source.html">stkagentifadaptor.cpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment">{
+    <span class="comment">// handle method call org.ofono.SimToolkitAgent.Release</span>
+    QMetaObject::invokeMethod(parent(), <span class="stringliteral">&quot;Release&quot;</span>);
+}
+</pre></div></p>
 
 </div>
 </div>
@@ -322,6 +383,14 @@ Public Slots</h2></td></tr>
 
 <p>Definition at line <a class="el" href="stkagentifadaptor_8cpp_source.html#l00088">88</a> of file <a class="el" href="stkagentifadaptor_8cpp_source.html">stkagentifadaptor.cpp</a>.</p>
 
+<p><div class="fragment"><pre class="fragment">{
+    <span class="comment">// handle method call org.ofono.SimToolkitAgent.RequestConfirmation</span>
+    <span class="keywordtype">bool</span> out0;
+    QMetaObject::invokeMethod(parent(), <span class="stringliteral">&quot;RequestConfirmation&quot;</span>, Q_RETURN_ARG(<span class="keywordtype">bool</span>, out0), Q_ARG(QString, title), Q_ARG(uchar, icon));
+    <span class="keywordflow">return</span> out0;
+}
+</pre></div></p>
+
 </div>
 </div>
 <a class="anchor" id="a28bb3f6ed0f717c79c69193319a98e29"></a><!-- doxytag: member="StkAgentIfAdaptor::RequestDigit" ref="a28bb3f6ed0f717c79c69193319a98e29" args="(const QString &amp;title, uchar icon)" -->
@@ -350,6 +419,14 @@ Public Slots</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="stkagentifadaptor_8cpp_source.html#l00096">96</a> of file <a class="el" href="stkagentifadaptor_8cpp_source.html">stkagentifadaptor.cpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment">{
+    <span class="comment">// handle method call org.ofono.SimToolkitAgent.RequestDigit</span>
+    QString out0;
+    QMetaObject::invokeMethod(parent(), <span class="stringliteral">&quot;RequestDigit&quot;</span>, Q_RETURN_ARG(QString, out0), Q_ARG(QString, title), Q_ARG(uchar, icon));
+    <span class="keywordflow">return</span> out0;
+}
+</pre></div></p>
 
 </div>
 </div>
@@ -404,6 +481,14 @@ Public Slots</h2></td></tr>
 
 <p>Definition at line <a class="el" href="stkagentifadaptor_8cpp_source.html#l00104">104</a> of file <a class="el" href="stkagentifadaptor_8cpp_source.html">stkagentifadaptor.cpp</a>.</p>
 
+<p><div class="fragment"><pre class="fragment">{
+    <span class="comment">// handle method call org.ofono.SimToolkitAgent.RequestDigits</span>
+    QString out0;
+    QMetaObject::invokeMethod(parent(), <span class="stringliteral">&quot;RequestDigits&quot;</span>, Q_RETURN_ARG(QString, out0), Q_ARG(QString, title), Q_ARG(uchar, icon), Q_ARG(QString, defaultValue), Q_ARG(uchar, minChars), Q_ARG(uchar, maxChars), Q_ARG(<span class="keywordtype">bool</span>, hideTyping));
+    <span class="keywordflow">return</span> out0;
+}
+</pre></div></p>
+
 </div>
 </div>
 <a class="anchor" id="aff321d5f4bdbc70dbfe6b110c9c9eaab"></a><!-- doxytag: member="StkAgentIfAdaptor::RequestInput" ref="aff321d5f4bdbc70dbfe6b110c9c9eaab" args="(const QString &amp;title, uchar icon, const QString &amp;defaultValue, uchar minChars, uchar maxChars, bool hideTyping)" -->
@@ -457,6 +542,14 @@ Public Slots</h2></td></tr>
 
 <p>Definition at line <a class="el" href="stkagentifadaptor_8cpp_source.html#l00112">112</a> of file <a class="el" href="stkagentifadaptor_8cpp_source.html">stkagentifadaptor.cpp</a>.</p>
 
+<p><div class="fragment"><pre class="fragment">{
+    <span class="comment">// handle method call org.ofono.SimToolkitAgent.RequestInput</span>
+    QString out0;
+    QMetaObject::invokeMethod(parent(), <span class="stringliteral">&quot;RequestInput&quot;</span>, Q_RETURN_ARG(QString, out0), Q_ARG(QString, title), Q_ARG(uchar, icon), Q_ARG(QString, defaultValue), Q_ARG(uchar, minChars), Q_ARG(uchar, maxChars), Q_ARG(<span class="keywordtype">bool</span>, hideTyping));
+    <span class="keywordflow">return</span> out0;
+}
+</pre></div></p>
+
 </div>
 </div>
 <a class="anchor" id="af3ac75d7cf7c8b724a61a80ccd2534a1"></a><!-- doxytag: member="StkAgentIfAdaptor::RequestKey" ref="af3ac75d7cf7c8b724a61a80ccd2534a1" args="(const QString &amp;title, uchar icon)" -->
@@ -485,6 +578,14 @@ Public Slots</h2></td></tr>
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="stkagentifadaptor_8cpp_source.html#l00120">120</a> of file <a class="el" href="stkagentifadaptor_8cpp_source.html">stkagentifadaptor.cpp</a>.</p>
+
+<p><div class="fragment"><pre class="fragment">{
+    <span class="comment">// handle method call org.ofono.SimToolkitAgent.RequestKey</span>
+    QString out0;
+    QMetaObject::invokeMethod(parent(), <span class="stringliteral">&quot;RequestKey&quot;</span>, Q_RETURN_ARG(QString, out0), Q_ARG(QString, title), Q_ARG(uchar, icon));
+    <span class="keywordflow">return</span> out0;
+}
+</pre></div></p>
 
 </div>
 </div>
@@ -527,6 +628,14 @@ Public Slots</h2></td></tr>
 
 <p>Definition at line <a class="el" href="stkagentifadaptor_8cpp_source.html#l00128">128</a> of file <a class="el" href="stkagentifadaptor_8cpp_source.html">stkagentifadaptor.cpp</a>.</p>
 
+<p><div class="fragment"><pre class="fragment">{
+    <span class="comment">// handle method call org.ofono.SimToolkitAgent.RequestSelection</span>
+    uchar out0;
+    QMetaObject::invokeMethod(parent(), <span class="stringliteral">&quot;RequestSelection&quot;</span>, Q_RETURN_ARG(uchar, out0), Q_ARG(QString, title), Q_ARG(uchar, icon), Q_ARG(OfonoMenuList, items), Q_ARG(<span class="keywordtype">short</span>, defaultValue));
+    <span class="keywordflow">return</span> out0;
+}
+</pre></div></p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
@@ -534,7 +643,7 @@ Public Slots</h2></td></tr>
 <li>src/<a class="el" href="stkagentifadaptor_8cpp_source.html">stkagentifadaptor.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 17:10:14 for SIM Application Toolkit by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 30 2011 10:01:53 for SIM Application Toolkit by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

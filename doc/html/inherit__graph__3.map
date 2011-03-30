@@ -1,3 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node1" href="$class_stk_agent_service.html" title="StkAgentService" alt="" coords="5,5,133,35"/>
+<area shape="rect" id="node1" href="$class_q_d_bus_abstract_interface.html" title="QDBusAbstractInterface" alt="" coords="5,32,181,61"/>
+<area shape="rect" id="node3" href="$class_mgr_if.html" title="MgrIf" alt="" coords="229,5,283,35"/>
+<area shape="rect" id="node5" href="$class_stk_if.html" title="StkIf" alt="" coords="231,59,281,88"/>
 </map>

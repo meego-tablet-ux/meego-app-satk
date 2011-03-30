@@ -1,6 +1,7 @@
 <map id="G" name="G">
-<area shape="rect" id="node2" href="$class_stk_if.html" title="StkIf" alt="" coords="5,85,56,115"/>
-<area shape="rect" id="node4" href="$class_stk_ofono_properties.html" title="StkOfonoProperties" alt="" coords="80,85,227,115"/>
-<area shape="rect" id="node6" href="$class_stk_menu.html" title="StkMenu" alt="" coords="251,85,328,115"/>
-<area shape="rect" id="node8" href="$class_stk_widget.html" title="StkWidget" alt="" coords="247,5,332,35"/>
+<area shape="rect" id="node2" href="$class_q_main_window.html" title="{QMainWindow\n||}" alt="" coords="5,209,115,295"/>
+<area shape="rect" id="node4" href="$class_stk_if.html" title="{StkIf\n||+ StkIf()\l+ ~StkIf()\l+ staticInterfaceName()\l+ GetProperties()\l+ RegisterAgent()\l+ SelectItem()\l+ UnregisterAgent()\l}" alt="" coords="139,157,315,347"/>
+<area shape="rect" id="node6" href="$class_q_d_bus_abstract_interface.html" title="{QDBusAbstractInterface\n||}" alt="" coords="139,5,315,91"/>
+<area shape="rect" id="node10" href="$class_stk_ofono_properties.html" title="{StkOfonoProperties\n|&#45; mProperties\l|+ StkOfonoProperties()\l+ mainMenuItems()\l+ mainMenuTitle()\l+ mainMenuIconUrl()\l}" alt="" coords="507,183,677,321"/>
+<area shape="rect" id="node12" href="$class_q_object.html" title="{QObject\n||}" alt="" coords="500,5,572,91"/>
 </map>

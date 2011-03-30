@@ -46,46 +46,51 @@
 <a name="l00016"></a>00016 
 <a name="l00017"></a>00017 
 <a name="l00018"></a><a class="code" href="class_stk_ofono_utils.html#ae3b04923d228a253b1816ff85b24c1be">00018</a> QPixmap <a class="code" href="class_stk_ofono_utils.html#ae3b04923d228a253b1816ff85b24c1be">StkOfonoUtils::findIcon</a>(uchar <span class="keywordtype">id</span>)
-<a name="l00019"></a>00019 {
+<a name="l00019"></a>00019 { <span class="comment">// #### TODO implement</span>
 <a name="l00020"></a>00020     <span class="keywordflow">return</span> TEST_PIXMAP;
 <a name="l00021"></a>00021 }
 <a name="l00022"></a>00022 
-<a name="l00023"></a><a class="code" href="class_stk_ofono_utils.html#aecc9e7c9aeb3616a55d61907466322f0">00023</a> QList&lt;StkIf*&gt; <a class="code" href="class_stk_ofono_utils.html#aecc9e7c9aeb3616a55d61907466322f0">StkOfonoUtils::findSimToolkitInterfaces</a>(<span class="keyword">const</span> QDBusConnection &amp;connection, <a class="code" href="class_mgr_if.html">MgrIf</a> *mgrIf)
-<a name="l00024"></a>00024 {
-<a name="l00025"></a>00025     QList&lt;StkIf*&gt; simToolkitInterfaces;
-<a name="l00026"></a>00026     QDBusError dbusError;
-<a name="l00027"></a>00027     <span class="comment">// org.ofono.Manager interface GetModems method</span>
-<a name="l00028"></a>00028     QDBusPendingReply&lt;OfonoModemList&gt; modemsCall = mgrIf-&gt;<a class="code" href="class_mgr_if.html#a054e6106a9931ed00aeb814de3037701">GetModems</a>();
-<a name="l00029"></a>00029     modemsCall.waitForFinished();
-<a name="l00030"></a>00030     <span class="keywordflow">if</span> (modemsCall.isError()) {
-<a name="l00031"></a>00031         dbusError = modemsCall.error();
-<a name="l00032"></a>00032         qDebug() &lt;&lt; <span class="stringliteral">&quot;Error:&quot;</span> &lt;&lt; dbusError.name() &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; dbusError.message();
-<a name="l00033"></a>00033         <span class="keywordflow">return</span> simToolkitInterfaces;
-<a name="l00034"></a>00034     }
-<a name="l00035"></a>00035     <span class="comment">// loop foreach modem, find the first org.ofono.SimToolkit interface</span>
-<a name="l00036"></a>00036     <span class="comment">// in order to pass it to the SimToolkit main window</span>
-<a name="l00037"></a>00037     <span class="keywordflow">foreach</span>(<span class="keyword">const</span> <a class="code" href="struct_ofono_modem.html">OfonoModem</a> &amp;pms, modemsCall.value()) {
-<a name="l00038"></a>00038         <span class="keywordtype">bool</span> foundSimToolkit = <span class="keyword">false</span>;
-<a name="l00039"></a>00039         <span class="comment">// loop interfaces to find &quot;org.ofono.SimToolkit&quot;</span>
-<a name="l00040"></a>00040         <span class="keywordflow">foreach</span>(<span class="keyword">const</span> QString &amp;interface, pms.<a class="code" href="struct_ofono_modem.html#ab7e083307eeff518e8e5ee0d056a0418">varmap</a>.value(<span class="stringliteral">&quot;Interfaces&quot;</span>).toStringList())
-<a name="l00041"></a>00041         {
-<a name="l00042"></a>00042             <span class="keywordflow">if</span> (interface == <span class="stringliteral">&quot;org.ofono.SimToolkit&quot;</span>)
-<a name="l00043"></a>00043             {
-<a name="l00044"></a>00044                 foundSimToolkit = <span class="keyword">true</span>;
-<a name="l00045"></a>00045                 <span class="keywordflow">break</span>;
-<a name="l00046"></a>00046             }
-<a name="l00047"></a>00047         }
-<a name="l00048"></a>00048         <span class="keywordflow">if</span> (foundSimToolkit)
-<a name="l00049"></a>00049         {
-<a name="l00050"></a>00050             <span class="comment">// Instanciate proxy for org.ofono.SimToolkit interface</span>
-<a name="l00051"></a>00051             simToolkitInterfaces.append(<span class="keyword">new</span> <a class="code" href="class_stk_if.html">StkIf</a>(<span class="stringliteral">&quot;org.ofono&quot;</span>,pms.<a class="code" href="struct_ofono_modem.html#a03c447a60a12d26896a0aa3514c0046e">objpath</a>.path(),connection,NULL));
+<a name="l00023"></a><a class="code" href="class_stk_ofono_utils.html#a1b7c488b552641c2a7f607e5cd16f380">00023</a> QString <a class="code" href="class_stk_ofono_utils.html#a1b7c488b552641c2a7f607e5cd16f380">StkOfonoUtils::findIconUrl</a>(uchar <span class="keywordtype">id</span>)
+<a name="l00024"></a>00024 { <span class="comment">// #### TODO implement</span>
+<a name="l00025"></a>00025     <span class="keywordflow">return</span> TEST_ICON_URL;
+<a name="l00026"></a>00026 }
+<a name="l00027"></a>00027 
+<a name="l00028"></a><a class="code" href="class_stk_ofono_utils.html#aecc9e7c9aeb3616a55d61907466322f0">00028</a> QList&lt;StkIf*&gt; <a class="code" href="class_stk_ofono_utils.html#aecc9e7c9aeb3616a55d61907466322f0">StkOfonoUtils::findSimToolkitInterfaces</a>(<span class="keyword">const</span> QDBusConnection &amp;connection, <a class="code" href="class_mgr_if.html">MgrIf</a> *mgrIf)
+<a name="l00029"></a>00029 {
+<a name="l00030"></a>00030     QList&lt;StkIf*&gt; simToolkitInterfaces;
+<a name="l00031"></a>00031     QDBusError dbusError;
+<a name="l00032"></a>00032     <span class="comment">// org.ofono.Manager interface GetModems method</span>
+<a name="l00033"></a>00033     QDBusPendingReply&lt;OfonoModemList&gt; modemsCall = mgrIf-&gt;<a class="code" href="class_mgr_if.html#a054e6106a9931ed00aeb814de3037701">GetModems</a>();
+<a name="l00034"></a>00034     modemsCall.waitForFinished();
+<a name="l00035"></a>00035     <span class="keywordflow">if</span> (modemsCall.isError()) {
+<a name="l00036"></a>00036         dbusError = modemsCall.error();
+<a name="l00037"></a>00037         qDebug() &lt;&lt; <span class="stringliteral">&quot;Error:&quot;</span> &lt;&lt; dbusError.name() &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; dbusError.message();
+<a name="l00038"></a>00038         <span class="keywordflow">return</span> simToolkitInterfaces;
+<a name="l00039"></a>00039     }
+<a name="l00040"></a>00040     <span class="comment">// loop foreach modem, find the first org.ofono.SimToolkit interface</span>
+<a name="l00041"></a>00041     <span class="comment">// in order to pass it to the SimToolkit main window</span>
+<a name="l00042"></a>00042     <span class="keywordflow">foreach</span>(<span class="keyword">const</span> <a class="code" href="struct_ofono_modem.html">OfonoModem</a> &amp;pms, modemsCall.value()) {
+<a name="l00043"></a>00043         <span class="keywordtype">bool</span> foundSimToolkit = <span class="keyword">false</span>;
+<a name="l00044"></a>00044         <span class="comment">// loop interfaces to find &quot;org.ofono.SimToolkit&quot;</span>
+<a name="l00045"></a>00045         <span class="keywordflow">foreach</span>(<span class="keyword">const</span> QString &amp;interface, pms.<a class="code" href="struct_ofono_modem.html#ab7e083307eeff518e8e5ee0d056a0418">varmap</a>.value(<span class="stringliteral">&quot;Interfaces&quot;</span>).toStringList())
+<a name="l00046"></a>00046         {
+<a name="l00047"></a>00047             <span class="keywordflow">if</span> (interface == <span class="stringliteral">&quot;org.ofono.SimToolkit&quot;</span>)
+<a name="l00048"></a>00048             {
+<a name="l00049"></a>00049                 foundSimToolkit = <span class="keyword">true</span>;
+<a name="l00050"></a>00050                 <span class="keywordflow">break</span>;
+<a name="l00051"></a>00051             }
 <a name="l00052"></a>00052         }
-<a name="l00053"></a>00053     }
-<a name="l00054"></a>00054     <span class="keywordflow">return</span> simToolkitInterfaces;
-<a name="l00055"></a>00055 }
+<a name="l00053"></a>00053         <span class="keywordflow">if</span> (foundSimToolkit)
+<a name="l00054"></a>00054         {
+<a name="l00055"></a>00055             <span class="comment">// Instanciate proxy for org.ofono.SimToolkit interface</span>
+<a name="l00056"></a>00056             simToolkitInterfaces.append(<span class="keyword">new</span> <a class="code" href="class_stk_if.html">StkIf</a>(<span class="stringliteral">&quot;org.ofono&quot;</span>,pms.<a class="code" href="struct_ofono_modem.html#a03c447a60a12d26896a0aa3514c0046e">objpath</a>.path(),connection,NULL));
+<a name="l00057"></a>00057         }
+<a name="l00058"></a>00058     }
+<a name="l00059"></a>00059     <span class="keywordflow">return</span> simToolkitInterfaces;
+<a name="l00060"></a>00060 }
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 17:10:14 for SIM Application Toolkit by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 30 2011 10:01:53 for SIM Application Toolkit by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

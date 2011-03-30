@@ -45,133 +45,99 @@
 <a name="l00015"></a>00015 <span class="preprocessor">#include &lt;QDBusConnection&gt;</span>
 <a name="l00016"></a>00016 <span class="preprocessor">#include &lt;QListWidgetItem&gt;</span>
 <a name="l00017"></a>00017 
-<a name="l00018"></a>00018 <span class="comment">/* SIM Toolkit widgets */</span>
-<a name="l00019"></a>00019 <span class="preprocessor">#include &quot;<a class="code" href="stkmessage_8h.html">stkmessage.h</a>&quot;</span>
-<a name="l00020"></a>00020 <span class="preprocessor">#include &quot;<a class="code" href="stkyesno_8h.html">stkyesno.h</a>&quot;</span>
-<a name="l00021"></a>00021 <span class="preprocessor">#include &quot;<a class="code" href="stkpopup_8h.html">stkpopup.h</a>&quot;</span>
-<a name="l00022"></a>00022 <span class="preprocessor">#include &quot;<a class="code" href="stkinputkey_8h.html">stkinputkey.h</a>&quot;</span>
-<a name="l00023"></a>00023 <span class="preprocessor">#include &quot;<a class="code" href="stkinputtext_8h.html">stkinputtext.h</a>&quot;</span>
-<a name="l00024"></a>00024 <span class="preprocessor">#include &quot;<a class="code" href="stkmenu_8h.html">stkmenu.h</a>&quot;</span>
+<a name="l00018"></a>00018 <span class="comment">/* SIM Toolkit main window */</span>
+<a name="l00019"></a>00019 <span class="preprocessor">#include &quot;<a class="code" href="stkmainwindow_8h.html">stkmainwindow.h</a>&quot;</span>
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 <span class="comment">/* oFono DBus interfaces */</span>
+<a name="l00022"></a>00022 <span class="preprocessor">#include &quot;<a class="code" href="mgrif_8h.html">mgrif.h</a>&quot;</span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include &quot;<a class="code" href="stkif_8h.html">stkif.h</a>&quot;</span>
+<a name="l00024"></a>00024 <span class="preprocessor">#include &quot;<a class="code" href="stkagentifadaptor_8h.html">stkagentifadaptor.h</a>&quot;</span>
 <a name="l00025"></a>00025 
-<a name="l00026"></a>00026 <span class="comment">/* SIM Toolkit main window */</span>
-<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="stkmainwindow_8h.html">stkmainwindow.h</a>&quot;</span>
+<a name="l00026"></a>00026 <span class="comment">/* oFono DBus services */</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &quot;<a class="code" href="stkagentservice_8h.html">stkagentservice.h</a>&quot;</span>
 <a name="l00028"></a>00028 
-<a name="l00029"></a>00029 <span class="comment">/* oFono DBus interfaces */</span>
-<a name="l00030"></a>00030 <span class="preprocessor">#include &quot;<a class="code" href="mgrif_8h.html">mgrif.h</a>&quot;</span>
-<a name="l00031"></a>00031 <span class="preprocessor">#include &quot;<a class="code" href="stkif_8h.html">stkif.h</a>&quot;</span>
-<a name="l00032"></a>00032 <span class="preprocessor">#include &quot;<a class="code" href="stkagentifadaptor_8h.html">stkagentifadaptor.h</a>&quot;</span>
-<a name="l00033"></a>00033 
-<a name="l00034"></a>00034 <span class="comment">/* oFono DBus services */</span>
-<a name="l00035"></a>00035 <span class="preprocessor">#include &quot;<a class="code" href="stkagentservice_8h.html">stkagentservice.h</a>&quot;</span>
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037 <span class="comment">/* oFono SIM Toolkit properties*/</span>
-<a name="l00038"></a>00038 <span class="preprocessor">#include &quot;<a class="code" href="stkofonoproperties_8h.html">stkofonoproperties.h</a>&quot;</span>
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040 <span class="comment">/* oFono SIM Toolkit utilities*/</span>
-<a name="l00041"></a>00041 <span class="preprocessor">#include &quot;<a class="code" href="stkofonoutils_8h.html">stkofonoutils.h</a>&quot;</span>
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043 <span class="comment">/* oFono DBus types */</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;<a class="code" href="ofonodbustypes_8h.html">ofonodbustypes.h</a>&quot;</span>
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="comment">/* local defines */</span>
-<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;<a class="code" href="stkdefines_8h.html">stkdefines.h</a>&quot;</span>
-<a name="l00048"></a>00048 
+<a name="l00029"></a>00029 <span class="comment">/* oFono SIM Toolkit properties*/</span>
+<a name="l00030"></a>00030 <span class="preprocessor">#include &quot;<a class="code" href="stkofonoproperties_8h.html">stkofonoproperties.h</a>&quot;</span>
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032 <span class="comment">/* oFono SIM Toolkit utilities*/</span>
+<a name="l00033"></a>00033 <span class="preprocessor">#include &quot;<a class="code" href="stkofonoutils_8h.html">stkofonoutils.h</a>&quot;</span>
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035 <span class="comment">/* oFono DBus types */</span>
+<a name="l00036"></a>00036 <span class="preprocessor">#include &quot;<a class="code" href="ofonodbustypes_8h.html">ofonodbustypes.h</a>&quot;</span>
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 <span class="comment">/* local defines */</span>
+<a name="l00039"></a>00039 <span class="preprocessor">#include &quot;<a class="code" href="stkdefines_8h.html">stkdefines.h</a>&quot;</span>
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041 
+<a name="l00042"></a><a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">00042</a> <span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])
+<a name="l00043"></a>00043 {
+<a name="l00044"></a>00044     <span class="keywordtype">int</span> mainErr = -1;
+<a name="l00045"></a>00045     QApplication a(argc, argv);
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047     <span class="comment">// Register meta types defined in ofonodbustypes.h&quot;</span>
+<a name="l00048"></a>00048     registerOfonoDbusTypes();
 <a name="l00049"></a>00049 
-<a name="l00050"></a><a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">00050</a> <span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])
-<a name="l00051"></a>00051 {
-<a name="l00052"></a>00052     <span class="keywordtype">int</span> mainErr = -1;
-<a name="l00053"></a>00053     QApplication a(argc, argv);
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055     <span class="comment">// Register meta types defined in ofonodbustypes.h&quot;</span>
-<a name="l00056"></a>00056     registerOfonoDbusTypes();
-<a name="l00057"></a>00057 
-<a name="l00058"></a>00058     <span class="comment">// DBus Connection systemBus</span>
-<a name="l00059"></a>00059     QDBusError dbusError;
-<a name="l00060"></a>00060     QDBusConnection systemBus = QDBusConnection::systemBus();
-<a name="l00061"></a>00061     <span class="keywordflow">if</span>( !systemBus.isConnected() ) {
-<a name="l00062"></a>00062         dbusError = systemBus.lastError();
-<a name="l00063"></a>00063         qDebug() &lt;&lt; <span class="stringliteral">&quot;Error:&quot;</span> &lt;&lt; dbusError.name() &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; dbusError.message();
-<a name="l00064"></a>00064         <span class="keywordflow">return</span> mainErr;
-<a name="l00065"></a>00065     }
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067     <span class="comment">// Hook StkAgentIfAdaptor and StkAgentService together</span>
-<a name="l00068"></a>00068     <a class="code" href="class_stk_agent_service.html">StkAgentService</a> * stkAgentService = <span class="keyword">new</span> <a class="code" href="class_stk_agent_service.html">StkAgentService</a>();
-<a name="l00069"></a>00069     <a class="code" href="class_stk_agent_if_adaptor.html">StkAgentIfAdaptor</a> stkAgentIfAdaptor(stkAgentService);
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071     <span class="comment">// Instanciate proxy for org.ofono.Manager interface</span>
-<a name="l00072"></a>00072     <a class="code" href="class_mgr_if.html">MgrIf</a> mgrIf(<span class="stringliteral">&quot;org.ofono&quot;</span>,<span class="stringliteral">&quot;/&quot;</span>,systemBus,NULL);
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074     <span class="comment">// find org.ofono.SimToolkit interface for all modems</span>
-<a name="l00075"></a>00075     QList&lt;StkIf*&gt; stkIfs = <a class="code" href="class_stk_ofono_utils.html#aecc9e7c9aeb3616a55d61907466322f0">StkOfonoUtils::findSimToolkitInterfaces</a>(systemBus,&amp;mgrIf);
-<a name="l00076"></a>00076     <span class="comment">// but use only the first modem</span>
-<a name="l00077"></a>00077     <span class="keywordflow">if</span> (stkIfs.isEmpty()) {
-<a name="l00078"></a>00078         qDebug() &lt;&lt; <span class="stringliteral">&quot;No modem found, exiting&quot;</span>;
-<a name="l00079"></a>00079         <span class="keywordflow">return</span> mainErr;
-<a name="l00080"></a>00080     }
-<a name="l00081"></a>00081     <a class="code" href="class_stk_if.html">StkIf</a> *stkIfP = stkIfs.first();
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083     <span class="comment">// Register stkAgentService</span>
-<a name="l00084"></a>00084     QDBusObjectPath stkAgentPath(<a class="code" href="stkdefines_8h.html#a5019d7bc646e47e07b92e5cca07212f6">STK_AGENT_PATH</a>);
-<a name="l00085"></a>00085     <span class="keywordflow">if</span> (!systemBus.registerObject(stkAgentPath.path(),stkAgentService)) {
-<a name="l00086"></a>00086         dbusError = systemBus.lastError();
-<a name="l00087"></a>00087         qDebug() &lt;&lt; <span class="stringliteral">&quot;registerObject Error:&quot;</span> &lt;&lt; dbusError.name() &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; dbusError.message();
+<a name="l00050"></a>00050     <span class="comment">// DBus Connection systemBus</span>
+<a name="l00051"></a>00051     QDBusError dbusError;
+<a name="l00052"></a>00052     QDBusConnection systemBus = QDBusConnection::systemBus();
+<a name="l00053"></a>00053     <span class="keywordflow">if</span>( !systemBus.isConnected() ) {
+<a name="l00054"></a>00054         dbusError = systemBus.lastError();
+<a name="l00055"></a>00055         qDebug() &lt;&lt; <span class="stringliteral">&quot;Error:&quot;</span> &lt;&lt; dbusError.name() &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; dbusError.message();
+<a name="l00056"></a>00056         <span class="keywordflow">return</span> mainErr;
+<a name="l00057"></a>00057     }
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059     <span class="comment">// Hook StkAgentIfAdaptor and StkAgentService together</span>
+<a name="l00060"></a>00060     <a class="code" href="class_stk_agent_service.html">StkAgentService</a> * stkAgentService = <span class="keyword">new</span> <a class="code" href="class_stk_agent_service.html">StkAgentService</a>();
+<a name="l00061"></a>00061     <a class="code" href="class_stk_agent_if_adaptor.html">StkAgentIfAdaptor</a> stkAgentIfAdaptor(stkAgentService);
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063     <span class="comment">// Instanciate proxy for org.ofono.Manager interface</span>
+<a name="l00064"></a>00064     <a class="code" href="class_mgr_if.html">MgrIf</a> mgrIf(<span class="stringliteral">&quot;org.ofono&quot;</span>,<span class="stringliteral">&quot;/&quot;</span>,systemBus,NULL);
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066     <span class="comment">// find org.ofono.SimToolkit interface for all modems</span>
+<a name="l00067"></a>00067     QList&lt;StkIf*&gt; stkIfs = <a class="code" href="class_stk_ofono_utils.html#aecc9e7c9aeb3616a55d61907466322f0">StkOfonoUtils::findSimToolkitInterfaces</a>(systemBus,&amp;mgrIf);
+<a name="l00068"></a>00068     <span class="comment">// but use only the first modem</span>
+<a name="l00069"></a>00069     <span class="keywordflow">if</span> (stkIfs.isEmpty()) {
+<a name="l00070"></a>00070         qDebug() &lt;&lt; <span class="stringliteral">&quot;No modem found, exiting&quot;</span>;
+<a name="l00071"></a>00071         <span class="keywordflow">return</span> mainErr;
+<a name="l00072"></a>00072     }
+<a name="l00073"></a>00073     <a class="code" href="class_stk_if.html">StkIf</a> *stkIfP = stkIfs.first();
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075     <span class="comment">// Register stkAgentService</span>
+<a name="l00076"></a>00076     QDBusObjectPath stkAgentPath(<a class="code" href="stkdefines_8h.html#a5019d7bc646e47e07b92e5cca07212f6">STK_AGENT_PATH</a>);
+<a name="l00077"></a>00077     <span class="keywordflow">if</span> (!systemBus.registerObject(stkAgentPath.path(),stkAgentService)) {
+<a name="l00078"></a>00078         dbusError = systemBus.lastError();
+<a name="l00079"></a>00079         qDebug() &lt;&lt; <span class="stringliteral">&quot;registerObject Error:&quot;</span> &lt;&lt; dbusError.name() &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; dbusError.message();
+<a name="l00080"></a>00080         <span class="keywordflow">return</span> mainErr;
+<a name="l00081"></a>00081     }
+<a name="l00082"></a>00082     <span class="comment">// Register SimToolkitAgent with org.ofono.SimToolkit interface RegisterAgent method</span>
+<a name="l00083"></a>00083     QDBusPendingReply&lt;&gt; stkRegisterCall = stkIfP-&gt;<a class="code" href="class_stk_if.html#ac6b379ed560d239a755bf3af255a6087">RegisterAgent</a>(stkAgentPath);
+<a name="l00084"></a>00084     stkRegisterCall.waitForFinished();
+<a name="l00085"></a>00085     <span class="keywordflow">if</span> (stkRegisterCall.isError()) {
+<a name="l00086"></a>00086         dbusError = stkRegisterCall.error();
+<a name="l00087"></a>00087         qDebug() &lt;&lt; <span class="stringliteral">&quot;RegisterAgent error:&quot;</span> &lt;&lt; dbusError.name() &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; dbusError.message();
 <a name="l00088"></a>00088         <span class="keywordflow">return</span> mainErr;
 <a name="l00089"></a>00089     }
-<a name="l00090"></a>00090     <span class="comment">// Register SimToolkitAgent with org.ofono.SimToolkit interface RegisterAgent method</span>
-<a name="l00091"></a>00091     QDBusPendingReply&lt;&gt; stkRegisterCall = stkIfP-&gt;<a class="code" href="class_stk_if.html#ac6b379ed560d239a755bf3af255a6087">RegisterAgent</a>(stkAgentPath);
-<a name="l00092"></a>00092     stkRegisterCall.waitForFinished();
-<a name="l00093"></a>00093     <span class="keywordflow">if</span> (stkRegisterCall.isError()) {
-<a name="l00094"></a>00094         dbusError = stkRegisterCall.error();
-<a name="l00095"></a>00095         qDebug() &lt;&lt; <span class="stringliteral">&quot;RegisterAgent error:&quot;</span> &lt;&lt; dbusError.name() &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; dbusError.message();
-<a name="l00096"></a>00096         <span class="keywordflow">return</span> mainErr;
-<a name="l00097"></a>00097     }
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099     <span class="comment">// SimToolkit main window</span>
-<a name="l00100"></a>00100     <a class="code" href="class_stk_main_window.html">StkMainWindow</a> mainWindow(stkIfP);
-<a name="l00101"></a>00101     mainWindow.show();
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103 <span class="comment">/*</span>
-<a name="l00104"></a>00104 <span class="comment">    // Test all widgets</span>
-<a name="l00105"></a>00105 <span class="comment"></span>
-<a name="l00106"></a>00106 <span class="comment">    QList&lt;QListWidgetItem *&gt; items;</span>
-<a name="l00107"></a>00107 <span class="comment">    items.append(new QListWidgetItem(QIcon(TEST_PIXMAP), &quot;One item&quot;));</span>
-<a name="l00108"></a>00108 <span class="comment">    items.append(new QListWidgetItem(QIcon(TEST_PIXMAP), &quot;Another one&quot;));</span>
-<a name="l00109"></a>00109 <span class="comment">    items.append(new QListWidgetItem(QIcon(TEST_PIXMAP), &quot;One more&quot;));</span>
-<a name="l00110"></a>00110 <span class="comment">    items.append(new QListWidgetItem(QIcon(TEST_PIXMAP), &quot;A last item&quot;));</span>
-<a name="l00111"></a>00111 <span class="comment">    StkMenu menu(&#39;\0&#39;,TEST_STRING,items,NULL);</span>
-<a name="l00112"></a>00112 <span class="comment">    menu.show();</span>
-<a name="l00113"></a>00113 <span class="comment"></span>
-<a name="l00114"></a>00114 <span class="comment">    StkMessage message(TEST_PIXMAP,TEST_STRING,NULL);</span>
-<a name="l00115"></a>00115 <span class="comment">    message.show();</span>
-<a name="l00116"></a>00116 <span class="comment"></span>
-<a name="l00117"></a>00117 <span class="comment">    StkYesNo yesno(TEST_PIXMAP,TEST_STRING,NULL);</span>
-<a name="l00118"></a>00118 <span class="comment">    yesno.show();</span>
-<a name="l00119"></a>00119 <span class="comment"></span>
-<a name="l00120"></a>00120 <span class="comment">    StkPopup popup(TEST_PIXMAP,TEST_STRING,NULL);</span>
-<a name="l00121"></a>00121 <span class="comment">    popup.show();</span>
-<a name="l00122"></a>00122 <span class="comment"></span>
-<a name="l00123"></a>00123 <span class="comment">    StkInputKey inputkey(TEST_PIXMAP,TEST_STRING,NULL);</span>
-<a name="l00124"></a>00124 <span class="comment">    inputkey.show();</span>
-<a name="l00125"></a>00125 <span class="comment"></span>
-<a name="l00126"></a>00126 <span class="comment">    StkInputText inputtext(TEST_PIXMAP,TEST_STRING,NULL);</span>
-<a name="l00127"></a>00127 <span class="comment">    inputtext.show();</span>
-<a name="l00128"></a>00128 <span class="comment">*/</span>
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130     mainErr = a.exec();
-<a name="l00131"></a>00131 
-<a name="l00132"></a>00132     stkRegisterCall = stkIfP-&gt;<a class="code" href="class_stk_if.html#a8148562bf441205bf4c2675514956c72">UnregisterAgent</a>(stkAgentPath);
-<a name="l00133"></a>00133     stkRegisterCall.waitForFinished();
-<a name="l00134"></a>00134     <span class="keywordflow">if</span> (stkRegisterCall.isError()) {
-<a name="l00135"></a>00135         dbusError = stkRegisterCall.error();
-<a name="l00136"></a>00136         qDebug() &lt;&lt; <span class="stringliteral">&quot;UnregisterAgent error:&quot;</span> &lt;&lt; dbusError.name() &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; dbusError.message();
-<a name="l00137"></a>00137         <span class="keywordflow">return</span> -1;
-<a name="l00138"></a>00138     }
-<a name="l00139"></a>00139 
-<a name="l00140"></a>00140     <span class="keywordflow">return</span> mainErr;
-<a name="l00141"></a>00141 }
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091     <span class="comment">// open SimToolkit main window</span>
+<a name="l00092"></a>00092     <a class="code" href="class_stk_main_window.html">StkMainWindow</a> mainWindow(stkIfP);
+<a name="l00093"></a>00093     mainWindow.show();
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095     <span class="comment">// run SimToolkit application</span>
+<a name="l00096"></a>00096     mainErr = a.exec();
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098     stkRegisterCall = stkIfP-&gt;<a class="code" href="class_stk_if.html#a8148562bf441205bf4c2675514956c72">UnregisterAgent</a>(stkAgentPath);
+<a name="l00099"></a>00099     stkRegisterCall.waitForFinished();
+<a name="l00100"></a>00100     <span class="keywordflow">if</span> (stkRegisterCall.isError()) {
+<a name="l00101"></a>00101         dbusError = stkRegisterCall.error();
+<a name="l00102"></a>00102         qDebug() &lt;&lt; <span class="stringliteral">&quot;UnregisterAgent error:&quot;</span> &lt;&lt; dbusError.name() &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; dbusError.message();
+<a name="l00103"></a>00103         <span class="keywordflow">return</span> -1;
+<a name="l00104"></a>00104     }
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106     <span class="keywordflow">return</span> mainErr;
+<a name="l00107"></a>00107 }
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 17:10:14 for SIM Application Toolkit by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 30 2011 10:01:53 for SIM Application Toolkit by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

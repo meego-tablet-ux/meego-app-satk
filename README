@@ -9,6 +9,7 @@ satk - SIM Application Toolkit is a graphical user interface for oFono SimToolki
 
 In order to build satk you need the following modules:
 
+  * QtDeclarative
   * QtCore
   * QtGui
   * QtDBus

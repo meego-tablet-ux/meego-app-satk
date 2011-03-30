@@ -54,7 +54,7 @@
 <a name="l00024"></a>00024 <span class="comment">/*</span>
 <a name="l00025"></a>00025 <span class="comment"> * Proxy class for interface org.ofono.Manager</span>
 <a name="l00026"></a>00026 <span class="comment"> */</span>
-<a name="l00027"></a><a class="code" href="class_mgr_if.html">00027</a> <span class="keyword">class </span><a class="code" href="class_mgr_if.html">MgrIf</a>: <span class="keyword">public</span> QDBusAbstractInterface
+<a name="l00027"></a><a class="code" href="class_mgr_if.html">00027</a> <span class="keyword">class </span><a class="code" href="class_mgr_if.html">MgrIf</a>: <span class="keyword">public</span> <a class="code" href="class_q_d_bus_abstract_interface.html">QDBusAbstractInterface</a>
 <a name="l00028"></a>00028 {
 <a name="l00029"></a>00029     Q_OBJECT
 <a name="l00030"></a>00030 <span class="keyword">public</span>:
@@ -62,7 +62,7 @@
 <a name="l00032"></a>00032     { <span class="keywordflow">return</span> <span class="stringliteral">&quot;org.ofono.Manager&quot;</span>; }
 <a name="l00033"></a>00033 
 <a name="l00034"></a>00034 <span class="keyword">public</span>:
-<a name="l00035"></a>00035     <a class="code" href="class_mgr_if.html#a3e668996084f81bc9be7e47d8e6a6c07">MgrIf</a>(<span class="keyword">const</span> QString &amp;service, <span class="keyword">const</span> QString &amp;path, <span class="keyword">const</span> QDBusConnection &amp;connection, QObject *parent = 0);
+<a name="l00035"></a>00035     <a class="code" href="class_mgr_if.html#a3e668996084f81bc9be7e47d8e6a6c07">MgrIf</a>(<span class="keyword">const</span> QString &amp;service, <span class="keyword">const</span> QString &amp;path, <span class="keyword">const</span> QDBusConnection &amp;connection, <a class="code" href="class_q_object.html">QObject</a> *parent = 0);
 <a name="l00036"></a>00036 
 <a name="l00037"></a>00037     <a class="code" href="class_mgr_if.html#ac35831d6023054a22e0822283caed447">~MgrIf</a>();
 <a name="l00038"></a>00038 
@@ -86,7 +86,7 @@
 <a name="l00056"></a>00056 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 17:10:14 for SIM Application Toolkit by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 30 2011 10:01:53 for SIM Application Toolkit by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

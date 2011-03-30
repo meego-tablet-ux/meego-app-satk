@@ -33,17 +33,26 @@
 <h1>StkOfonoProperties Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="StkOfonoProperties" -->
+<!-- doxytag: class="StkOfonoProperties" --><!-- doxytag: inherits="QObject" -->
 <p><code>#include &lt;<a class="el" href="stkofonoproperties_8h_source.html">stkofonoproperties.h</a>&gt;</code></p>
+
+<p>Inherits <a class="el" href="class_q_object.html">QObject</a>.</p>
+<div class="dynheader">
+Collaboration diagram for StkOfonoProperties:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_stk_ofono_properties__coll__graph.png" border="0" usemap="#_stk_ofono_properties_coll__map" alt="Collaboration graph"/></div>
+<map name="_stk_ofono_properties_coll__map" id="_stk_ofono_properties_coll__map">
+<area shape="rect" id="node2" href="class_q_object.html" title="{QObject\n||}" alt="" coords="5,5,77,91"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="class_stk_ofono_properties-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stk_ofono_properties.html#ae42f4277cdd8ab4335aeacd3232f6b90">StkOfonoProperties</a> (<a class="el" href="class_stk_if.html">StkIf</a> *stkIf, QObject *parent=0)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QList&lt; QListWidgetItem * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stk_ofono_properties.html#afef61153d9da53decb5a585ba9b3fe5c">mainMenuItems</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stk_ofono_properties.html#ae42f4277cdd8ab4335aeacd3232f6b90">StkOfonoProperties</a> (<a class="el" href="class_stk_if.html">StkIf</a> *stkIf, <a class="el" href="class_q_object.html">QObject</a> *parent=0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="class_stk_menu_item.html">StkMenuItem</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stk_ofono_properties.html#ac4588fc709ec7c9ff74a90ada77248ff">mainMenuItems</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stk_ofono_properties.html#ae01e83b4872843ceffc5bd4782dfd580">mainMenuTitle</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QPixmap&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stk_ofono_properties.html#a7b7f767050d95c9093c56c117a804542">mainMenuIcon</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_stk_ofono_properties.html#ae78d234eaef56ea857e1dc5dfe632ed0">mainMenuIconUrl</a> ()</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
@@ -62,7 +71,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">QObject *&nbsp;</td>
+          <td class="paramtype"><a class="el" href="class_q_object.html">QObject</a> *&nbsp;</td>
           <td class="paramname"> <em>parent</em> = <code>0</code></td><td>&nbsp;</td>
         </tr>
         <tr>
@@ -76,6 +85,25 @@ Public Member Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="stkofonoproperties_8cpp_source.html#l00023">23</a> of file <a class="el" href="stkofonoproperties_8cpp_source.html">stkofonoproperties.cpp</a>.</p>
 
+<p>References <a class="el" href="stkif_8h_source.html#l00039">StkIf::GetProperties()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment">                                                                    :
+    <a class="code" href="class_q_object.html">QObject</a>(parent)
+{
+    <span class="comment">// org.ofono.SimToolkit interface GetProperties method</span>
+    QDBusPendingReply&lt;QVariantMap&gt; stkPropsCall = stkIf-&gt;<a class="code" href="class_stk_if.html#a57f0f94f0443008c165d618d3a2469f0">GetProperties</a>();
+    stkPropsCall.waitForFinished();
+    <span class="keywordflow">if</span> (stkPropsCall.isError()) {
+        QDBusError error = stkPropsCall.error();
+        qDebug() &lt;&lt; <span class="stringliteral">&quot;Error:&quot;</span> &lt;&lt; error.name() &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; error.message();
+    }
+    <span class="keywordflow">else</span>
+    {   <span class="comment">// get properties map</span>
+        mProperties = stkPropsCall.value();
+    }
+}
+</pre></div></p>
+
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -88,12 +116,12 @@ Here is the call graph for this function:</div>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a7b7f767050d95c9093c56c117a804542"></a><!-- doxytag: member="StkOfonoProperties::mainMenuIcon" ref="a7b7f767050d95c9093c56c117a804542" args="()" -->
+<a class="anchor" id="ae78d234eaef56ea857e1dc5dfe632ed0"></a><!-- doxytag: member="StkOfonoProperties::mainMenuIconUrl" ref="ae78d234eaef56ea857e1dc5dfe632ed0" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QPixmap StkOfonoProperties::mainMenuIcon </td>
+          <td class="memname">QString StkOfonoProperties::mainMenuIconUrl </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -105,32 +133,41 @@ Here is the call graph for this function:</div>
 
 <p>Definition at line <a class="el" href="stkofonoproperties_8cpp_source.html#l00061">61</a> of file <a class="el" href="stkofonoproperties_8cpp_source.html">stkofonoproperties.cpp</a>.</p>
 
+<p>References <a class="el" href="stkofonoutils_8cpp_source.html#l00023">StkOfonoUtils::findIconUrl()</a>.</p>
+
+<p>Referenced by <a class="el" href="stkmainwindow_8cpp_source.html#l00017">StkMainWindow::StkMainWindow()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment">{
+    <span class="keywordflow">return</span> <a class="code" href="class_stk_ofono_utils.html#a1b7c488b552641c2a7f607e5cd16f380">StkOfonoUtils::findIconUrl</a>((uchar)mProperties.value(<span class="stringliteral">&quot;MainMenuIcon&quot;</span>).toChar().toAscii());
+}
+</pre></div></p>
+
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_stk_ofono_properties_a7b7f767050d95c9093c56c117a804542_cgraph.png" border="0" usemap="#class_stk_ofono_properties_a7b7f767050d95c9093c56c117a804542_cgraph" alt=""/></div>
-<map name="class_stk_ofono_properties_a7b7f767050d95c9093c56c117a804542_cgraph" id="class_stk_ofono_properties_a7b7f767050d95c9093c56c117a804542_cgraph">
-<area shape="rect" id="node3" href="class_stk_ofono_utils.html#ae3b04923d228a253b1816ff85b24c1be" title="StkOfonoUtils::findIcon" alt="" coords="303,5,468,35"/></map>
+<div class="center"><img src="class_stk_ofono_properties_ae78d234eaef56ea857e1dc5dfe632ed0_cgraph.png" border="0" usemap="#class_stk_ofono_properties_ae78d234eaef56ea857e1dc5dfe632ed0_cgraph" alt=""/></div>
+<map name="class_stk_ofono_properties_ae78d234eaef56ea857e1dc5dfe632ed0_cgraph" id="class_stk_ofono_properties_ae78d234eaef56ea857e1dc5dfe632ed0_cgraph">
+<area shape="rect" id="node3" href="class_stk_ofono_utils.html#a1b7c488b552641c2a7f607e5cd16f380" title="StkOfonoUtils::findIconUrl" alt="" coords="320,5,504,35"/></map>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_stk_ofono_properties_a7b7f767050d95c9093c56c117a804542_icgraph.png" border="0" usemap="#class_stk_ofono_properties_a7b7f767050d95c9093c56c117a804542_icgraph" alt=""/></div>
-<map name="class_stk_ofono_properties_a7b7f767050d95c9093c56c117a804542_icgraph" id="class_stk_ofono_properties_a7b7f767050d95c9093c56c117a804542_icgraph">
-<area shape="rect" id="node3" href="class_stk_main_window.html#a6e4161d64d5ce85fc358d6435fad7050" title="StkMainWindow::StkMainWindow" alt="" coords="303,5,527,35"/></map>
+<div class="center"><img src="class_stk_ofono_properties_ae78d234eaef56ea857e1dc5dfe632ed0_icgraph.png" border="0" usemap="#class_stk_ofono_properties_ae78d234eaef56ea857e1dc5dfe632ed0_icgraph" alt=""/></div>
+<map name="class_stk_ofono_properties_ae78d234eaef56ea857e1dc5dfe632ed0_icgraph" id="class_stk_ofono_properties_ae78d234eaef56ea857e1dc5dfe632ed0_icgraph">
+<area shape="rect" id="node3" href="class_stk_main_window.html#a6e4161d64d5ce85fc358d6435fad7050" title="StkMainWindow::StkMainWindow" alt="" coords="321,5,545,35"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="afef61153d9da53decb5a585ba9b3fe5c"></a><!-- doxytag: member="StkOfonoProperties::mainMenuItems" ref="afef61153d9da53decb5a585ba9b3fe5c" args="()" -->
+<a class="anchor" id="ac4588fc709ec7c9ff74a90ada77248ff"></a><!-- doxytag: member="StkOfonoProperties::mainMenuItems" ref="ac4588fc709ec7c9ff74a90ada77248ff" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QList&lt; QListWidgetItem * &gt; StkOfonoProperties::mainMenuItems </td>
+          <td class="memname">QList&lt; <a class="el" href="class_stk_menu_item.html">StkMenuItem</a> &gt; StkOfonoProperties::mainMenuItems </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -142,20 +179,38 @@ Here is the caller graph for this function:</div>
 
 <p>Definition at line <a class="el" href="stkofonoproperties_8cpp_source.html#l00040">40</a> of file <a class="el" href="stkofonoproperties_8cpp_source.html">stkofonoproperties.cpp</a>.</p>
 
+<p>References <a class="el" href="stkofonoutils_8cpp_source.html#l00023">StkOfonoUtils::findIconUrl()</a>, and <a class="el" href="ofonodbustypes_8h_source.html#l00065">OfonoMenuEntry</a>.</p>
+
+<p>Referenced by <a class="el" href="stkmainwindow_8cpp_source.html#l00017">StkMainWindow::StkMainWindow()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment">{
+    QList&lt;StkMenuItem&gt; items;
+    <span class="comment">// &quot;MainMenu&quot; property</span>
+    QVariant varMenu = mProperties.value(<span class="stringliteral">&quot;MainMenu&quot;</span>);
+    QDBusArgument arg = varMenu.value&lt;QDBusArgument&gt;();
+    <span class="comment">// demarshall a(sy) QDBusArgument to a QList&lt;OfonoMenuEntry&gt; registered as OfonoMenuList</span>
+    OfonoMenuList menuList;
+    arg &gt;&gt; menuList;
+    <span class="keywordflow">foreach</span> (<span class="keyword">const</span> <a class="code" href="ofonodbustypes_8h.html#ab60b16230e5ea20f9960b3b235479751">OfonoMenuEntry</a> entry, menuList)
+        items.append(<a class="code" href="class_stk_menu_item.html">StkMenuItem</a>(<a class="code" href="class_stk_ofono_utils.html#a1b7c488b552641c2a7f607e5cd16f380">StkOfonoUtils::findIconUrl</a>(entry.icon), entry.label));
+    <span class="keywordflow">return</span> items;
+}
+</pre></div></p>
+
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_stk_ofono_properties_afef61153d9da53decb5a585ba9b3fe5c_cgraph.png" border="0" usemap="#class_stk_ofono_properties_afef61153d9da53decb5a585ba9b3fe5c_cgraph" alt=""/></div>
-<map name="class_stk_ofono_properties_afef61153d9da53decb5a585ba9b3fe5c_cgraph" id="class_stk_ofono_properties_afef61153d9da53decb5a585ba9b3fe5c_cgraph">
-<area shape="rect" id="node3" href="class_stk_ofono_utils.html#ae3b04923d228a253b1816ff85b24c1be" title="StkOfonoUtils::findIcon" alt="" coords="313,5,479,35"/></map>
+<div class="center"><img src="class_stk_ofono_properties_ac4588fc709ec7c9ff74a90ada77248ff_cgraph.png" border="0" usemap="#class_stk_ofono_properties_ac4588fc709ec7c9ff74a90ada77248ff_cgraph" alt=""/></div>
+<map name="class_stk_ofono_properties_ac4588fc709ec7c9ff74a90ada77248ff_cgraph" id="class_stk_ofono_properties_ac4588fc709ec7c9ff74a90ada77248ff_cgraph">
+<area shape="rect" id="node3" href="class_stk_ofono_utils.html#a1b7c488b552641c2a7f607e5cd16f380" title="StkOfonoUtils::findIconUrl" alt="" coords="312,5,496,35"/></map>
 </div>
 </p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_stk_ofono_properties_afef61153d9da53decb5a585ba9b3fe5c_icgraph.png" border="0" usemap="#class_stk_ofono_properties_afef61153d9da53decb5a585ba9b3fe5c_icgraph" alt=""/></div>
-<map name="class_stk_ofono_properties_afef61153d9da53decb5a585ba9b3fe5c_icgraph" id="class_stk_ofono_properties_afef61153d9da53decb5a585ba9b3fe5c_icgraph">
+<div class="center"><img src="class_stk_ofono_properties_ac4588fc709ec7c9ff74a90ada77248ff_icgraph.png" border="0" usemap="#class_stk_ofono_properties_ac4588fc709ec7c9ff74a90ada77248ff_icgraph" alt=""/></div>
+<map name="class_stk_ofono_properties_ac4588fc709ec7c9ff74a90ada77248ff_icgraph" id="class_stk_ofono_properties_ac4588fc709ec7c9ff74a90ada77248ff_icgraph">
 <area shape="rect" id="node3" href="class_stk_main_window.html#a6e4161d64d5ce85fc358d6435fad7050" title="StkMainWindow::StkMainWindow" alt="" coords="313,5,537,35"/></map>
 </div>
 </p>
@@ -179,6 +234,13 @@ Here is the caller graph for this function:</div>
 
 <p>Definition at line <a class="el" href="stkofonoproperties_8cpp_source.html#l00055">55</a> of file <a class="el" href="stkofonoproperties_8cpp_source.html">stkofonoproperties.cpp</a>.</p>
 
+<p>Referenced by <a class="el" href="stkmainwindow_8cpp_source.html#l00017">StkMainWindow::StkMainWindow()</a>.</p>
+
+<p><div class="fragment"><pre class="fragment">{
+    <span class="keywordflow">return</span> mProperties.value(<span class="stringliteral">&quot;MainMenuTitle&quot;</span>).toString();
+}
+</pre></div></p>
+
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -195,7 +257,7 @@ Here is the caller graph for this function:</div>
 <li>src/<a class="el" href="stkofonoproperties_8cpp_source.html">stkofonoproperties.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 17:10:14 for SIM Application Toolkit by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Mar 30 2011 10:01:53 for SIM Application Toolkit by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
