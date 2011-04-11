@@ -152,6 +152,18 @@ qDebug() << "PlayTone: " << tone << " : " << text << "(" << icon << ")";
     closeLastWidget();
     StkDialog dlg(StkOfonoUtils::findIconUrl(icon),text + "(playing: " + tone + ")","qrc:/stkpopup.qml");
     dlg.exec();
+    AgentResponse ret = dlg.getAgentResponse();
+    switch (ret) {
+    case Yes:
+        break;
+    case Back:
+        break;
+    case End:
+        connection().send(message().createErrorReply(STK_ERR_END,""));
+        break;
+    default:
+        Q_ASSERT(false);
+    }
 }
 
 
