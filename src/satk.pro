@@ -24,7 +24,8 @@ SOURCES += main.cpp \
     stkofonoutils.cpp \
     stkofonoproperties.cpp \
     stkmenumodel.cpp \
-    stkmenuitem.cpp
+    stkmenuitem.cpp \
+    simif.cpp
 
 HEADERS += \
     stkif.h \
@@ -38,7 +39,8 @@ HEADERS += \
     stkofonoutils.h \
     stkofonoproperties.h \
     stkmenumodel.h \
-    stkmenuitem.h
+    stkmenuitem.h \
+    simif.h
 
 OTHER_FILES += \
     ../interfaces/org.ofono.SimToolkit.xml \
@@ -51,7 +53,8 @@ OTHER_FILES += \
     stkmenu.qml \
     stkinputtext.qml \
     stkinputkey.qml \
-    sim_32x32.png
+    sim_32x32.png \
+    ../interfaces/org.ofono.SimManager.xml
 
 RESOURCES += \
     resources.qrc
