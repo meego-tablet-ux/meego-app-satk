@@ -111,13 +111,24 @@ qDebug() << "DisplayActionInformation: " << text << "(" << icon << ")";
 
 void StkAgentService::DisplayText(const QString &title, uchar icon, bool urgent)
 {
-    // #### TODO #### blocking message dialog if urgent ?
     // handle method call org.ofono.SimToolkitAgent.DisplayText
 qDebug() << "DisplayText: " << title << "(" << icon << ")" << " urgent: " << urgent;
     closeLastWidget();
-    StkDialog *dlg = new StkDialog(StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkmessage.qml");
-    widgetStack.append(dlg);
-    dlg->show();
+    StkDialog dlg(StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkpopup.qml");
+    dlg.exec();
+    AgentResponse ret = dlg.getAgentResponse();
+    switch (ret) {
+    case Yes:
+        break;
+    case Back:
+        connection().send(message().createErrorReply(STK_ERR_BACK,""));
+        break;
+    case End:
+        connection().send(message().createErrorReply(STK_ERR_END,""));
+        break;
+    default:
+        Q_ASSERT(false);
+    }
 }
 
 
