@@ -37,23 +37,15 @@ QList<StkIf*> StkOfonoUtils::findSimToolkitInterfaces(const QDBusConnection &con
         qDebug() << "Error:" << dbusError.name() << ":" << dbusError.message();
         return simToolkitInterfaces;
     }
-    // loop foreach modem, find the first org.ofono.SimToolkit interface
-    // in order to pass it to the SimToolkit main window
+    // loop foreach modem, find all org.ofono.SimToolkit interfaces
     foreach(const OfonoModem &pms, modemsCall.value()) {
-        bool foundSimToolkit = false;
         // loop interfaces to find "org.ofono.SimToolkit"
-        foreach(const QString &interface, pms.varmap.value("Interfaces").toStringList())
-        {
-            if (interface == "org.ofono.SimToolkit")
-            {
-                foundSimToolkit = true;
+        foreach(const QString &interface, pms.varmap.value("Interfaces").toStringList()) {
+            if (interface == "org.ofono.SimToolkit") {
+                // Instanciate proxy for org.ofono.SimToolkit interface
+                simToolkitInterfaces.append(new StkIf("org.ofono",pms.objpath.path(),connection,NULL));
                 break;
             }
-        }
-        if (foundSimToolkit)
-        {
-            // Instanciate proxy for org.ofono.SimToolkit interface
-            simToolkitInterfaces.append(new StkIf("org.ofono",pms.objpath.path(),connection,NULL));
         }
     }
     return simToolkitInterfaces;
