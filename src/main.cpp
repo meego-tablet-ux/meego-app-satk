@@ -70,38 +70,26 @@ int main(int argc, char *argv[])
         qDebug() << "No modem found, exiting";
         return mainErr;
     }
+    // hook that modem interface to the main window
     StkIf *stkIfP = stkIfs.first();
-
-    // Register stkAgentService
-    QDBusObjectPath stkAgentPath(STK_AGENT_PATH);
-    if (!systemBus.registerObject(stkAgentPath.path(),stkAgentService)) {
-        dbusError = systemBus.lastError();
-        qDebug() << "registerObject Error:" << dbusError.name() << ":" << dbusError.message();
-        return mainErr;
-    }
-    // Register SimToolkitAgent with org.ofono.SimToolkit interface RegisterAgent method
-    QDBusPendingReply<> stkRegisterCall = stkIfP->RegisterAgent(stkAgentPath);
-    stkRegisterCall.waitForFinished();
-    if (stkRegisterCall.isError()) {
-        dbusError = stkRegisterCall.error();
-        qDebug() << "RegisterAgent error:" << dbusError.name() << ":" << dbusError.message();
-        return mainErr;
-    }
-
-    // open SimToolkit main window
     StkMainWindow mainWindow(stkIfP);
-    mainWindow.show();
 
-    // run SimToolkit application
-    mainErr = a.exec();
-
-    stkRegisterCall = stkIfP->UnregisterAgent(stkAgentPath);
-    stkRegisterCall.waitForFinished();
-    if (stkRegisterCall.isError()) {
-        dbusError = stkRegisterCall.error();
-        qDebug() << "UnregisterAgent error:" << dbusError.name() << ":" << dbusError.message();
-        return -1;
+    // Register stkAgentService and run main application
+    if (StkOfonoUtils::registerSimToolkitAgent(systemBus, stkAgentService, stkIfP) == 0) {
+        // open SimToolkit main window
+        mainWindow.show();
+        // run SimToolkit application
+        mainErr = a.exec();
+        // Unregister stkAgentService
+        StkOfonoUtils::unRegisterSimToolkitAgent(stkIfP);
     }
+
+    // delete all org.ofono.SimToolkit interfaces
+    while (!stkIfs.isEmpty()) {
+        delete stkIfs.first();
+        stkIfs.removeFirst();
+    }
+    // StkAgentService is deleted by StkAgentIfAdaptor destructor
 
     return mainErr;
 }

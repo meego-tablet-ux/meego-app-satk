@@ -58,3 +58,37 @@ QList<StkIf*> StkOfonoUtils::findSimToolkitInterfaces(const QDBusConnection &con
     }
     return simToolkitInterfaces;
 }
+
+int StkOfonoUtils::registerSimToolkitAgent(QDBusConnection &connection, StkAgentService *stkAgentService, StkIf *stkIf)
+{
+    QDBusError dbusError;
+    QDBusObjectPath stkAgentPath(STK_AGENT_PATH);
+    if (!connection.registerObject(stkAgentPath.path(),stkAgentService)) {
+        dbusError = connection.lastError();
+        qDebug() << "registerObject Error:" << dbusError.name() << ":" << dbusError.message();
+        return -1;
+    }
+    // Register SimToolkitAgent with org.ofono.SimToolkit interface RegisterAgent method
+    QDBusPendingReply<> stkRegisterCall = stkIf->RegisterAgent(stkAgentPath);
+    stkRegisterCall.waitForFinished();
+    if (stkRegisterCall.isError()) {
+        dbusError = stkRegisterCall.error();
+        qDebug() << "RegisterAgent error:" << dbusError.name() << ":" << dbusError.message();
+        return -1;
+    }
+    return 0;
+}
+
+int StkOfonoUtils::unRegisterSimToolkitAgent(StkIf *stkIf)
+{
+    QDBusError dbusError;
+    QDBusObjectPath stkAgentPath(STK_AGENT_PATH);
+    QDBusPendingReply<> stkRegisterCall = stkIf->UnregisterAgent(stkAgentPath);
+    stkRegisterCall.waitForFinished();
+    if (stkRegisterCall.isError()) {
+        dbusError = stkRegisterCall.error();
+        qDebug() << "UnregisterAgent error:" << dbusError.name() << ":" << dbusError.message();
+        return -1;
+    }
+    return 0;
+}

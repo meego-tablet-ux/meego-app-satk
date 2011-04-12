@@ -17,6 +17,7 @@
 #include <QDBusConnection>
 #include "mgrif.h"
 #include "stkif.h"
+#include "stkagentservice.h"
 
 class StkOfonoUtils
 {
@@ -24,6 +25,8 @@ public:
     static QPixmap findIcon(uchar id);
     static QString findIconUrl(uchar id);
     static QList<StkIf*> findSimToolkitInterfaces(const QDBusConnection &connection, MgrIf *mgrIf);
+    static int registerSimToolkitAgent(QDBusConnection &connection, StkAgentService *stkAgentService, StkIf *stkIf);
+    static int unRegisterSimToolkitAgent(StkIf *stkIf);
 };
 
 #endif // STKOFONOUTILS_H
