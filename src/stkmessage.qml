@@ -25,8 +25,6 @@ Rectangle {
         objectName: "icon"
         width: 64
         height: 64
-        sourceSize.height: 32
-        sourceSize.width: 32
         anchors.top: parent.top
         anchors.topMargin: 10
         anchors.left: parent.left
