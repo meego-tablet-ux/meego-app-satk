@@ -20,7 +20,7 @@ StkMainWindow::StkMainWindow(StkIf *stkIf, SimIf *simIf, QWidget *parent) :
     mStkIf = stkIf;
     mSimIf = simIf;
     // Store SimToolkit interface properties
-    mStkProperties = new StkOfonoProperties(mStkIf);
+    mStkProperties = new StkOfonoProperties(mStkIf,mSimIf);
     // Create a main menu as central widget
     this->mView = new QDeclarativeView;
     this->mView->setSource(QUrl("qrc:/stkmenu.qml"));
