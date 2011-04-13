@@ -17,13 +17,16 @@
 #include <QDBusConnection>
 #include "mgrif.h"
 #include "stkif.h"
+#include "simif.h"
 #include "stkagentservice.h"
 
 class StkOfonoUtils
 {
 public:
-    static QPixmap findIcon(uchar id);
+    static QPixmap findIcon(SimIf * simIf, uchar id);
     static QString findIconUrl(uchar id);
+    static OfonoModemList findModems(MgrIf *mgrIf);
+    static QList<SimIf*> findSimInterfaces(const QDBusConnection &connection, MgrIf *mgrIf);
     static QList<StkIf*> findSimToolkitInterfaces(const QDBusConnection &connection, MgrIf *mgrIf);
     static int registerSimToolkitAgent(QDBusConnection &connection, StkAgentService *stkAgentService, StkIf *stkIf);
     static int unRegisterSimToolkitAgent(StkIf *stkIf);

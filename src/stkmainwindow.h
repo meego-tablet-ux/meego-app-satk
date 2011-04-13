@@ -16,19 +16,21 @@
 #include <QMainWindow>
 #include <QtDeclarative/QDeclarativeView>
 #include "stkif.h"
+#include "simif.h"
 #include "stkofonoproperties.h"
 
 class StkMainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit StkMainWindow(StkIf *stkIf, QWidget *parent = 0);
+    explicit StkMainWindow(StkIf *stkIf, SimIf *simIf, QWidget *parent = 0);
     ~StkMainWindow();
 
 signals:
 
 private:
     StkIf *mStkIf;
+    SimIf *mSimIf;
     StkOfonoProperties *mStkProperties;
     QDeclarativeView *mView;
 

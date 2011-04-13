@@ -18,12 +18,13 @@
 #include <QWidget>
 #include <QtDBus>
 #include "ofonodbustypes.h"
+#include "simif.h"
 
 class StkAgentService : public QObject, protected QDBusContext
 {
     Q_OBJECT
 public:
-    explicit StkAgentService(QObject *parent = 0);
+    explicit StkAgentService(SimIf * simIf, QObject *parent = 0);
 
 public: // PROPERTIES
 public Q_SLOTS: // METHODS
@@ -44,8 +45,10 @@ public Q_SLOTS: // METHODS
 Q_SIGNALS: // SIGNALS
 
 private:
+    // Sim Interface for GetIcon API
+    SimIf * mSimIf;
     // stack non modal dialogs to close on cancel
-    QList<QWidget*> widgetStack;
+    QList<QWidget*> mWidgetStack;
     // close last widget, delete it, return true if stack non-empty afterwards
     bool closeLastWidget();
 };

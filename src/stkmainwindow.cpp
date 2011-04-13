@@ -14,10 +14,11 @@
 #include "stkmenumodel.h"
 #include "stkdefines.h"
 
-StkMainWindow::StkMainWindow(StkIf *stkIf, QWidget *parent) :
+StkMainWindow::StkMainWindow(StkIf *stkIf, SimIf *simIf, QWidget *parent) :
     QMainWindow(parent)
 {
     mStkIf = stkIf;
+    mSimIf = simIf;
     // Store SimToolkit interface properties
     mStkProperties = new StkOfonoProperties(mStkIf);
     // Create a main menu as central widget

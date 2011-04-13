@@ -43,6 +43,7 @@ HEADERS += \
     simif.h
 
 OTHER_FILES += \
+    ../interfaces/org.ofono.SimManager.xml \
     ../interfaces/org.ofono.SimToolkit.xml \
     ../interfaces/org.ofono.SimToolkitAgent.xml \
     ../interfaces/org.ofono.Manager.xml \
@@ -54,7 +55,7 @@ OTHER_FILES += \
     stkinputtext.qml \
     stkinputkey.qml \
     sim_32x32.png \
-    ../interfaces/org.ofono.SimManager.xml
+    sim_32x32.xpm
 
 RESOURCES += \
     resources.qrc

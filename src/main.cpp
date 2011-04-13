@@ -48,46 +48,60 @@ int main(int argc, char *argv[])
     registerOfonoDbusTypes();
 
     // DBus Connection systemBus
-    QDBusError dbusError;
     QDBusConnection systemBus = QDBusConnection::systemBus();
     if( !systemBus.isConnected() ) {
-        dbusError = systemBus.lastError();
+        QDBusError dbusError = systemBus.lastError();
         qDebug() << "Error:" << dbusError.name() << ":" << dbusError.message();
         return mainErr;
     }
 
-    // Hook StkAgentIfAdaptor and StkAgentService together
-    StkAgentService * stkAgentService = new StkAgentService();
-    StkAgentIfAdaptor stkAgentIfAdaptor(stkAgentService);
-
     // Instanciate proxy for org.ofono.Manager interface
     MgrIf mgrIf("org.ofono","/",systemBus,NULL);
 
-    // find org.ofono.SimToolkit interface for all modems
+    // find org.ofono.SimToolkit interfaces for all modems
     QList<StkIf*> stkIfs = StkOfonoUtils::findSimToolkitInterfaces(systemBus,&mgrIf);
-    // but use only the first modem
     if (stkIfs.isEmpty()) {
-        qDebug() << "No modem found, exiting";
+        qDebug() << "No org.ofono.SimToolkit interface found, exiting";
         return mainErr;
     }
-    // hook that modem interface to the main window
-    StkIf *stkIfP = stkIfs.first();
-    StkMainWindow mainWindow(stkIfP);
+
+    // find org.ofono.SimManager interfaces for all modems
+    QList<SimIf*> simIfs = StkOfonoUtils::findSimInterfaces(systemBus,&mgrIf);
+    if (simIfs.isEmpty()) {
+        qDebug() << "No  org.ofono.SimManager interface found, exiting";
+        return mainErr;
+    }
+
+    // use just the first element of each interfaces list
+    StkIf *firstStkIf = stkIfs.first();
+    SimIf *firstSimIf = simIfs.first();
+
+    // Hook StkAgentIfAdaptor and StkAgentService together
+    StkAgentService * stkAgentService = new StkAgentService(firstSimIf);
+    StkAgentIfAdaptor stkAgentIfAdaptor(stkAgentService);
+
+    // hook Sim and Stk interfaces to the main window
+    StkMainWindow mainWindow(firstStkIf,firstSimIf);
 
     // Register stkAgentService and run main application
-    if (StkOfonoUtils::registerSimToolkitAgent(systemBus, stkAgentService, stkIfP) == 0) {
+    if (StkOfonoUtils::registerSimToolkitAgent(systemBus, stkAgentService, firstStkIf) == 0) {
         // open SimToolkit main window
         mainWindow.show();
         // run SimToolkit application
         mainErr = a.exec();
         // Unregister stkAgentService
-        StkOfonoUtils::unRegisterSimToolkitAgent(stkIfP);
+        StkOfonoUtils::unRegisterSimToolkitAgent(firstStkIf);
     }
 
     // delete all org.ofono.SimToolkit interfaces
     while (!stkIfs.isEmpty()) {
         delete stkIfs.first();
         stkIfs.removeFirst();
+    }
+    // delete all org.ofono.SimManager interfaces
+    while (!simIfs.isEmpty()) {
+        delete simIfs.first();
+        simIfs.removeFirst();
     }
     // StkAgentService is deleted by StkAgentIfAdaptor destructor
 

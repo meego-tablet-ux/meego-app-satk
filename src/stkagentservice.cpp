@@ -31,9 +31,10 @@
 #define FALLBACK_QSTRING    ""
 
 
-StkAgentService::StkAgentService(QObject *parent) :
+StkAgentService::StkAgentService(SimIf * simIf, QObject *parent) :
     QObject(parent)
 {
+    mSimIf = simIf;
 }
 
 
@@ -104,7 +105,7 @@ void StkAgentService::DisplayActionInformation(const QString &text, uchar icon)
 qDebug() << "DisplayActionInformation: " << text << "(" << icon << ")";
     closeLastWidget();
     StkDialog *dlg = new StkDialog(StkOfonoUtils::findIconUrl(icon),text,"qrc:/stkmessage.qml");
-    widgetStack.append(dlg);
+    mWidgetStack.append(dlg);
     dlg->show();
 }
 
@@ -139,7 +140,7 @@ void StkAgentService::LoopTone(const QString &tone, const QString &text, uchar i
 qDebug() << "LoopTone: " << tone << " : " << text << "(" << icon << ")";
     closeLastWidget();
     StkDialog *dlg = new StkDialog(StkOfonoUtils::findIconUrl(icon),text + "(playing: " + tone + ")","qrc:/stkmessage.qml");
-    widgetStack.append(dlg);
+    mWidgetStack.append(dlg);
     dlg->show();
 }
 
@@ -212,7 +213,7 @@ QString StkAgentService::RequestDigit(const QString &title, uchar icon)
 qDebug() << "RequestDigit: " << title << "(" << icon << ")";
     closeLastWidget();
     /* #### TODO #### handle numeric and boundaries constraints
-    StkDialog dlg(new StkInputKey(StkOfonoUtils::findIcon(icon),title));*/
+    StkDialog dlg(new StkInputKey(StkOfonoUtils::findIcon(mSimIf,icon),title));*/
     StkDialog dlg(StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkinputkey.qml");
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
@@ -237,7 +238,7 @@ QString StkAgentService::RequestDigits(const QString &title, uchar icon, const Q
 qDebug() << "RequestDigits: " << title << "(" << icon << ")" << " (" << defaultValue << ") [" << minChars << ".." << maxChars << "] passwd:" << hideTyping;
     closeLastWidget();
     /* #### TODO #### handle numeric and boundaries constraints
-    StkInputText * inputText = new StkInputText(StkOfonoUtils::findIcon(icon),title);
+    StkInputText * inputText = new StkInputText(StkOfonoUtils::findIcon(mSimIf,icon),title);
     inputText->setDefaultText(defaultValue);
     inputText->setCharBounds(minChars,maxChars);
     inputText->setHideTyping(hideTyping);
@@ -267,7 +268,7 @@ QString StkAgentService::RequestInput(const QString &title, uchar icon, const QS
 qDebug() << "RequestInput: " << title << "(" << icon << ")" << " (" << defaultValue << ") [" << minChars << ".." << maxChars << "] passwd:" << hideTyping;
     closeLastWidget();
     /* #### TODO #### handle numeric and boundaries constraints
-    StkInputText * inputText = new StkInputText(StkOfonoUtils::findIcon(icon),title);
+    StkInputText * inputText = new StkInputText(StkOfonoUtils::findIcon(mSimIf,icon),title);
     inputText->setDefaultText(defaultValue);
     inputText->setCharBounds(minChars,maxChars);
     inputText->setHideTyping(hideTyping);
@@ -297,7 +298,7 @@ QString StkAgentService::RequestKey(const QString &title, uchar icon)
 qDebug() << "RequestKey: " << title << "(" << icon << ")";
     closeLastWidget();
     /* #### TODO #### handle numeric and boundaries constraints
-    StkDialog dlg(new StkInputKey(StkOfonoUtils::findIcon(icon),title));*/
+    StkDialog dlg(new StkInputKey(StkOfonoUtils::findIcon(mSimIf,icon),title));*/
     StkDialog dlg(StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkinputkey.qml");
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
@@ -348,11 +349,11 @@ qDebug() << "RequestSelection: " << title << "(" << icon << ")" << " default: " 
 
 bool StkAgentService::closeLastWidget()
 {
-    if (!widgetStack.isEmpty()) {
-        QWidget * widget = widgetStack.takeLast();
+    if (!mWidgetStack.isEmpty()) {
+        QWidget * widget = mWidgetStack.takeLast();
 qDebug() << "closing widget: " << widget;
         widget->close();
         delete widget;
     }
-    return !widgetStack.isEmpty();
+    return !mWidgetStack.isEmpty();
 }

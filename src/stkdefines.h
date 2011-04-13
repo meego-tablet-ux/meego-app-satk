@@ -27,7 +27,7 @@ typedef enum {
 
 #define STK_AGENT_PATH  "/satk/agent"
 
-#define TEST_STRING "This is a dummy message text.\nSeveral lines, no special characters.\n"
+#define VALID_ICON_ID(id) ((id)>0)
 #define TEST_PIXMAP QPixmap(32,32)
 #define TEST_ICON_URL "qrc:/images/sim_32x32.png"
 

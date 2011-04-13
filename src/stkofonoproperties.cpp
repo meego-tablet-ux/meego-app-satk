@@ -20,11 +20,13 @@
 #include "stkofonoproperties.h"
 
 
-StkOfonoProperties::StkOfonoProperties(StkIf *stkIf, QObject *parent) :
+StkOfonoProperties::StkOfonoProperties(StkIf *stkIf, SimIf *simIf, QObject *parent) :
     QObject(parent)
 {
+    mStkIf = stkIf;
+    mSimIf = simIf;
     // org.ofono.SimToolkit interface GetProperties method
-    QDBusPendingReply<QVariantMap> stkPropsCall = stkIf->GetProperties();
+    QDBusPendingReply<QVariantMap> stkPropsCall = mStkIf->GetProperties();
     stkPropsCall.waitForFinished();
     if (stkPropsCall.isError()) {
         QDBusError error = stkPropsCall.error();

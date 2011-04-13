@@ -19,13 +19,14 @@
 #include <QList>
 #include "stkmenuitem.h"
 #include "stkif.h"
+#include "simif.h"
 
 
 class StkOfonoProperties : public QObject
 {
     Q_OBJECT
 public:
-    explicit StkOfonoProperties(StkIf *stkIf, QObject *parent = 0);
+    explicit StkOfonoProperties(StkIf *stkIf, SimIf *simIf, QObject *parent = 0);
     QList<StkMenuItem> mainMenuItems();
     QString mainMenuTitle();
     QString mainMenuIconUrl();
@@ -34,6 +35,8 @@ signals:
 
 private:
     QVariantMap mProperties;
+    StkIf *mStkIf;
+    SimIf *mSimIf;
 };
 
 #endif // STKOFONOPROPERTIES_H
