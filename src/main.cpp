@@ -10,10 +10,10 @@
  */
 
 /* Qt includes */
-#include <QtDebug>
 #include <QtGui/QApplication>
 #include <QDBusConnection>
 #include <QListWidgetItem>
+#include <QtDebug>
 
 /* SIM Toolkit main window */
 #include "stkmainwindow.h"

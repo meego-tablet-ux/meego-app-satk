@@ -46,7 +46,7 @@ Q_SIGNALS: // SIGNALS
 
 private:
     // Sim Interface for GetIcon API
-    SimIf * mSimIf;
+    SimIf *mSimIf;
     // stack non modal dialogs to close on cancel
     QList<QWidget*> mWidgetStack;
     // close last widget, delete it, return true if stack non-empty afterwards

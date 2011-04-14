@@ -27,9 +27,8 @@ typedef enum {
 
 #define STK_AGENT_PATH  "/satk/agent"
 
+#define SIM_IMAGE_PROVIDER "sim"
+#define SIM_ICON_PREFIX "image://" SIM_IMAGE_PROVIDER "/"
 #define VALID_ICON_ID(id) ((id)>0)
-#define TEST_PIXMAP QPixmap(32,32)
-#define TEST_ICON_URL "qrc:/images/sim_32x32.png"
-
 
 #endif // STKDEFINES_H

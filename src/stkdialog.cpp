@@ -15,7 +15,8 @@
 #include "stkdialog.h"
 #include "stkmenumodel.h"
 
-StkDialog::StkDialog(const QString &iconUrl, const QString &title, const QString &qmlViewUrl,
+StkDialog::StkDialog(SimImageProvider * imageProvider, const QString &iconUrl,
+                     const QString &title, const QString &qmlViewUrl,
                      const QString &defaultText,
           const QList<StkMenuItem> &menuItems, const int selection,
           QWidget *parent) :
@@ -23,6 +24,9 @@ StkDialog::StkDialog(const QString &iconUrl, const QString &title, const QString
 {
     // Create QML View as central widget
     this->mView = new QDeclarativeView;
+    // Register image provider, deleted with the engine
+    QDeclarativeEngine * engine = mView->engine();
+    engine->addImageProvider(SIM_IMAGE_PROVIDER, imageProvider);
     this->mView->setSource(QUrl(qmlViewUrl));
     this->mView->setResizeMode(QDeclarativeView::SizeRootObjectToView);
     QVBoxLayout *layout = new QVBoxLayout;

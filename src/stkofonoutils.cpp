@@ -37,8 +37,8 @@ QPixmap StkOfonoUtils::findIcon(SimIf * simIf, uchar id)
 }
 
 QString StkOfonoUtils::findIconUrl(uchar id)
-{ // #### TODO implement
-    return TEST_ICON_URL;
+{
+    return SIM_ICON_PREFIX + QString::number((int)id);
 }
 
 OfonoModemList StkOfonoUtils::findModems(MgrIf *mgrIf)

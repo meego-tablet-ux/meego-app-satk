@@ -23,12 +23,14 @@
 
 #include "stkdefines.h"
 #include "stkmenuitem.h"
+#include "simimageprovider.h"
 
 class StkDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit StkDialog(const QString &iconUrl, const QString &title, const QString &qmlViewUrl,
+    explicit StkDialog(SimImageProvider * imageProvider, const QString &iconUrl,
+                       const QString &title, const QString &qmlViewUrl,
                        const QString &defaultText = "",
             const QList<StkMenuItem> &menuItems = QList<StkMenuItem>(), const int selection =-1,
             QWidget *parent = 0);
