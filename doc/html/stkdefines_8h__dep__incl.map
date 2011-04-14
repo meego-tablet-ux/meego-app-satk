@@ -1,8 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$main_8cpp.html" title="src/main.cpp" alt="" coords="5,83,109,112"/>
-<area shape="rect" id="node5" href="$stkdialog_8h.html" title="src/stkdialog.h" alt="" coords="133,83,248,112"/>
-<area shape="rect" id="node11" href="$stkmainwindow_8cpp.html" title="src/stkmainwindow.cpp" alt="" coords="272,83,437,112"/>
-<area shape="rect" id="node13" href="$stkofonoutils_8cpp.html" title="src/stkofonoutils.cpp" alt="" coords="461,83,613,112"/>
-<area shape="rect" id="node7" href="$stkagentservice_8cpp.html" title="src/stkagentservice.cpp" alt="" coords="16,160,189,189"/>
-<area shape="rect" id="node9" href="$stkdialog_8cpp.html" title="src/stkdialog.cpp" alt="" coords="213,160,341,189"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$class_stk_ofono_properties.html#ae78d234eaef56ea857e1dc5dfe632ed0" title="StkOfonoProperties::mainMenuIconUrl" alt="" coords="281,5,545,35"/>
-<area shape="rect" id="node7" href="$class_stk_ofono_properties.html#ac4588fc709ec7c9ff74a90ada77248ff" title="StkOfonoProperties::mainMenuItems" alt="" coords="285,59,541,88"/>
-<area shape="rect" id="node10" href="$class_stk_ofono_properties.html#ae01e83b4872843ceffc5bd4782dfd580" title="StkOfonoProperties::mainMenuTitle" alt="" coords="291,112,536,141"/>
-<area shape="rect" id="node12" href="$class_stk_menu_model.html#a72c98f6ef95a1f35ca6d053559d84849" title="StkMenuModel::setMenuItems" alt="" coords="307,165,520,195"/>
-<area shape="rect" id="node5" href="$class_stk_ofono_utils.html#a1b7c488b552641c2a7f607e5cd16f380" title="StkOfonoUtils::findIconUrl" alt="" coords="595,32,779,61"/>
-</map>

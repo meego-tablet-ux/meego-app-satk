@@ -1,6 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$class_stk_ofono_utils.html#aecc9e7c9aeb3616a55d61907466322f0" title="StkOfonoUtils::findSimToolkitInterfaces" alt="" coords="109,5,376,35"/>
-<area shape="rect" id="node7" href="$class_stk_if.html#ac6b379ed560d239a755bf3af255a6087" title="StkIf::RegisterAgent" alt="" coords="169,59,316,88"/>
-<area shape="rect" id="node9" href="$class_stk_if.html#a8148562bf441205bf4c2675514956c72" title="StkIf::UnregisterAgent" alt="" coords="161,112,324,141"/>
-<area shape="rect" id="node5" href="$class_mgr_if.html#a054e6106a9931ed00aeb814de3037701" title="MgrIf::GetModems" alt="" coords="424,5,563,35"/>
-</map>

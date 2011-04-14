@@ -1,5 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$class_stk_ofono_utils.html#a1b7c488b552641c2a7f607e5cd16f380" title="StkOfonoUtils::findIconUrl" alt="" coords="285,5,469,35"/>
-<area shape="rect" id="node5" href="$class_stk_dialog.html#a6c3dac6592a33f14e3757ce1bf6ea2bc" title="StkDialog::getAgentResponse" alt="" coords="272,59,483,88"/>
-<area shape="rect" id="node7" href="$class_stk_dialog.html#a9559bc5e7e8f85eaf8b3b8bf9875df3e" title="StkDialog::getResponseData" alt="" coords="276,112,479,141"/>
-</map>
