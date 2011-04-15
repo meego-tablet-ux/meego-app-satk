@@ -80,8 +80,11 @@ void StkMainWindow::createMainView() {
     StkMenuModel * menuModel = new StkMenuModel();
     menuModel->setMenuItems(mStkProperties->mainMenuItems());
     context->setContextProperty("menuModel",menuModel);
+    // Hide back button in main view
+    QObject *back = root->findChild<QObject*>("backRect");
+    if (back)
+        back->setProperty("visible", false);
     // Connect view signals
     connect(root, SIGNAL(itemSelected(int)), this, SLOT(responseOkWithSelection(int)));
-    connect(root, SIGNAL(goBack()), this, SLOT(close()));
     connect(root, SIGNAL(endSession()), this, SLOT(close()));
 }
