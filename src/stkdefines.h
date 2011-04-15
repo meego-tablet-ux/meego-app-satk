@@ -31,4 +31,6 @@ typedef enum {
 #define SIM_ICON_PREFIX "image://" SIM_IMAGE_PROVIDER "/"
 #define VALID_ICON_ID(id) ((id)>0)
 
+#define SATK_USAGE "usage: satk [menu|agent]"
+
 #endif // STKDEFINES_H
