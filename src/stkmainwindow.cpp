@@ -29,7 +29,7 @@ StkMainWindow::StkMainWindow(StkIf *stkIf, SimIf *simIf, QWidget *parent) :
 StkMainWindow::~StkMainWindow()
 {
     delete mStkProperties;
-    delete mView;
+    // mView is deleted as QMainWindow's centralWidget
 }
 
 void StkMainWindow::responseOkWithSelection(int selection)
@@ -41,10 +41,19 @@ void StkMainWindow::responseOkWithSelection(int selection)
 
 void StkMainWindow::stkPropertyChanged(const QString &property, const QDBusVariant &value)
 {
-    // load properties, create main view
-    delete mStkProperties;
-    delete mView;
+    Q_UNUSED(property);
+    Q_UNUSED(value);
+    // save properties and view for deletion
+    StkOfonoProperties *delStkProperties = mStkProperties;
+    QDeclarativeView *delView = mView ;
+    // reload properties, recreate main view
     createMainView();
+    // disconnect old view signals
+    QObject *root = delView->rootObject();
+    disconnect(root, 0, 0, 0);
+    // delete old view and properties
+    delete delStkProperties;
+    delete delView;
 }
 
 void StkMainWindow::createMainView() {
@@ -59,7 +68,7 @@ void StkMainWindow::createMainView() {
     mView->setSource(QUrl("qrc:/stkmenu.qml"));
     // Set it as central widget
     mView->setResizeMode(QDeclarativeView::SizeRootObjectToView);
-    this->setCentralWidget(mView);
+    setCentralWidget(mView);
     QObject *root = mView->rootObject();
     QObject *icon = root->findChild<QObject*>("icon");
     if (icon)
