@@ -20,13 +20,41 @@ StkMainWindow::StkMainWindow(StkIf *stkIf, SimIf *simIf, QWidget *parent) :
 {
     mStkIf = stkIf;
     mSimIf = simIf;
+    // Create main view from properties
+    createMainView();
+    // Connect stkIf signals
+    connect(mStkIf, SIGNAL(PropertyChanged(QString, QDBusVariant)), this, SLOT(stkPropertyChanged(QString, QDBusVariant)));
+}
+
+StkMainWindow::~StkMainWindow()
+{
+    delete mStkProperties;
+    delete mView;
+}
+
+void StkMainWindow::responseOkWithSelection(int selection)
+{
+    uchar sel = (uchar)selection;
+    QDBusObjectPath stkAgentPath(STK_AGENT_PATH);
+    mStkIf->SelectItem(sel,stkAgentPath);
+}
+
+void StkMainWindow::stkPropertyChanged(const QString &property, const QDBusVariant &value)
+{
+    // load properties, create main view
+    delete mStkProperties;
+    delete mView;
+    createMainView();
+}
+
+void StkMainWindow::createMainView() {
     // Store SimToolkit interface properties
     mStkProperties = new StkOfonoProperties(mStkIf,mSimIf);
     // Create a qml view
     mView = new QDeclarativeView;
     // Register image provider, deleted with the engine
     QDeclarativeEngine * engine = mView->engine();
-    engine->addImageProvider(SIM_IMAGE_PROVIDER, new SimImageProvider(simIf));
+    engine->addImageProvider(SIM_IMAGE_PROVIDER, new SimImageProvider(mSimIf));
     // Load a qml main menu
     mView->setSource(QUrl("qrc:/stkmenu.qml"));
     // Set it as central widget
@@ -43,20 +71,8 @@ StkMainWindow::StkMainWindow(StkIf *stkIf, SimIf *simIf, QWidget *parent) :
     StkMenuModel * menuModel = new StkMenuModel();
     menuModel->setMenuItems(mStkProperties->mainMenuItems());
     context->setContextProperty("menuModel",menuModel);
-    // connect signals
+    // Connect view signals
     connect(root, SIGNAL(itemSelected(int)), this, SLOT(responseOkWithSelection(int)));
     connect(root, SIGNAL(goBack()), this, SLOT(close()));
     connect(root, SIGNAL(endSession()), this, SLOT(close()));
-}
-
-StkMainWindow::~StkMainWindow()
-{
-    delete mView;
-}
-
-void StkMainWindow::responseOkWithSelection(int selection)
-{
-    uchar sel = (uchar)selection;
-    QDBusObjectPath stkAgentPath(STK_AGENT_PATH);
-    mStkIf->SelectItem(sel,stkAgentPath);
 }

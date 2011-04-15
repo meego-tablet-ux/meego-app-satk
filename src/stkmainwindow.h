@@ -34,8 +34,11 @@ private:
     StkOfonoProperties *mStkProperties;
     QDeclarativeView *mView;
 
+    void createMainView();
+
 private slots:
     void responseOkWithSelection(int selection);
+    void stkPropertyChanged(const QString &property, const QDBusVariant &value);
 };
 
 #endif // STKMAINWINDOW_H
