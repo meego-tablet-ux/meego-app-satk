@@ -23,6 +23,7 @@ StkMenuModel::StkMenuModel(QObject *parent) :
 
 int StkMenuModel::rowCount(const QModelIndex & parent) const
 {
+    Q_UNUSED(parent);
     return mItems.count();
 }
 

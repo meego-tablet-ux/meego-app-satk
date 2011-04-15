@@ -51,6 +51,8 @@ StkDialog::StkDialog(SimImageProvider * imageProvider, const QString &iconUrl,
         menuModel->setMenuItems(menuItems);
         context->setContextProperty("menuModel",menuModel);
         connect(root, SIGNAL(itemSelected(int)), this, SLOT(responseOkWithSelection(int)));
+        if (selection != -1)
+            menuView->setProperty("currentIndex", selection);
     }
     // Text edit / input
     QObject * editText = root->findChild<QObject*>("editText");
