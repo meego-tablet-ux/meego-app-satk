@@ -1,4 +1,5 @@
 import Qt 4.7
+import MeeGo.Components 0.1
 
 Rectangle {
     id: view
@@ -73,51 +74,33 @@ Rectangle {
         }
     }
 
-    Rectangle {
+    Button {
         id: endRect
         objectName: "endRect"
-        x: 380
         width: 80
         height: 30
-        color: "#20408000"
         anchors.top: title.bottom
         anchors.topMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
-        Text {
-            id: endText
-            text: "End"
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            anchors.fill: parent
-        }
-        MouseArea {
-            anchors.fill: parent
-            onClicked: view.endSession()
+        text: "End"
+        onClicked: {
+            view.endSession()
         }
     }
 
-    Rectangle {
+    Button {
         id: backRect
         objectName: "backRect"
-        x: 380
         width: 80
         height: 30
-        color: "#20408000"
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
-        Text {
-            id: backText
-            text: "Back"
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            anchors.fill: parent
-        }
-        MouseArea {
-            anchors.fill: parent
-            onClicked: view.goBack()
+        text: "Back"
+        onClicked: {
+            view.goBack()
         }
     }
 
