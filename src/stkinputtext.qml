@@ -42,10 +42,9 @@ Rectangle {
         anchors.leftMargin: 10
     }
 
-    Rectangle {
-        id: editRect
-        objectName: "editRect"
-        color: "#20408000"
+    TextField {
+        id: editText
+        objectName: "editText"
         anchors.top: title.bottom
         anchors.topMargin: 10
         anchors.left: icon.right
@@ -54,12 +53,6 @@ Rectangle {
         anchors.bottomMargin: 10
         anchors.right: endRect.left
         anchors.rightMargin: 10
-        TextInput {
-            id: editText
-            objectName: "editText"
-            anchors.fill: parent
-            horizontalAlignment: Text.AlignHCenter
-        }
     }
 
     Button {
