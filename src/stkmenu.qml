@@ -48,6 +48,11 @@ Rectangle {
         objectName: "menuView"
         model: menuModel
         delegate: menuDelegate
+        highlight: Rectangle {
+            color: theme.fontColorHighlightBlue
+            width: menuView.width
+        }
+        highlightFollowsCurrentItem: true
         anchors.top: title.bottom
         anchors.topMargin: 10
         anchors.left: icon.right
@@ -56,6 +61,11 @@ Rectangle {
         anchors.bottomMargin: 20
         anchors.right: endRect.left
         anchors.rightMargin: 10
+        signal itemSelected(int selection)
+        onItemSelected: {
+            currentIndex = selection;
+            view.itemSelected(selection)
+        }
     }
 
     Component {
@@ -68,14 +78,16 @@ Rectangle {
                 source: icon
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: view.itemSelected(index)
+                    onClicked: menuView.itemSelected(index)
                 }
             }
             Text {
+                color: theme.contextMenuFontColor
+                font.pixelSize: theme.contextMenuFontPixelSize
                 text: title
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: view.itemSelected(index)
+                    onClicked: menuView.itemSelected(index)
                 }
             }
         }
