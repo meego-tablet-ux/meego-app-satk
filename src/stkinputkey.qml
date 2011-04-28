@@ -21,7 +21,7 @@ Rectangle {
     onEndSession: console.log("End session")
 
 
-    Text {
+    Label {
         id: title
         objectName: "title"
         text: "SIM Application Toolkit"
@@ -29,6 +29,11 @@ Rectangle {
         anchors.topMargin: 10
         anchors.left: icon.right
         anchors.leftMargin: 10
+        anchors.right: endRect.left
+        anchors.rightMargin: 10
+        anchors.bottom: editText.top
+        anchors.bottomMargin: 10
+        wrapMode: Text.WordWrap
     }
 
     Image {
@@ -45,10 +50,10 @@ Rectangle {
     TextEntry {
         id: editText
         objectName: "editText"
-        anchors.top: title.bottom
-        anchors.topMargin: 10
         anchors.left: icon.right
         anchors.leftMargin: 10
+        anchors.bottom: okRect.top
+        anchors.bottomMargin: 10
         anchors.right: endRect.left
         anchors.rightMargin: 10
     }
@@ -58,7 +63,7 @@ Rectangle {
         objectName: "endRect"
         width: 80
         height: 30
-        anchors.top: title.bottom
+        anchors.top: parent.top
         anchors.topMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
