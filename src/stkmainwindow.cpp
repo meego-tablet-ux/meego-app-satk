@@ -74,8 +74,11 @@ void StkMainWindow::createMainView() {
     if (icon)
         icon->setProperty("source", mStkProperties->mainMenuIconUrl());
     QObject *title = root->findChild<QObject*>("title");
-    if (title)
-        title->setProperty("text", mStkProperties->mainMenuTitle());
+    if (title) {
+        QString mainMenuTitle = mStkProperties->mainMenuTitle();
+        if (!mainMenuTitle.isEmpty())
+            title->setProperty("text", mainMenuTitle);
+    }
     QDeclarativeContext *context = mView->rootContext();
     StkMenuModel * menuModel = new StkMenuModel();
     menuModel->setMenuItems(mStkProperties->mainMenuItems());
