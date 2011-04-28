@@ -6,7 +6,9 @@ Rectangle {
     objectName: "view"
     width: 480
     height: 320
-    color: "#20400080"
+
+    Theme { id: theme }
+    color: theme.dialogBackgroundColor
 
     signal accepted()
     onAccepted: console.log("Accepted")
@@ -28,7 +30,8 @@ Rectangle {
         anchors.right: endRect.left
         anchors.rightMargin: 10
         wrapMode: Text.WordWrap
-        font.pixelSize: theme.fontPixelSizeMedium
+        font.pixelSize: theme.fontPixelSizeLarge
+        color: theme.dialogTitleFontColor
     }
 
     Image {
