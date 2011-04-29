@@ -24,7 +24,17 @@ Rectangle {
 
     signal accepted()
     onAccepted: {
-        console.log("Accepted")
+        console.log("Accepted");
+        if (editText.minChars != -1 && editText.text.length < editText.minChars)
+            return;
+        if (editText.maxChars != -1 && editText.text.length > editText.maxChars)
+            return;
+        if (editText.isNumeric) {
+            for (var i=0; i<editText.text.length; i++) {
+                if (editText.text.charAt(i)<'0' || editText.text.charAt(i)>'9')
+                    return;
+            }
+        }
         view.textEntered(editText.text)
     }
     signal textEntered(string text)
@@ -72,6 +82,10 @@ Rectangle {
         anchors.bottomMargin: 10
         anchors.right: endRect.left
         anchors.rightMargin: 10
+        property bool isNumeric: false
+        property bool hideTyping: false
+        property int minChars: -1
+        property int maxChars: -1
     }
 
     Button {

@@ -219,9 +219,8 @@ QString StkAgentService::RequestDigit(const QString &title, uchar icon)
     QString out0 = FALLBACK_QSTRING;
 qDebug() << "RequestDigit: " << title << "(" << icon << ")";
     closeLastWidget();
-    /* #### TODO #### handle numeric and boundaries constraints
-    StkDialog dlg(new StkInputKey(StkOfonoUtils::findIcon(mSimIf,icon),title));*/
     StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkinputkey.qml");
+    dlg.setNumeric(true);
     dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
@@ -245,15 +244,11 @@ QString StkAgentService::RequestDigits(const QString &title, uchar icon, const Q
     QString out0 = defaultValue;
 qDebug() << "RequestDigits: " << title << "(" << icon << ")" << " (" << defaultValue << ") [" << minChars << ".." << maxChars << "] passwd:" << hideTyping;
     closeLastWidget();
-    /* #### TODO #### handle numeric and boundaries constraints
-    StkInputText * inputText = new StkInputText(StkOfonoUtils::findIcon(mSimIf,icon),title);
-    inputText->setDefaultText(defaultValue);
-    inputText->setCharBounds(minChars,maxChars);
-    inputText->setHideTyping(hideTyping);
-    inputText->setNumeric(true);
-    StkDialog dlg(inputText);*/
     StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkinputtext.qml");
     dlg.setDefaultText(defaultValue);
+    dlg.setCharBounds((int)minChars,(int)maxChars);
+    dlg.setHideTyping(hideTyping);
+    dlg.setNumeric(true);
     dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
@@ -277,15 +272,13 @@ QString StkAgentService::RequestInput(const QString &title, uchar icon, const QS
     QString out0 = defaultValue;
 qDebug() << "RequestInput: " << title << "(" << icon << ")" << " (" << defaultValue << ") [" << minChars << ".." << maxChars << "] passwd:" << hideTyping;
     closeLastWidget();
-    /* #### TODO #### handle numeric and boundaries constraints
-    StkInputText * inputText = new StkInputText(StkOfonoUtils::findIcon(mSimIf,icon),title);
-    inputText->setDefaultText(defaultValue);
-    inputText->setCharBounds(minChars,maxChars);
-    inputText->setHideTyping(hideTyping);
-    inputText->setNumeric(false);
-    StkDialog dlg(inputText);*/
     StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkinputtext.qml");
     dlg.setDefaultText(defaultValue);
+    dlg.setCharBounds((int)minChars,(int)maxChars);
+    dlg.setHideTyping(hideTyping);
+    dlg.setNumeric(false);
+    dlg.initView();
+    dlg.exec();
     dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
@@ -309,9 +302,8 @@ QString StkAgentService::RequestKey(const QString &title, uchar icon)
     QString out0 = FALLBACK_QSTRING;
 qDebug() << "RequestKey: " << title << "(" << icon << ")";
     closeLastWidget();
-    /* #### TODO #### handle numeric and boundaries constraints
-    StkDialog dlg(new StkInputKey(StkOfonoUtils::findIcon(mSimIf,icon),title));*/
     StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkinputkey.qml");
+    dlg.setNumeric(false);
     dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();

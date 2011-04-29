@@ -23,7 +23,8 @@ StkDialog::StkDialog(SimImageProvider * imageProvider, const QString &iconUrl,
     mIconUrl = iconUrl;
     mTitle = title;
     mQmlViewUrl = qmlViewUrl;
-    mSelection = -1;
+    mMinChars = mMaxChars = mSelection = -1;
+    mHideTyping = mNumeric = false;
 }
 
 void StkDialog::initView()
@@ -64,6 +65,10 @@ void StkDialog::initView()
     QObject * editText = root->findChild<QObject*>("editText");
     if (editText) {
         editText->setProperty("text",mDefaultText);
+        editText->setProperty("isNumeric",mNumeric);
+        editText->setProperty("hideTyping",mHideTyping);
+        editText->setProperty("minChars",mMinChars);
+        editText->setProperty("maxChars",mMaxChars);
         connect(root, SIGNAL(textEntered(QString)), this, SLOT(responseOkWithText(QString)));
     }
     // End button

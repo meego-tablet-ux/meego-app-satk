@@ -34,7 +34,6 @@ Rectangle {
     signal endSession()
     onEndSession: console.log("End session")
 
-
     Label {
         id: title
         objectName: "title"
@@ -66,12 +65,22 @@ Rectangle {
     TextEntry {
         id: editText
         objectName: "editText"
-        anchors.left: icon.right
-        anchors.leftMargin: 10
+        width: 80
+        anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: okRect.top
         anchors.bottomMargin: 10
-        anchors.right: endRect.left
-        anchors.rightMargin: 10
+        textInput.horizontalAlignment: TextInput.AlignHCenter
+        textInput.focus: true
+        textInput.font.pixelSize: theme.fontPixelSizeLargest
+        property bool isNumeric: false
+        onTextChanged: {
+            if (text.length > 0) {
+                text = text.charAt(text.length-1);
+                if (isNumeric)
+                    if (text.charAt(0)<'0' || text.charAt(0)>'9')
+                        text = "";
+            }
+        }
     }
 
     Button {

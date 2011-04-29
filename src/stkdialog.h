@@ -47,6 +47,22 @@ public:
         mDefaultText = defaultText;
     }
 
+    inline void setNumeric(const bool numeric)
+    {
+        mNumeric = numeric;
+    }
+
+    inline void setHideTyping(const bool hideTyping)
+    {
+        mHideTyping = hideTyping;
+    }
+
+    inline void setCharBounds(const int minChars, const int maxChars)
+    {
+        mMinChars = minChars;
+        mMaxChars = maxChars;
+    }
+
     inline void setMenuItems(const QList<StkMenuItem> &menuItems)
     {
         mMenuItems = menuItems;
@@ -64,6 +80,10 @@ private:
     // QML view specifics, inline setters
     // for "editText" items
     QString mDefaultText;
+    bool mNumeric;
+    bool mHideTyping;
+    int mMinChars;
+    int mMaxChars;
     // for "menuView" items
     QList<StkMenuItem> mMenuItems;
     int mSelection;
