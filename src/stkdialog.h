@@ -30,10 +30,7 @@ class StkDialog : public QDialog
     Q_OBJECT
 public:
     explicit StkDialog(SimImageProvider * imageProvider, const QString &iconUrl,
-                       const QString &title, const QString &qmlViewUrl,
-                       const QString &defaultText = "",
-            const QList<StkMenuItem> &menuItems = QList<StkMenuItem>(), const int selection =-1,
-            QWidget *parent = 0);
+                       const QString &title, const QString &qmlViewUrl, QWidget *parent = 0);
 
     inline AgentResponse getAgentResponse()
     {
@@ -45,11 +42,41 @@ public:
         return responseData;
     }
 
+    inline void setDefaultText(const QString &defaultText)
+    {
+        mDefaultText = defaultText;
+    }
+
+    inline void setMenuItems(const QList<StkMenuItem> &menuItems)
+    {
+        mMenuItems = menuItems;
+    }
+
+    inline void setSelection(const int selection)
+    {
+        mSelection = selection;
+    }
 
 private:
+    // result data, inline getters
     AgentResponse agentResponse;
     QVariant responseData;
+    // QML view specifics, inline setters
+    // for "editText" items
+    QString mDefaultText;
+    // for "menuView" items
+    QList<StkMenuItem> mMenuItems;
+    int mSelection;
+    // QML view support
     QDeclarativeView *mView;
+    // constructor parameters
+    SimImageProvider * mImageProvider;
+    QString mIconUrl;
+    QString mTitle;
+    QString mQmlViewUrl;
+
+public:
+    void initView();
 
 public slots:
     inline void responseYes()

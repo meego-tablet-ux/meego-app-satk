@@ -53,6 +53,7 @@ bool StkAgentService::ConfirmCallSetup(const QString &info, uchar icon)
 qDebug() << "ConfirmCallSetup: " << info << "(" << icon << ")";
     closeLastWidget();
     StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),info,"qrc:/stkyesno.qml");
+    dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
@@ -80,6 +81,7 @@ bool StkAgentService::ConfirmLaunchBrowser(const QString &info, uchar icon, cons
 qDebug() << "ConfirmLaunchBrowser: " << info << "(" << icon << ")" << " -- url: " << url;
     closeLastWidget();
     StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),info,"qrc:/stkyesno.qml");
+    dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
@@ -106,6 +108,7 @@ qDebug() << "DisplayActionInformation: " << text << "(" << icon << ")";
     closeLastWidget();
     StkDialog *dlg = new StkDialog(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),text,"qrc:/stkmessage.qml");
     mWidgetStack.append(dlg);
+    dlg->initView();
     dlg->show();
 }
 
@@ -116,6 +119,7 @@ void StkAgentService::DisplayText(const QString &title, uchar icon, bool urgent)
 qDebug() << "DisplayText: " << title << "(" << icon << ")" << " urgent: " << urgent;
     closeLastWidget();
     StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkpopup.qml");
+    dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
@@ -141,6 +145,7 @@ qDebug() << "LoopTone: " << tone << " : " << text << "(" << icon << ")";
     closeLastWidget();
     StkDialog *dlg = new StkDialog(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),text + "(playing: " + tone + ")","qrc:/stkmessage.qml");
     mWidgetStack.append(dlg);
+    dlg->initView();
     dlg->show();
 }
 
@@ -152,6 +157,7 @@ void StkAgentService::PlayTone(const QString &tone, const QString &text, uchar i
 qDebug() << "PlayTone: " << tone << " : " << text << "(" << icon << ")";
     closeLastWidget();
     StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),text + "(playing: " + tone + ")","qrc:/stkpopup.qml");
+    dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
@@ -184,6 +190,7 @@ bool StkAgentService::RequestConfirmation(const QString &title, uchar icon)
 qDebug() << "RequestConfirmation: " << title << "(" << icon << ")";
     closeLastWidget();
     StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkpopup.qml");
+    dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
@@ -215,6 +222,7 @@ qDebug() << "RequestDigit: " << title << "(" << icon << ")";
     /* #### TODO #### handle numeric and boundaries constraints
     StkDialog dlg(new StkInputKey(StkOfonoUtils::findIcon(mSimIf,icon),title));*/
     StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkinputkey.qml");
+    dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
@@ -244,7 +252,9 @@ qDebug() << "RequestDigits: " << title << "(" << icon << ")" << " (" << defaultV
     inputText->setHideTyping(hideTyping);
     inputText->setNumeric(true);
     StkDialog dlg(inputText);*/
-    StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkinputtext.qml",defaultValue);
+    StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkinputtext.qml");
+    dlg.setDefaultText(defaultValue);
+    dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
@@ -274,7 +284,9 @@ qDebug() << "RequestInput: " << title << "(" << icon << ")" << " (" << defaultVa
     inputText->setHideTyping(hideTyping);
     inputText->setNumeric(false);
     StkDialog dlg(inputText);*/
-    StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkinputtext.qml",defaultValue);
+    StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkinputtext.qml");
+    dlg.setDefaultText(defaultValue);
+    dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
@@ -300,6 +312,7 @@ qDebug() << "RequestKey: " << title << "(" << icon << ")";
     /* #### TODO #### handle numeric and boundaries constraints
     StkDialog dlg(new StkInputKey(StkOfonoUtils::findIcon(mSimIf,icon),title));*/
     StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkinputkey.qml");
+    dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
@@ -325,7 +338,10 @@ qDebug() << "RequestSelection: " << title << "(" << icon << ")" << " default: " 
      QList<StkMenuItem> dlgitems;
     foreach (const OfonoMenuEntry entry, items)
         dlgitems.append(StkMenuItem(StkOfonoUtils::findIconUrl(entry.icon), entry.label));
-    StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkmenu.qml","",dlgitems,int(defaultValue));
+    StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/stkmenu.qml");
+    dlg.setMenuItems(dlgitems);
+    dlg.setSelection(int(defaultValue));
+    dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {

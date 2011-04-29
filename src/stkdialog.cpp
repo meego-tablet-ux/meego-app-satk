@@ -16,21 +16,27 @@
 #include "stkmenumodel.h"
 
 StkDialog::StkDialog(SimImageProvider * imageProvider, const QString &iconUrl,
-                     const QString &title, const QString &qmlViewUrl,
-                     const QString &defaultText,
-          const QList<StkMenuItem> &menuItems, const int selection,
-          QWidget *parent) :
+                     const QString &title, const QString &qmlViewUrl, QWidget *parent) :
     QDialog(parent)
 {
+    mImageProvider = imageProvider;
+    mIconUrl = iconUrl;
+    mTitle = title;
+    mQmlViewUrl = qmlViewUrl;
+    mSelection = -1;
+}
+
+void StkDialog::initView()
+{
     // Create QML View as central widget
-    this->mView = new QDeclarativeView;
+    mView = new QDeclarativeView;
     // Register image provider, deleted with the engine
     QDeclarativeEngine * engine = mView->engine();
-    engine->addImageProvider(SIM_IMAGE_PROVIDER, imageProvider);
-    this->mView->setSource(QUrl(qmlViewUrl));
-    this->mView->setResizeMode(QDeclarativeView::SizeRootObjectToView);
+    engine->addImageProvider(SIM_IMAGE_PROVIDER, mImageProvider);
+    mView->setSource(QUrl(mQmlViewUrl));
+    mView->setResizeMode(QDeclarativeView::SizeRootObjectToView);
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(this->mView);
+    layout->addWidget(mView);
     setLayout(layout);
     // Find qml objects and connect signals
     QObject *object;
@@ -38,26 +44,26 @@ StkDialog::StkDialog(SimImageProvider * imageProvider, const QString &iconUrl,
     // Main icon and title
     object = root->findChild<QObject*>("icon");
     if (object)
-        object->setProperty("source", iconUrl);
+        object->setProperty("source", mIconUrl);
     object = root->findChild<QObject*>("title");
     if (object)
-        object->setProperty("text", title);
+        object->setProperty("text", mTitle);
     // SIM Toolkit Menu
     QObject * menuView = root->findChild<QObject*>("menuView");
     if (menuView) {
         // set model "menuModel" for ListView "menuView"
         QDeclarativeContext *context = mView->rootContext();
         StkMenuModel * menuModel = new StkMenuModel();
-        menuModel->setMenuItems(menuItems);
+        menuModel->setMenuItems(mMenuItems);
         context->setContextProperty("menuModel",menuModel);
         connect(root, SIGNAL(itemSelected(int)), this, SLOT(responseOkWithSelection(int)));
-        if (selection != -1)
-            menuView->setProperty("currentIndex", selection);
+        if (mSelection != -1)
+            menuView->setProperty("currentIndex", mSelection);
     }
     // Text edit / input
     QObject * editText = root->findChild<QObject*>("editText");
     if (editText) {
-        editText->setProperty("text",defaultText);
+        editText->setProperty("text",mDefaultText);
         connect(root, SIGNAL(textEntered(QString)), this, SLOT(responseOkWithText(QString)));
     }
     // End button
