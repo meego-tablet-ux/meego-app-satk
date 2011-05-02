@@ -98,7 +98,10 @@ Rectangle {
                 font.pixelSize: theme.contextMenuFontPixelSize
                 text: title
                 MouseArea {
-                    anchors.fill: parent
+                    width: menuView.width
+                    anchors.top: parent.top
+                    anchors.left: parent.left
+                    anchors.bottom: parent.bottom
                     onClicked: menuView.itemSelected(index)
                 }
             }
