@@ -61,7 +61,7 @@ Rectangle {
         model: menuModel
         delegate: menuDelegate
         highlight: Rectangle {
-            color: theme.fontColorHighlightBlue
+            color: theme.fontColorHighlight
             width: menuView.width
         }
         highlightFollowsCurrentItem: true
