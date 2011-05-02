@@ -25,14 +25,26 @@ Rectangle {
     signal accepted()
     onAccepted: {
         console.log("Accepted");
-        if (editText.minChars != -1 && editText.text.length < editText.minChars)
+        console.log("Text len: ", editText.text.length, ", bounds: [", editText.minChars, "..", editText.maxChars, "], numeric: ", editText.isNumeric);
+        if (editText.minChars != -1 && editText.text.length < editText.minChars) {
+            formatMsgBox.text = "You entered " + editText.text.length + " characters.\n" +
+            "Please enter at least " + editText.minChars + " characters.";
+            formatMsgBox.show();
             return;
-        if (editText.maxChars != -1 && editText.text.length > editText.maxChars)
+        }
+        if (editText.maxChars != -1 && editText.text.length > editText.maxChars) {
+            formatMsgBox.text = "You entered " + editText.text.length + " characters.\n" +
+            "Please enter no more than " + editText.maxChars + " characters.";
+            formatMsgBox.show();
             return;
+        }
         if (editText.isNumeric) {
             for (var i=0; i<editText.text.length; i++) {
-                if (editText.text.charAt(i)<'0' || editText.text.charAt(i)>'9')
+                if (editText.text.charAt(i)<'0' || editText.text.charAt(i)>'9') {
+                    formatMsgBox.text = "Please enter numbers only";
+                    formatMsgBox.show();
                     return;
+                }
             }
         }
         view.textEntered(editText.text)
@@ -132,7 +144,19 @@ Rectangle {
         }
     }
 
+    ModalMessageBox {
+        id: formatMsgBox
+        title: "Attention"
+        text: ""
+        showAcceptButton: true
+        showCancelButton: false
+        fogClickable: false
+        acceptButtonText: "Ok"
+    }
+
 }
+
+
 
 
 
