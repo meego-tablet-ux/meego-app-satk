@@ -12,6 +12,7 @@
 
 import Qt 4.7
 import MeeGo.Components 0.1
+import "qrc:/stkuicheck.js" as StkUiCheck
 
 Rectangle {
     id: view
@@ -38,14 +39,10 @@ Rectangle {
             formatMsgBox.show();
             return;
         }
-        if (editText.isNumeric) {
-            for (var i=0; i<editText.text.length; i++) {
-                if (editText.text.charAt(i)<'0' || editText.text.charAt(i)>'9') {
-                    formatMsgBox.text = qsTr("Please enter numbers only");
-                    formatMsgBox.show();
-                    return;
-                }
-            }
+        if (editText.isNumeric && !StkUiCheck.checkNumericString(editText.text)) {
+            formatMsgBox.text = qsTr("Please enter numbers only");
+            formatMsgBox.show();
+            return;
         }
         view.textEntered(editText.text)
     }

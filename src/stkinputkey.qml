@@ -12,6 +12,7 @@
 
 import Qt 4.7
 import MeeGo.Components 0.1
+import "qrc:/stkuicheck.js" as StkUiCheck
 
 Rectangle {
     id: view
@@ -76,9 +77,8 @@ Rectangle {
         onTextChanged: {
             if (text.length > 0) {
                 text = text.charAt(text.length-1);
-                if (isNumeric)
-                    if (text.charAt(0)<'0' || text.charAt(0)>'9')
-                        text = "";
+                if (isNumeric && !StkUiCheck.checkNumericChar(text))
+                    text = "";
             }
         }
     }

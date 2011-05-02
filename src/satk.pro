@@ -56,7 +56,8 @@ OTHER_FILES += \
     stkmenu.qml \
     stkinputtext.qml \
     stkinputkey.qml \
-    sim_32x32.xpm
+    sim_32x32.xpm \
+    stkuicheck.js
 
 RESOURCES += \
     resources.qrc

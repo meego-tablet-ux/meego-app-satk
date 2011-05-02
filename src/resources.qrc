@@ -6,5 +6,6 @@
         <file>stkmenu.qml</file>
         <file>stkmessage.qml</file>
         <file>stkpopup.qml</file>
+        <file>stkuicheck.js</file>
     </qresource>
 </RCC>
