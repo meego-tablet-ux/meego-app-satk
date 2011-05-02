@@ -27,21 +27,21 @@ Rectangle {
         console.log("Accepted");
         console.log("Text len: ", editText.text.length, ", bounds: [", editText.minChars, "..", editText.maxChars, "], numeric: ", editText.isNumeric);
         if (editText.minChars != -1 && editText.text.length < editText.minChars) {
-            formatMsgBox.text = "You entered " + editText.text.length + " characters.\n" +
-            "Please enter at least " + editText.minChars + " characters.";
+            formatMsgBox.text = qsTr("You entered ") + editText.text.length + qsTr(" characters.") + "\n" +
+            qsTr("Please enter at least ") + editText.minChars + qsTr(" characters.");
             formatMsgBox.show();
             return;
         }
         if (editText.maxChars != -1 && editText.text.length > editText.maxChars) {
-            formatMsgBox.text = "You entered " + editText.text.length + " characters.\n" +
-            "Please enter no more than " + editText.maxChars + " characters.";
+            formatMsgBox.text = qsTr("You entered ") + editText.text.length + qsTr(" characters.") + "\n" +
+            qsTr("Please enter no more than ") + editText.maxChars + qsTr(" characters.");
             formatMsgBox.show();
             return;
         }
         if (editText.isNumeric) {
             for (var i=0; i<editText.text.length; i++) {
                 if (editText.text.charAt(i)<'0' || editText.text.charAt(i)>'9') {
-                    formatMsgBox.text = "Please enter numbers only";
+                    formatMsgBox.text = qsTr("Please enter numbers only");
                     formatMsgBox.show();
                     return;
                 }
@@ -60,7 +60,7 @@ Rectangle {
     Label {
         id: title
         objectName: "title"
-        text: "SIM Application Toolkit"
+        text: qsTr( "SIM Application Toolkit")
         anchors.top: parent.top
         anchors.topMargin: 10
         anchors.left: icon.right
@@ -109,7 +109,7 @@ Rectangle {
         anchors.topMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
-        text: "End"
+        text: qsTr( "End")
         onClicked: {
             view.endSession()
         }
@@ -124,7 +124,7 @@ Rectangle {
         anchors.bottomMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
-        text: "Back"
+        text: qsTr( "Back")
         onClicked: {
             view.goBack()
         }
@@ -138,7 +138,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
-        text: "Ok"
+        text: qsTr( "Ok")
         onClicked: {
             view.accepted()
         }
@@ -146,12 +146,12 @@ Rectangle {
 
     ModalMessageBox {
         id: formatMsgBox
-        title: "Attention"
+        title: qsTr("Attention")
         text: ""
         showAcceptButton: true
         showCancelButton: false
         fogClickable: false
-        acceptButtonText: "Ok"
+        acceptButtonText: qsTr( "Ok")
     }
 
 }

@@ -32,7 +32,7 @@ Rectangle {
     Label {
         id: title
         objectName: "title"
-        text: "SIM Application Toolkit"
+        text: qsTr( "SIM Application Toolkit")
         anchors.top: parent.top
         anchors.topMargin: 10
         anchors.left: icon.right
@@ -114,7 +114,7 @@ Rectangle {
         anchors.topMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
-        text: "End"
+        text: qsTr( "End")
         onClicked: {
             view.endSession()
         }
@@ -129,7 +129,7 @@ Rectangle {
         anchors.bottomMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
-        text: "Back"
+        text: qsTr( "Back")
         onClicked: {
             view.goBack()
         }
