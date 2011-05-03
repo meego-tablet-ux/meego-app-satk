@@ -20,3 +20,18 @@ From satk root directory, execute the following commands:
   qmake
   make
 
+===== Installing =====
+
+Execute the compilation commands above, then:
+
+  sudo make install
+
+===== Distribution =====
+
+From satk root directory, execute the following commands:
+
+  cd src
+  qmake
+  make dist
+
+

@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=SIM Application Toolkit
+Name=SIM Application
 Exec=satk menu
 Terminal=false
-Icon=sim_32x32.xpm
+Icon=sim_32x32
