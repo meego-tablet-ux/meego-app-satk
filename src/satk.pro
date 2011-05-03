@@ -57,7 +57,19 @@ OTHER_FILES += \
     stkinputtext.qml \
     stkinputkey.qml \
     sim_32x32.xpm \
-    stkuicheck.js
+    stkuicheck.js \
+    satk.desktop
 
 RESOURCES += \
     resources.qrc
+
+TRANSLATIONS += *.qml
+
+desktop.files += *.desktop
+desktop.path += $$INSTALL_ROOT/usr/share/applications
+
+qmlfiles.files += *.xpm
+qmlfiles.path += $$INSTALL_ROOT/usr/share/$$TARGET
+
+
+INSTALLS += qmlfiles desktop

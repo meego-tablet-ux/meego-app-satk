@@ -10,7 +10,7 @@
 Name:           satk
 Version:0.0.1
 Release:        1
-License:        <insert license tag>
+License:        Apache v2.0
 Summary:        <insert summary tag>
 Url:            <insert url tag>
 Group:          <insert group tag>
