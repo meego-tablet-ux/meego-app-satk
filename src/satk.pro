@@ -58,7 +58,9 @@ OTHER_FILES += \
     stkinputkey.qml \
     sim_32x32.xpm \
     stkuicheck.js \
-    satk.desktop
+    satk.desktop \
+    stkplaysound.qml \
+    test.wav
 
 RESOURCES += \
     resources.qrc
@@ -89,4 +91,3 @@ dist.commands += lupdate $${TRANSLATIONS} -ts $${PROJECT_NAME}-$${VERSION}/ts/$$
 dist.commands += tar jcpvf $${PROJECT_NAME}-$${VERSION}.tar.bz2 $${PROJECT_NAME}-$${VERSION} &&
 dist.commands += rm -fR $${PROJECT_NAME}-$${VERSION}
 QMAKE_EXTRA_TARGETS += dist
-

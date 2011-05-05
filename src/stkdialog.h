@@ -73,6 +73,11 @@ public:
         mSelection = selection;
     }
 
+    inline void setLoopTone(const bool loopTone)
+    {
+        mLoopTone = loopTone;
+    }
+
 private:
     // result data, inline getters
     AgentResponse agentResponse;
@@ -87,6 +92,8 @@ private:
     // for "menuView" items
     QList<StkMenuItem> mMenuItems;
     int mSelection;
+    // for "audioTone" items
+    bool mLoopTone;
     // QML view support
     QDeclarativeView *mView;
     // constructor parameters

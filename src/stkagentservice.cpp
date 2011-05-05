@@ -139,12 +139,12 @@ qDebug() << "DisplayText: " << title << "(" << icon << ")" << " urgent: " << urg
 
 void StkAgentService::LoopTone(const QString &tone, const QString &text, uchar icon)
 {
-    // #### TODO #### loop playing tone
     // handle method call org.ofono.SimToolkitAgent.LoopTone
 qDebug() << "LoopTone: " << tone << " : " << text << "(" << icon << ")";
     closeLastWidget();
-    StkDialog *dlg = new StkDialog(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),text + "(playing: " + tone + ")","qrc:/stkmessage.qml");
+    StkDialog *dlg = new StkDialog(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),text + "(playing: " + tone + ")","qrc:/stkplaysound.qml");
     mWidgetStack.append(dlg);
+    dlg->setLoopTone(true);
     dlg->initView();
     dlg->show();
 }
@@ -152,18 +152,15 @@ qDebug() << "LoopTone: " << tone << " : " << text << "(" << icon << ")";
 
 void StkAgentService::PlayTone(const QString &tone, const QString &text, uchar icon)
 {
-    // #### TODO #### play tone, block while playing
     // handle method call org.ofono.SimToolkitAgent.PlayTone
 qDebug() << "PlayTone: " << tone << " : " << text << "(" << icon << ")";
     closeLastWidget();
-    StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),text + "(playing: " + tone + ")","qrc:/stkpopup.qml");
+    StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),text + "(playing: " + tone + ")","qrc:/stkplaysound.qml");
     dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
     case Yes:
-        break;
-    case Back:
         break;
     case End:
         connection().send(message().createErrorReply(STK_ERR_END,""));

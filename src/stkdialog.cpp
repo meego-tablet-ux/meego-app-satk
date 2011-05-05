@@ -24,7 +24,7 @@ StkDialog::StkDialog(SimImageProvider * imageProvider, const QString &iconUrl,
     mTitle = title;
     mQmlViewUrl = qmlViewUrl;
     mMinChars = mMaxChars = mSelection = -1;
-    mHideTyping = mNumeric = false;
+    mLoopTone = mHideTyping = mNumeric = false;
 }
 
 void StkDialog::initView()
@@ -71,6 +71,10 @@ void StkDialog::initView()
         editText->setProperty("maxChars",mMaxChars);
         connect(root, SIGNAL(textEntered(QString)), this, SLOT(responseOkWithText(QString)));
     }
+    // Audio tone
+    QObject * audioTone = root->findChild<QObject*>("audioTone");
+    if (audioTone)
+        audioTone->setProperty("loops", mLoopTone ? -1 : 1);
     // End button
     object = root->findChild<QObject*>("endRect");
     if (object)
