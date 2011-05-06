@@ -32,7 +32,7 @@ Rectangle {
     Label {
         id: title
         objectName: "title"
-        text: qsTr( "SIM Application Toolkit")
+        text: "SIM Application Toolkit"
         anchors.top: parent.top
         anchors.topMargin: 10
         anchors.left: icon.right
