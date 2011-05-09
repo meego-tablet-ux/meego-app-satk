@@ -61,7 +61,8 @@ OTHER_FILES += \
     satk.desktop \
     StkPlaySound.qml \
     test.wav \
-    StkPanel.qml
+    StkPanel.qml \
+    StkWebView.qml
 
 RESOURCES += \
     resources.qrc

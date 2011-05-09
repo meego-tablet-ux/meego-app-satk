@@ -75,17 +75,21 @@ qDebug() << "ConfirmCallSetup: " << info << "(" << icon << ")";
 
 bool StkAgentService::ConfirmLaunchBrowser(const QString &info, uchar icon, const QString &url)
 {
-    // #### TODO #### launch browser with url parameter
     // handle method call org.ofono.SimToolkitAgent.ConfirmLaunchBrowser
     bool out0 = FALLBACK_BOOL;
 qDebug() << "ConfirmLaunchBrowser: " << info << "(" << icon << ")" << " -- url: " << url;
     closeLastWidget();
+    StkDialog * web = NULL;
     StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),info,"qrc:/StkYesNo.qml");
     dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
     case Yes:
+        web = new StkDialog(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),url,"qrc:/StkWebView.qml");
+        mWidgetStack.append(web);
+        web->initView();
+        web->exec();
         out0 = true;
         break;
     case No:
