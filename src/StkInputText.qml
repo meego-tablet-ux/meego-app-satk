@@ -12,7 +12,7 @@
 
 import Qt 4.7
 import MeeGo.Components 0.1
-import "qrc:/stkuicheck.js" as StkUiCheck
+import "qrc:/StkUiCheck.js" as StkUiCheck
 
 Rectangle {
     id: view

@@ -57,7 +57,7 @@ OTHER_FILES += \
     StkInputText.qml \
     StkInputKey.qml \
     sim_32x32.xpm \
-    stkuicheck.js \
+    StkUiCheck.js \
     satk.desktop \
     StkPlaySound.qml \
     test.wav \

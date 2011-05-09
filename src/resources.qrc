@@ -6,7 +6,7 @@
         <file>StkMenu.qml</file>
         <file>StkMessage.qml</file>
         <file>StkPopup.qml</file>
-        <file>stkuicheck.js</file>
+        <file>StkUiCheck.js</file>
         <file>StkPlaySound.qml</file>
         <file>test.wav</file>
         <file>StkPanel.qml</file>
