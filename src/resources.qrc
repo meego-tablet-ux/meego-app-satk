@@ -1,13 +1,13 @@
 <RCC>
     <qresource prefix="/">
-        <file>stkyesno.qml</file>
-        <file>stkinputkey.qml</file>
-        <file>stkinputtext.qml</file>
-        <file>stkmenu.qml</file>
-        <file>stkmessage.qml</file>
-        <file>stkpopup.qml</file>
+        <file>StkYesNo.qml</file>
+        <file>StkInputKey.qml</file>
+        <file>StkInputText.qml</file>
+        <file>StkMenu.qml</file>
+        <file>StkMessage.qml</file>
+        <file>StkPopup.qml</file>
         <file>stkuicheck.js</file>
-        <file>stkplaysound.qml</file>
+        <file>StkPlaySound.qml</file>
         <file>test.wav</file>
         <file>StkPanel.qml</file>
     </qresource>

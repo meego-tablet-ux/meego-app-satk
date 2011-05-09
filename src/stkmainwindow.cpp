@@ -65,7 +65,7 @@ void StkMainWindow::createMainView() {
     QDeclarativeEngine * engine = mView->engine();
     engine->addImageProvider(SIM_IMAGE_PROVIDER, new SimImageProvider(mSimIf));
     // Load a qml main menu
-    mView->setSource(QUrl("qrc:/stkmenu.qml"));
+    mView->setSource(QUrl("qrc:/StkMenu.qml"));
     // Set it as central widget
     mView->setResizeMode(QDeclarativeView::SizeRootObjectToView);
     setCentralWidget(mView);

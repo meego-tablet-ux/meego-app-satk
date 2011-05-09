@@ -50,16 +50,16 @@ OTHER_FILES += \
     ../interfaces/org.ofono.SimToolkitAgent.xml \
     ../interfaces/org.ofono.Manager.xml \
     qtc_packaging/meego.spec \
-    stkyesno.qml \
-    stkpopup.qml \
-    stkmessage.qml \
-    stkmenu.qml \
-    stkinputtext.qml \
-    stkinputkey.qml \
+    StkYesNo.qml \
+    StkPopup.qml \
+    StkMessage.qml \
+    StkMenu.qml \
+    StkInputText.qml \
+    StkInputKey.qml \
     sim_32x32.xpm \
     stkuicheck.js \
     satk.desktop \
-    stkplaysound.qml \
+    StkPlaySound.qml \
     test.wav \
     StkPanel.qml
 
