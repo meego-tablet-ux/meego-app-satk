@@ -29,6 +29,31 @@ Rectangle {
     signal endSession()
     onEndSession: console.log("End session")
 
+    ListView {
+        id: menuView
+        objectName: "menuView"
+        model: menuModel
+        delegate: menuDelegate
+        highlight: Rectangle {
+            color: theme.fontColorHighlight
+            width: menuView.width
+        }
+        highlightFollowsCurrentItem: true
+        anchors.top: title.bottom
+        anchors.topMargin: 10
+        anchors.left: icon.right
+        anchors.leftMargin: 10
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 20
+        anchors.right: panel.left
+        anchors.rightMargin: 10
+        signal itemSelected(int selection)
+        onItemSelected: {
+            currentIndex = selection;
+            view.itemSelected(selection)
+        }
+    }
+
     StkPanel {
         id: panel
         objectName: "panel"
@@ -63,31 +88,6 @@ Rectangle {
         anchors.topMargin: 10
         anchors.left: parent.left
         anchors.leftMargin: 10
-    }
-
-    ListView {
-        id: menuView
-        objectName: "menuView"
-        model: menuModel
-        delegate: menuDelegate
-        highlight: Rectangle {
-            color: theme.fontColorHighlight
-            width: menuView.width
-        }
-        highlightFollowsCurrentItem: true
-        anchors.top: title.bottom
-        anchors.topMargin: 10
-        anchors.left: icon.right
-        anchors.leftMargin: 10
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 20
-        anchors.right: panel.left
-        anchors.rightMargin: 10
-        signal itemSelected(int selection)
-        onItemSelected: {
-            currentIndex = selection;
-            view.itemSelected(selection)
-        }
     }
 
     Component {
