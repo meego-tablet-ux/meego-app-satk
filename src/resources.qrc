@@ -9,5 +9,6 @@
         <file>stkuicheck.js</file>
         <file>stkplaysound.qml</file>
         <file>test.wav</file>
+        <file>StkPanel.qml</file>
     </qresource>
 </RCC>

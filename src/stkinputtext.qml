@@ -50,19 +50,26 @@ Rectangle {
     onTextEntered: console.log("Text entered: " + text)
     signal goBack()
     onGoBack: console.log("Go back")
-    signal endSession()
-    onEndSession: console.log("End session")
 
+    StkPanel {
+        id: panel
+        objectName: "panel"
+        anchors.top: parent.top
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        showEndButton: false
+        onGoBack: view.goBack();
+    }
 
     Label {
         id: title
         objectName: "title"
-        text: qsTr( "SIM Application Toolkit")
+        text: "SIM Application Toolkit"
         anchors.top: parent.top
         anchors.topMargin: 10
         anchors.left: icon.right
         anchors.leftMargin: 10
-        anchors.right: endRect.left
+        anchors.right: panel.left
         anchors.rightMargin: 10
         wrapMode: Text.WordWrap
         color: theme.dialogTitleFontColor
@@ -89,42 +96,12 @@ Rectangle {
         anchors.leftMargin: 10
         anchors.bottom: okRect.top
         anchors.bottomMargin: 10
-        anchors.right: endRect.left
+        anchors.right: panel.left
         anchors.rightMargin: 10
         property bool isNumeric: false
         property bool hideTyping: false
         property int minChars: -1
         property int maxChars: -1
-    }
-
-    Button {
-        id: endRect
-        objectName: "endRect"
-        width: 80
-        height: 30
-        anchors.top: parent.top
-        anchors.topMargin: 10
-        anchors.right: parent.right
-        anchors.rightMargin: 10
-        text: qsTr( "End")
-        onClicked: {
-            view.endSession()
-        }
-    }
-
-    Button {
-        id: backRect
-        objectName: "backRect"
-        width: 80
-        height: 30
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
-        anchors.right: parent.right
-        anchors.rightMargin: 10
-        text: qsTr( "Back")
-        onClicked: {
-            view.goBack()
-        }
     }
 
     Button {

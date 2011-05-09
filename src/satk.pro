@@ -60,7 +60,8 @@ OTHER_FILES += \
     stkuicheck.js \
     satk.desktop \
     stkplaysound.qml \
-    test.wav
+    test.wav \
+    StkPanel.qml
 
 RESOURCES += \
     resources.qrc

@@ -29,17 +29,27 @@ Rectangle {
     signal endSession()
     onEndSession: console.log("End session")
 
+    StkPanel {
+        id: panel
+        objectName: "panel"
+        anchors.top: parent.top
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        showBackButton: false
+        onEndSession: view.endSession();
+    }
+
     Label {
         id: title
         objectName: "title"
-        text: qsTr( "SIM Application Toolkit")
+        text: "SIM Application Toolkit"
         anchors.top: parent.top
         anchors.topMargin: 10
         anchors.left: icon.right
         anchors.leftMargin: 10
         anchors.bottom: yesRect.top
         anchors.bottomMargin: 10
-        anchors.right: endRect.left
+        anchors.right: panel.left
         anchors.rightMargin: 10
         wrapMode: Text.WordWrap
         color: theme.dialogTitleFontColor
@@ -55,21 +65,6 @@ Rectangle {
         anchors.topMargin: 10
         anchors.left: parent.left
         anchors.leftMargin: 10
-    }
-
-    Button {
-        id: endRect
-        objectName: "endRect"
-        width: 80
-        height: 30
-        anchors.top: parent.top
-        anchors.topMargin: 10
-        anchors.right: parent.right
-        anchors.rightMargin: 10
-        text: qsTr( "End")
-        onClicked: {
-            view.endSession()
-        }
     }
 
     Button {
