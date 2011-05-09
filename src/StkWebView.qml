@@ -52,9 +52,9 @@ Rectangle {
         anchors.leftMargin: 10
     }
 
-    WebView {
-        id: webView
-        objectName: "webView"
+    Flickable {
+        id: browserView
+        objectName: "browserView"
         anchors.top: title.bottom
         anchors.topMargin: 10
         anchors.left: parent.left
@@ -63,7 +63,18 @@ Rectangle {
         anchors.bottomMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
-        url: "http://127.0.0.1/"
+        contentWidth: childrenRect.width
+        contentHeight: childrenRect.height
+        WebView {
+            id: browserContent
+            objectName: "browserContent"
+            preferredWidth: parent.width
+            preferredHeight: parent.height
+            url: "http://127.0.0.1/"
+            onWidthChanged: browserView.contentWidth = width
+            onHeightChanged: browserView.contentHeight = height
+            onLoadFinished: browserView.contentY = -1 // redraw browserView
+        }
     }
 
     Button {
