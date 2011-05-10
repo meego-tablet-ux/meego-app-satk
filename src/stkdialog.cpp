@@ -75,6 +75,10 @@ void StkDialog::initView()
     QObject * audioTone = root->findChild<QObject*>("audioTone");
     if (audioTone)
         audioTone->setProperty("loops", mLoopTone ? -1 : 1);
+    // Browser View
+    QObject * browserView = root->findChild<QObject*>("browserView");
+    if (browserView && !mUrl.isEmpty())
+        browserView->setProperty("url", mUrl);
     // End button
     object = root->findChild<QObject*>("endRect");
     if (object)

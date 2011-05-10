@@ -78,6 +78,11 @@ public:
         mLoopTone = loopTone;
     }
 
+    inline void setUrl(const QString &url)
+    {
+        mUrl = url;
+    }
+
 private:
     // result data, inline getters
     AgentResponse agentResponse;
@@ -94,6 +99,8 @@ private:
     int mSelection;
     // for "audioTone" items
     bool mLoopTone;
+    // for "browserView" items
+    QString mUrl;
     // QML view support
     QDeclarativeView *mView;
     // constructor parameters

@@ -87,6 +87,7 @@ qDebug() << "ConfirmLaunchBrowser: " << info << "(" << icon << ")" << " -- url: 
     switch (ret) {
     case Yes:
         web = new StkDialog(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),url,"qrc:/StkWebView.qml");
+        web->setUrl(url);
         mWidgetStack.append(web);
         web->initView();
         web->exec();
