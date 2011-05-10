@@ -248,7 +248,7 @@ QString StkAgentService::RequestDigits(const QString &title, uchar icon, const Q
     QString out0 = defaultValue;
 qDebug() << "RequestDigits: " << title << "(" << icon << ")" << " (" << defaultValue << ") [" << minChars << ".." << maxChars << "] passwd:" << hideTyping;
     closeLastWidget();
-    StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/StkInputText.qml");
+    StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title, hideTyping ? "qrc:/StkPassword.qml" : "qrc:/StkInputText.qml");
     dlg.setDefaultText(defaultValue);
     dlg.setCharBounds((int)minChars,(int)maxChars);
     dlg.setHideTyping(hideTyping);
@@ -276,7 +276,7 @@ QString StkAgentService::RequestInput(const QString &title, uchar icon, const QS
     QString out0 = defaultValue;
 qDebug() << "RequestInput: " << title << "(" << icon << ")" << " (" << defaultValue << ") [" << minChars << ".." << maxChars << "] passwd:" << hideTyping;
     closeLastWidget();
-    StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/StkInputText.qml");
+    StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title, hideTyping ? "qrc:/StkPassword.qml" : "qrc:/StkInputText.qml");
     dlg.setDefaultText(defaultValue);
     dlg.setCharBounds((int)minChars,(int)maxChars);
     dlg.setHideTyping(hideTyping);

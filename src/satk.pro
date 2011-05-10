@@ -61,7 +61,8 @@ OTHER_FILES += \
     satk.desktop \
     StkPlaySound.qml \
     StkPanel.qml \
-    StkWebView.qml
+    StkWebView.qml \
+    StkPassword.qml
 
 RESOURCES += \
     resources.qrc

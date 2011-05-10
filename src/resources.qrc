@@ -10,6 +10,7 @@
         <file>StkPanel.qml</file>
         <file>StkWebView.qml</file>
         <file>StkUiCheck.js</file>
+        <file>StkPassword.qml</file>
     </qresource>
     <qresource prefix="/audio">
         <file>busy.wav</file>
