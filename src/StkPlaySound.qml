@@ -83,7 +83,7 @@ Rectangle {
     SoundEffect {
         id: audioTone
         objectName: "audioTone"
-        source: "qrc:/test.wav"
+        source: "qrc:/audio/error.wav"
         loops: 0
     }
 

@@ -7,9 +7,30 @@
         <file>StkMessage.qml</file>
         <file>StkPopup.qml</file>
         <file>StkPlaySound.qml</file>
-        <file>test.wav</file>
         <file>StkPanel.qml</file>
         <file>StkWebView.qml</file>
         <file>StkUiCheck.js</file>
+    </qresource>
+    <qresource prefix="/audio">
+        <file>busy.wav</file>
+        <file>call-waiting.wav</file>
+        <file>congestion.wav</file>
+        <file>critical.wav</file>
+        <file>dial-tone.wav</file>
+        <file>error.wav</file>
+        <file>general-beep.wav</file>
+        <file>happy.wav</file>
+        <file>message-received.wav</file>
+        <file>negative-acknowledgement.wav</file>
+        <file>positive-acknowledgement.wav</file>
+        <file>question.wav</file>
+        <file>radio-path-acknowledge.wav</file>
+        <file>radio-path-not-available.wav</file>
+        <file>ringing-tone.wav</file>
+        <file>sad.wav</file>
+        <file>urgent-action.wav</file>
+        <file>user-ringing-tone.wav</file>
+        <file>user-sms-alert.wav</file>
+        <file>vibrate.wav</file>
     </qresource>
 </RCC>

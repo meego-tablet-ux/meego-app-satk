@@ -60,7 +60,6 @@ OTHER_FILES += \
     StkUiCheck.js \
     satk.desktop \
     StkPlaySound.qml \
-    test.wav \
     StkPanel.qml \
     StkWebView.qml
 

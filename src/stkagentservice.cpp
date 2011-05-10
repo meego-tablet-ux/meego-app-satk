@@ -150,6 +150,7 @@ qDebug() << "LoopTone: " << tone << " : " << text << "(" << icon << ")";
     StkDialog *dlg = new StkDialog(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),text + "(playing: " + tone + ")","qrc:/StkPlaySound.qml");
     mWidgetStack.append(dlg);
     dlg->setLoopTone(true);
+    dlg->setToneSource(tone);
     dlg->initView();
     dlg->show();
 }
@@ -161,6 +162,7 @@ void StkAgentService::PlayTone(const QString &tone, const QString &text, uchar i
 qDebug() << "PlayTone: " << tone << " : " << text << "(" << icon << ")";
     closeLastWidget();
     StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),text + "(playing: " + tone + ")","qrc:/StkPlaySound.qml");
+    dlg.setToneSource(tone);
     dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();

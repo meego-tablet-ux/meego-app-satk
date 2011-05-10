@@ -78,6 +78,11 @@ public:
         mLoopTone = loopTone;
     }
 
+    inline void setToneSource(const QString &toneSource)
+    {
+        mToneSource = toneSource;
+    }
+
     inline void setUrl(const QString &url)
     {
         mUrl = url;
@@ -99,6 +104,7 @@ private:
     int mSelection;
     // for "audioTone" items
     bool mLoopTone;
+    QString mToneSource;
     // for "browserView" items
     QString mUrl;
     // QML view support
