@@ -47,7 +47,7 @@ void StkDialog::initView()
     if (object)
         object->setProperty("source", mIconUrl);
     object = root->findChild<QObject*>("title");
-    if (object)
+    if (object && !mTitle.isEmpty())
         object->setProperty("text", mTitle);
     // SIM Toolkit Menu
     QObject * menuView = root->findChild<QObject*>("menuView");
