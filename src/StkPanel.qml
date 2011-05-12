@@ -9,6 +9,31 @@
  * Written by - Luc Yriarte <luc.yriarte@linux.intel.com>
  */
 
+/*!
+    \file StkPanel.qml
+    \section StkPanel
+    \brief Control panel providing "End session" and "Go back" buttons for SIM Toolkit.
+
+    \subsection Signals
+    \li endSession()
+    \li goBack()
+
+    \subsection Properties
+    \li bool showEndButton
+    \li bool showBackButton
+
+    \subsection Objects
+    - \b endRect : "End" button
+      - Signals
+        - endSession()
+      - Properties
+        - text
+    - \b backRect : "Back" button
+      - Signals
+        - goBack()
+      - Properties
+        - text
+*/
 
 import Qt 4.7
 import MeeGo.Components 0.1

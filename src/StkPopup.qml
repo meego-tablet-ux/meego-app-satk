@@ -10,6 +10,30 @@
  */
 
 
+/*!
+    \file StkPopup.qml
+    \section StkPopup
+    \brief Message box, dismissable.
+
+    \subsection Signals
+    \li accepted()
+    \li goBack()
+    \li endSession()
+
+    \subsection Objects
+    - \b title : Title bar.
+      - Properties
+        - text
+    - \b icon : Main icon.
+      - Properties
+        - source
+    - \b okRect : "Ok" button.
+      - Signals
+        - accepted()
+      - Properties
+        - text
+*/
+
 import Qt 4.7
 import MeeGo.Components 0.1
 

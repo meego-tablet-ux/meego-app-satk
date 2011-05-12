@@ -10,6 +10,33 @@
  */
 
 
+/*!
+    \file StkMenu.qml
+    \section StkMenu
+    \brief Menu list view.
+
+    \subsection Signals
+    \li itemSelected(int selection)
+    \li goBack()
+    \li endSession()
+
+    \subsection Objects
+    - \b title : Title bar.
+      - Properties
+        - text
+    - \b icon : Main icon.
+      - Properties
+        - source
+    - \b menuView : Menu list view.
+      - Signals
+        - itemSelected(int selection)
+      - Properties
+        - menuModel
+      - Delegate roles
+        - title
+        - icon
+*/
+
 import Qt 4.7
 import MeeGo.Components 0.1
 

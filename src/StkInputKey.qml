@@ -10,6 +10,34 @@
  */
 
 
+/*!
+    \file StkInputKey.qml
+    \section StkInputKey
+    \brief Single char input.
+
+    \subsection Signals
+    \li accepted()
+    \li textEntered(string text)
+    \li goBack()
+
+    \subsection Objects
+    - \b title : Title bar.
+      - Properties
+        - text
+    - \b icon : Main icon.
+      - Properties
+        - source
+    - \b editText : Single char input.
+      - Properties
+        - text
+        - isNumeric
+    - \b okRect : "Ok" button.
+      - Signals
+        - accepted()
+      - Properties
+        - text
+*/
+
 import Qt 4.7
 import MeeGo.Components 0.1
 import "qrc:/StkUiCheck.js" as StkUiCheck

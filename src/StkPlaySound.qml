@@ -10,6 +10,33 @@
  */
 
 
+/*!
+    \file StkPlaySound.qml
+    \section StkPlaySound
+    \brief Message box, playing audio tone, dismissable.
+
+    \subsection Signals
+    \li accepted()
+    \li endSession()
+
+    \subsection Objects
+    - \b title : Title bar.
+      - Properties
+        - text
+    - \b icon : Main icon.
+      - Properties
+        - source
+    - \b okRect : "Ok" button.
+      - Signals
+        - accepted()
+      - Properties
+        - text
+    - \b audioTone
+      - Properties
+        - source
+        - loops
+*/
+
 import Qt 4.7
 import QtMultimediaKit 1.1
 import MeeGo.Components 0.1

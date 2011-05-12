@@ -10,6 +10,35 @@
  */
 
 
+/*!
+    \file StkYesNo.qml
+    \section StkYesNo
+    \brief Message box, accept / reject.
+
+    \subsection Signals
+    \li accepted()
+    \li rejected()
+    \li endSession()
+
+    \subsection Objects
+    - \b title : Title bar.
+      - Properties
+        - text
+    - \b icon : Main icon.
+      - Properties
+        - source
+    - \b yesRect : "Yes" button.
+      - Signals
+        - accepted()
+      - Properties
+        - text
+    - \b noRect : "No" button.
+      - Signals
+        - rejected()
+      - Properties
+        - text
+*/
+
 import Qt 4.7
 import MeeGo.Components 0.1
 

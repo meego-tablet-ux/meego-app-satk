@@ -10,6 +10,23 @@
  */
 
 
+/*!
+    \file StkMessage.qml
+    \section StkMessage
+    \brief Message box, non-dismissable.
+
+    \subsection Signals
+    \li endSession()
+
+    \subsection Objects
+    - \b title : Title bar.
+      - Properties
+        - text
+    - \b icon : Main icon.
+      - Properties
+        - source
+*/
+
 import Qt 4.7
 import MeeGo.Components 0.1
 

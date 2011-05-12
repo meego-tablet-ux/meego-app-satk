@@ -10,6 +10,31 @@
  */
 
 
+/*!
+    \file StkWebView.qml
+    \section StkWebView
+    \brief Web browser box, dismissable.
+
+    \subsection Signals
+    \li accepted()
+
+    \subsection Objects
+    - \b title : Title bar.
+      - Properties
+        - text
+    - \b icon : Main icon.
+      - Properties
+        - source
+    - \b browserView : Web browser view.
+      - Properties
+        - url
+    - \b okRect : "Ok" button.
+      - Signals
+        - accepted()
+      - Properties
+        - text
+*/
+
 import Qt 4.7
 import QtWebKit 1.0
 import MeeGo.Components 0.1
