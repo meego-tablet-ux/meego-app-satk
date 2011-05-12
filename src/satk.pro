@@ -26,8 +26,9 @@ INSTALLS=target
 }
 
 !exists(stkagentifadaptor.h) {
-    system(qdbusxml2cpp -v -c StkIf -p stkif.h:stkif.cpp ../interfaces/org.ofono.SimToolkit.xml)
+    system(qdbusxml2cpp -v -c StkAgentIfAdaptor -a stkagentifadaptor.h:stkagentifadaptor.cpp -i ofonodbustypes.h ../interfaces/org.ofono.SimToolkitAgent.xml)
 }
+
 
 SOURCES += main.cpp \
     stkif.cpp \
