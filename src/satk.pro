@@ -13,6 +13,21 @@ TEMPLATE = app
 target.path=/usr/local/bin
 INSTALLS=target
 
+!exists(mgrif.h) {
+    system(qdbusxml2cpp -v -c MgrIf -p mgrif.h:mgrif.cpp -i ofonodbustypes.h ../interfaces/org.ofono.Manager.xml)
+}
+
+!exists(simif.h) {
+    system(qdbusxml2cpp -v -c SimIf -p simif.h:simif.cpp ../interfaces/org.ofono.SimManager.xml)
+}
+
+!exists(stkif.h) {
+    system(qdbusxml2cpp -v -c StkIf -p stkif.h:stkif.cpp ../interfaces/org.ofono.SimToolkit.xml)
+}
+
+!exists(stkagentifadaptor.h) {
+    system(qdbusxml2cpp -v -c StkIf -p stkif.h:stkif.cpp ../interfaces/org.ofono.SimToolkit.xml)
+}
 
 SOURCES += main.cpp \
     stkif.cpp \
