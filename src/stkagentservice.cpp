@@ -53,6 +53,7 @@ bool StkAgentService::ConfirmCallSetup(const QString &info, uchar icon)
 qDebug() << "ConfirmCallSetup: " << info << "(" << icon << ")";
     closeLastWidget();
     StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),info,"qrc:/StkYesNo.qml");
+    dlg.setShowBackButton(false);
     dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
@@ -81,6 +82,8 @@ qDebug() << "ConfirmLaunchBrowser: " << info << "(" << icon << ")" << " -- url: 
     closeLastWidget();
     StkDialog * web = NULL;
     StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),info,"qrc:/StkYesNo.qml");
+    dlg.setShowBackButton(false);
+    dlg.setShowEndButton(false);
     dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
@@ -96,9 +99,6 @@ qDebug() << "ConfirmLaunchBrowser: " << info << "(" << icon << ")" << " -- url: 
     case No:
         out0 = false;
         break;
-    case End:
-        connection().send(message().createErrorReply(STK_ERR_END,""));
-        break;
     default:
         Q_ASSERT(false);
     }
@@ -113,6 +113,7 @@ bool StkAgentService::ConfirmOpenChannel(const QString &info, uchar icon)
 qDebug() << "ConfirmOpenChannel: " << info << "(" << icon << ")";
     closeLastWidget();
     StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),info,"qrc:/StkYesNo.qml");
+    dlg.setShowBackButton(false);
     dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
@@ -138,10 +139,17 @@ void StkAgentService::DisplayAction(const QString &text, uchar icon)
     // handle method call org.ofono.SimToolkitAgent.DisplayAction
 qDebug() << "DisplayAction: " << text << "(" << icon << ")";
     closeLastWidget();
-    StkDialog *dlg = new StkDialog(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),text,"qrc:/StkMessage.qml");
-    mWidgetStack.append(dlg);
-    dlg->initView();
-    dlg->show();
+    StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),text,"qrc:/StkMessage.qml");
+    dlg.initView();
+    dlg.exec();
+    AgentResponse ret = dlg.getAgentResponse();
+    switch (ret) {
+    case End:
+        connection().send(message().createErrorReply(STK_ERR_END,""));
+        break;
+    default:
+        Q_ASSERT(false);
+    }
 }
 
 
@@ -150,10 +158,10 @@ void StkAgentService::DisplayActionInformation(const QString &text, uchar icon)
     // handle method call org.ofono.SimToolkitAgent.DisplayActionInformation
 qDebug() << "DisplayActionInformation: " << text << "(" << icon << ")";
     closeLastWidget();
-    StkDialog *dlg = new StkDialog(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),text,"qrc:/StkMessage.qml");
-    mWidgetStack.append(dlg);
-    dlg->initView();
-    dlg->show();
+    StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),text,"qrc:/StkMessage.qml");
+    dlg.setShowEndButton(false);
+    dlg.initView();
+    dlg.exec();
 }
 
 
@@ -167,7 +175,7 @@ qDebug() << "DisplayText: " << title << "(" << icon << ")" << " urgent: " << urg
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
-    case Yes:
+    case Ok:
         break;
     case Back:
         connection().send(message().createErrorReply(STK_ERR_BACK,""));
@@ -206,7 +214,7 @@ qDebug() << "PlayTone: " << tone << " : " << text << "(" << icon << ")";
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
     switch (ret) {
-    case Yes:
+    case Ok:
         break;
     case End:
         connection().send(message().createErrorReply(STK_ERR_END,""));
@@ -232,7 +240,7 @@ bool StkAgentService::RequestConfirmation(const QString &title, uchar icon)
     bool out0 = FALLBACK_BOOL;
 qDebug() << "RequestConfirmation: " << title << "(" << icon << ")";
     closeLastWidget();
-    StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/StkPopup.qml");
+    StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),title,"qrc:/StkYesNo.qml");
     dlg.initView();
     dlg.exec();
     AgentResponse ret = dlg.getAgentResponse();
@@ -274,6 +282,9 @@ qDebug() << "RequestDigit: " << title << "(" << icon << ")";
     case Back:
         connection().send(message().createErrorReply(STK_ERR_BACK,""));
         break;
+    case End:
+        connection().send(message().createErrorReply(STK_ERR_END,""));
+        break;
     default:
         Q_ASSERT(false);
     }
@@ -301,6 +312,9 @@ qDebug() << "RequestDigits: " << title << "(" << icon << ")" << " (" << defaultV
         break;
     case Back:
         connection().send(message().createErrorReply(STK_ERR_BACK,""));
+        break;
+    case End:
+        connection().send(message().createErrorReply(STK_ERR_END,""));
         break;
     default:
         Q_ASSERT(false);
@@ -332,6 +346,9 @@ qDebug() << "RequestInput: " << title << "(" << icon << ")" << " (" << defaultVa
     case Back:
         connection().send(message().createErrorReply(STK_ERR_BACK,""));
         break;
+    case End:
+        connection().send(message().createErrorReply(STK_ERR_END,""));
+        break;
     default:
         Q_ASSERT(false);
     }
@@ -356,6 +373,9 @@ qDebug() << "RequestKey: " << title << "(" << icon << ")";
         break;
     case Back:
         connection().send(message().createErrorReply(STK_ERR_BACK,""));
+        break;
+    case End:
+        connection().send(message().createErrorReply(STK_ERR_END,""));
         break;
     default:
         Q_ASSERT(false);

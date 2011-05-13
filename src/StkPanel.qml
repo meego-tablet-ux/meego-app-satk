@@ -19,8 +19,8 @@
     \li goBack()
 
     \subsection Properties
-    \li bool showEndButton
-    \li bool showBackButton
+    \li bool showEndButton: true
+    \li bool showBackButton: true
 
     \subsection Objects
     - \b endRect : "End" button

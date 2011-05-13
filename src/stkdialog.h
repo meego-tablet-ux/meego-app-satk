@@ -9,6 +9,32 @@
  * Written by - Luc Yriarte <luc.yriarte@linux.intel.com>
  */
 
+/*!
+  \section StkDialog
+
+  \subsection Properties
+  \subsubsection panel
+    \li bool showEndButton: true
+    \li bool showBackButton: true
+  \subsubsection editText
+    \li bool numeric: false
+    \li bool hideTyping: false
+    \li int minChars: -1
+    \li int maxChars: -1
+  \subsubsection menuView
+    \li int selection: -1
+  \subsubsection audioTone
+    \li bool loopTone: false
+  \subsubsection browserView
+    \li QString url
+
+  \subsection Slots
+    \li responseYes()
+    \li responseNo()
+    \li responseOk()
+    \li responseOkWithSelection(int selection)
+    \li responseOkWithText(QString text)
+*/
 
 #ifndef STKDIALOG_H
 #define STKDIALOG_H
@@ -40,6 +66,16 @@ public:
     inline QVariant getResponseData()
     {
         return responseData;
+    }
+
+    inline void setShowBackButton(const bool showBackButton)
+    {
+        mShowBackButton = showBackButton;
+    }
+
+    inline void setShowEndButton(const bool showEndButton)
+    {
+        mShowEndButton = showEndButton;
     }
 
     inline void setDefaultText(const QString &defaultText)
@@ -93,6 +129,9 @@ private:
     AgentResponse agentResponse;
     QVariant responseData;
     // QML view specifics, inline setters
+    // for "panel" items
+    bool mShowBackButton;
+    bool mShowEndButton;
     // for "editText" items
     QString mDefaultText;
     bool mNumeric;
@@ -129,6 +168,12 @@ public slots:
     {
         agentResponse = No;
         reject();
+    }
+
+    inline void responseOk()
+    {
+        agentResponse = Ok;
+        accept();
     }
 
     inline void responseOkWithSelection(int selection)

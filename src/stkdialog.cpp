@@ -25,6 +25,7 @@ StkDialog::StkDialog(SimImageProvider * imageProvider, const QString &iconUrl,
     mQmlViewUrl = qmlViewUrl;
     mMinChars = mMaxChars = mSelection = -1;
     mLoopTone = mHideTyping = mNumeric = false;
+    mShowBackButton = mShowEndButton = true;
 }
 
 void StkDialog::initView()
@@ -74,6 +75,7 @@ void StkDialog::initView()
     // Audio tone
     QObject * audioTone = root->findChild<QObject*>("audioTone");
     if (audioTone && !mToneSource.isEmpty()) {
+        // Default StkPlaySound.qml audioTone loops: SoundEffect.Infinite
         if (!mLoopTone)
             audioTone->setProperty("loops", 1);
         audioTone->setProperty("source", "qrc:/audio/" + mToneSource + ".wav");
@@ -82,14 +84,28 @@ void StkDialog::initView()
     QObject * browserView = root->findChild<QObject*>("browserView");
     if (browserView && !mUrl.isEmpty())
         browserView->setProperty("url", mUrl);
-    // End button
-    object = root->findChild<QObject*>("endRect");
-    if (object)
-        connect(root, SIGNAL(endSession()), this, SLOT(responseEnd()));
-    // Back button
-    object = root->findChild<QObject*>("backRect");
-    if (object)
-        connect(root, SIGNAL(goBack()), this, SLOT(responseBack()));
+    // SIM Toolkit Panel
+    QObject * panel = root->findChild<QObject*>("panel");
+    if (panel) {
+        // Default StkPanel.qml showEndButton: true
+        if (mShowEndButton) {
+            object = panel->findChild<QObject*>("endRect");
+            if (object)
+                connect(root, SIGNAL(endSession()), this, SLOT(responseEnd()));
+        }
+        else {
+            panel->setProperty("showEndButton", false);
+        }
+        // Default StkPanel.qml showBackButton: true
+        if (mShowBackButton) {
+            object = panel->findChild<QObject*>("backRect");
+            if (object)
+                connect(root, SIGNAL(goBack()), this, SLOT(responseBack()));
+        }
+        else {
+            panel->setProperty("showBackButton", false);
+        }
+    }
     // Yes button
     object = root->findChild<QObject*>("yesRect");
     if (object)
@@ -101,7 +117,7 @@ void StkDialog::initView()
     // Ok button
     object = root->findChild<QObject*>("okRect");
     if (object && !menuView && !editText)
-        connect(root, SIGNAL(accepted()), this, SLOT(responseYes()));
+        connect(root, SIGNAL(accepted()), this, SLOT(responseOk()));
     // default response: end session
     agentResponse = End;
 }

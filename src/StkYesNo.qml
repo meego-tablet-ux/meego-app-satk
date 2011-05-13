@@ -18,6 +18,7 @@
     \subsection Signals
     \li accepted()
     \li rejected()
+    \li goBack()
     \li endSession()
 
     \subsection Objects
@@ -64,7 +65,6 @@ Rectangle {
         anchors.top: parent.top
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        showBackButton: false
         onEndSession: view.endSession();
     }
 

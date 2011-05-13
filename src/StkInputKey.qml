@@ -19,6 +19,7 @@
     \li accepted()
     \li textEntered(string text)
     \li goBack()
+    \li endSession()
 
     \subsection Objects
     - \b title : Title bar.
@@ -60,6 +61,8 @@ Rectangle {
     onTextEntered: console.log("Text entered: " + text)
     signal goBack()
     onGoBack: console.log("Go back")
+    signal endSession()
+    onEndSession: console.log("End session")
 
     StkPanel {
         id: panel
@@ -67,8 +70,8 @@ Rectangle {
         anchors.top: parent.top
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        showEndButton: false
         onGoBack: view.goBack();
+        onEndSession: view.endSession();
     }
 
     Label {
