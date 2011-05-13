@@ -21,18 +21,18 @@
     \subsection Objects
     - \b title : Title bar.
       - Properties
-        - text
+        - text: "SIM Application Toolkit"
     - \b icon : Main icon.
       - Properties
         - source
     - \b browserView : Web browser view.
       - Properties
-        - url
+        - url:  "http://127.0.0.1/"
     - \b okRect : "Ok" button.
       - Signals
         - accepted()
       - Properties
-        - text
+        - text: "Ok"
 */
 
 import Qt 4.7

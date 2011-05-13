@@ -21,7 +21,7 @@
     \subsection Objects
     - \b title : Title bar.
       - Properties
-        - text
+        - text: "SIM Application Toolkit"
     - \b icon : Main icon.
       - Properties
         - source

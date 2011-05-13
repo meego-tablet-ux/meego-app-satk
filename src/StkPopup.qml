@@ -23,7 +23,7 @@
     \subsection Objects
     - \b title : Title bar.
       - Properties
-        - text
+        - text: "SIM Application Toolkit"
     - \b icon : Main icon.
       - Properties
         - source
@@ -31,7 +31,7 @@
       - Signals
         - accepted()
       - Properties
-        - text
+        - text: "Ok"
 */
 
 import Qt 4.7

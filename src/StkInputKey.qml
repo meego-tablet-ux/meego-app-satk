@@ -23,19 +23,19 @@
     \subsection Objects
     - \b title : Title bar.
       - Properties
-        - text
+        - text: "SIM Application Toolkit"
     - \b icon : Main icon.
       - Properties
         - source
     - \b editText : Single char input.
       - Properties
         - text
-        - isNumeric
+        - isNumeric: false
     - \b okRect : "Ok" button.
       - Signals
         - accepted()
       - Properties
-        - text
+        - text: "Ok"
 */
 
 import Qt 4.7

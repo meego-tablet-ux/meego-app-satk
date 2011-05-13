@@ -22,7 +22,7 @@
     \subsection Objects
     - \b title : Title bar.
       - Properties
-        - text
+        - text: "SIM Application Toolkit"
     - \b icon : Main icon.
       - Properties
         - source
@@ -30,11 +30,11 @@
       - Signals
         - accepted()
       - Properties
-        - text
+        - text: "Ok"
     - \b audioTone
       - Properties
-        - source
-        - loops
+        - source: "qrc:/audio/error.wav"
+        - loops: 0
 */
 
 import Qt 4.7

@@ -27,12 +27,12 @@
       - Signals
         - endSession()
       - Properties
-        - text
+        - text: "End"
     - \b backRect : "Back" button
       - Signals
         - goBack()
       - Properties
-        - text
+        - text: "Back"
 */
 
 import Qt 4.7
