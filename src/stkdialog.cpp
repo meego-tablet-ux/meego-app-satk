@@ -74,7 +74,8 @@ void StkDialog::initView()
     // Audio tone
     QObject * audioTone = root->findChild<QObject*>("audioTone");
     if (audioTone && !mToneSource.isEmpty()) {
-        audioTone->setProperty("loops", mLoopTone ? -1 : 1);
+        if (!mLoopTone)
+            audioTone->setProperty("loops", 1);
         audioTone->setProperty("source", "qrc:/audio/" + mToneSource + ".wav");
     }
     // Browser View

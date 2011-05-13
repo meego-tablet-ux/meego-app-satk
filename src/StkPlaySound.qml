@@ -34,7 +34,7 @@
     - \b audioTone
       - Properties
         - source: "qrc:/audio/error.wav"
-        - loops: 0
+        - loops: SoundEffect.Infinite
 */
 
 import Qt 4.7
@@ -111,7 +111,7 @@ Rectangle {
         id: audioTone
         objectName: "audioTone"
         source: "qrc:/audio/error.wav"
-        loops: 0
+        loops: SoundEffect.Infinite
     }
 
 }
