@@ -29,6 +29,8 @@
     \li QString url
 
   \subsection Slots
+    \li responseBack()
+    \li responseEnd()
     \li responseYes()
     \li responseNo()
     \li responseOk()
