@@ -67,10 +67,19 @@
                     <arg type="s" direction="in" name="text" />
                     <arg type="y" direction="in" name="icon" />
                 </method>
+                <method name="DisplayAction">
+                    <arg type="s" direction="in" name="text" />
+                    <arg type="y" direction="in" name="icon" />
+                </method>
                 <method name="ConfirmLaunchBrowser">
                     <arg type="s" direction="in" name="info" />
                     <arg type="y" direction="in" name="icon" />
                     <arg type="s" direction="in" name="url" />
+                    <arg type="b" direction="out"/>
+                </method>
+                <method name="ConfirmOpenChannel">
+                    <arg type="s" direction="in" name="info" />
+                    <arg type="y" direction="in" name="icon" />
                     <arg type="b" direction="out"/>
                 </method>
                 <method name="Cancel">

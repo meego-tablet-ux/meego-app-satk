@@ -31,6 +31,8 @@ public Q_SLOTS: // METHODS
     void Cancel();
     bool ConfirmCallSetup(const QString &info, uchar icon);
     bool ConfirmLaunchBrowser(const QString &info, uchar icon, const QString &url);
+    bool ConfirmOpenChannel(const QString &info, uchar icon);
+    void DisplayAction(const QString &text, uchar icon);
     void DisplayActionInformation(const QString &text, uchar icon);
     void DisplayText(const QString &title, uchar icon, bool urgent);
     void LoopTone(const QString &tone, const QString &text, uchar icon);

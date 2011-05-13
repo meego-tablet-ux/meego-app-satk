@@ -106,6 +106,45 @@ qDebug() << "ConfirmLaunchBrowser: " << info << "(" << icon << ")" << " -- url: 
 }
 
 
+bool StkAgentService::ConfirmOpenChannel(const QString &info, uchar icon)
+{
+    // handle method call org.ofono.SimToolkitAgent.ConfirmOpenChannel
+    bool out0 = FALLBACK_BOOL;
+qDebug() << "ConfirmOpenChannel: " << info << "(" << icon << ")";
+    closeLastWidget();
+    StkDialog dlg(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),info,"qrc:/StkYesNo.qml");
+    dlg.initView();
+    dlg.exec();
+    AgentResponse ret = dlg.getAgentResponse();
+    switch (ret) {
+    case Yes:
+        out0 = true;
+        break;
+    case No:
+        out0 = false;
+        break;
+    case End:
+        connection().send(message().createErrorReply(STK_ERR_END,""));
+        break;
+    default:
+        Q_ASSERT(false);
+    }
+    return out0;
+}
+
+
+void StkAgentService::DisplayAction(const QString &text, uchar icon)
+{
+    // handle method call org.ofono.SimToolkitAgent.DisplayAction
+qDebug() << "DisplayAction: " << text << "(" << icon << ")";
+    closeLastWidget();
+    StkDialog *dlg = new StkDialog(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon),text,"qrc:/StkMessage.qml");
+    mWidgetStack.append(dlg);
+    dlg->initView();
+    dlg->show();
+}
+
+
 void StkAgentService::DisplayActionInformation(const QString &text, uchar icon)
 {
     // handle method call org.ofono.SimToolkitAgent.DisplayActionInformation
