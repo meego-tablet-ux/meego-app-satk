@@ -16,7 +16,6 @@ In order to build satk you need the following modules:
 
 From satk root directory, execute the following commands:
 
-  cd src
   qmake
   make
 
@@ -30,7 +29,6 @@ Execute the compilation commands above, then:
 
 From satk root directory, execute the following commands:
 
-  cd src
   qmake
   make dist
 
