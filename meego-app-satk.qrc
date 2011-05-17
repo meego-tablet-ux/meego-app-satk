@@ -1,0 +1,37 @@
+<RCC>
+    <qresource prefix="/">
+        <file>StkYesNo.qml</file>
+        <file>StkInputKey.qml</file>
+        <file>StkInputText.qml</file>
+        <file>StkMenu.qml</file>
+        <file>StkMessage.qml</file>
+        <file>StkPopup.qml</file>
+        <file>StkPlaySound.qml</file>
+        <file>StkPanel.qml</file>
+        <file>StkWebView.qml</file>
+        <file>StkUiCheck.js</file>
+        <file>StkPassword.qml</file>
+    </qresource>
+    <qresource prefix="/audio">
+        <file>audio/busy.wav</file>
+        <file>audio/call-waiting.wav</file>
+        <file>audio/congestion.wav</file>
+        <file>audio/critical.wav</file>
+        <file>audio/dial-tone.wav</file>
+        <file>audio/error.wav</file>
+        <file>audio/general-beep.wav</file>
+        <file>audio/happy.wav</file>
+        <file>audio/message-received.wav</file>
+        <file>audio/negative-acknowledgement.wav</file>
+        <file>audio/positive-acknowledgement.wav</file>
+        <file>audio/question.wav</file>
+        <file>audio/radio-path-acknowledge.wav</file>
+        <file>audio/radio-path-not-available.wav</file>
+        <file>audio/ringing-tone.wav</file>
+        <file>audio/sad.wav</file>
+        <file>audio/urgent-action.wav</file>
+        <file>audio/user-ringing-tone.wav</file>
+        <file>audio/user-sms-alert.wav</file>
+        <file>audio/vibrate.wav</file>
+    </qresource>
+</RCC>

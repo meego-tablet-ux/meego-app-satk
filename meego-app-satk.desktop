@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=SIM Application
+Exec=satk menu
+Terminal=false
+Icon=sim_32x32
