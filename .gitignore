@@ -1,0 +1,16 @@
+*~
+Makefile
+satk
+mgrif.cpp  
+mgrif.h  
+simif.cpp  
+simif.h  
+stkagentifadaptor.cpp  
+stkagentifadaptor.h  
+stkif.cpp  
+stkif.h
+*.o
+moc_*.cpp
+*.pro.user
+*.tar.bz2
+
