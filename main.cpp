@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
     }
 
     // hook Sim and Stk interfaces to the main window
-    StkMainWindow mainWindow(firstStkIf,firstSimIf);
+    StkMainWindow mainWindow(firstStkIf,firstSimIf,stkAgentService);
     // Open SimToolkit main window in menu mode only
     if (!agentMode)
         mainWindow.show();

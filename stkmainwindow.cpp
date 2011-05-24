@@ -15,11 +15,13 @@
 #include "stkdefines.h"
 #include "simimageprovider.h"
 
-StkMainWindow::StkMainWindow(StkIf *stkIf, SimIf *simIf, QWidget *parent) :
+StkMainWindow::StkMainWindow(StkIf *stkIf, SimIf *simIf,
+                             StkAgentService *stkAgentService, QWidget *parent) :
     QMainWindow(parent)
 {
     mStkIf = stkIf;
     mSimIf = simIf;
+    mStkAgentService = stkAgentService;
     // Create main view from properties
     createMainView();
     // Connect stkIf signals
@@ -30,6 +32,12 @@ StkMainWindow::~StkMainWindow()
 {
     delete mStkProperties;
     // mView is deleted as QMainWindow's centralWidget
+}
+
+void StkMainWindow::onEndSession()
+{
+    mStkAgentService->setExitOnRelease(true);
+    close();
 }
 
 void StkMainWindow::responseOkWithSelection(int selection)
@@ -89,5 +97,5 @@ void StkMainWindow::createMainView() {
         panel->setProperty("showBackButton", false);
     // Connect view signals
     connect(root, SIGNAL(itemSelected(int)), this, SLOT(responseOkWithSelection(int)));
-    connect(root, SIGNAL(endSession()), this, SLOT(close()));
+    connect(root, SIGNAL(endSession()), this, SLOT(onEndSession()));
 }

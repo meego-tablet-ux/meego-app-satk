@@ -35,6 +35,7 @@ StkAgentService::StkAgentService(SimIf * simIf, QObject *parent) :
     QObject(parent)
 {
     mSimIf = simIf;
+    mExitOnRelease = false;
 }
 
 
@@ -230,7 +231,8 @@ void StkAgentService::Release()
     // handle method call org.ofono.SimToolkitAgent.Release
 qDebug() << "Release" ;
     while (closeLastWidget()) {}
-    QApplication::instance()->exit();
+    if (mExitOnRelease)
+        QApplication::instance()->exit();
 }
 
 

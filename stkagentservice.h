@@ -27,6 +27,16 @@ public:
     explicit StkAgentService(SimIf * simIf, QObject *parent = 0);
 
 public: // PROPERTIES
+    inline bool exitOnRelease()
+    {
+        return mExitOnRelease;
+    }
+
+    inline void setExitOnRelease(bool exitOnRelease)
+    {
+        mExitOnRelease = exitOnRelease;
+    }
+
 public Q_SLOTS: // METHODS
     void Cancel();
     bool ConfirmCallSetup(const QString &info, uchar icon);
@@ -47,6 +57,8 @@ public Q_SLOTS: // METHODS
 Q_SIGNALS: // SIGNALS
 
 private:
+    // true only on "End Session" from main menu window.
+    bool mExitOnRelease;
     // Sim Interface for GetIcon API
     SimIf *mSimIf;
     // stack non modal dialogs to close on cancel
