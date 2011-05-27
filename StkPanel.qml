@@ -40,11 +40,13 @@ import MeeGo.Components 0.1
 
 Rectangle {
     id: container
-    width: 80
+    width: stkTheme.panelColumnWidth
+
+    StkTheming { id: stkTheme }
+    color: stkTheme.panelBackgroundColor
 
     property alias showEndButton: endRect.visible
     property alias showBackButton: backRect.visible
-
 
     signal goBack()
     onGoBack: console.log("StkPanel: Go back")
@@ -54,11 +56,11 @@ Rectangle {
     Button {
         id: endRect
         objectName: "endRect"
-        height: 30
+        width: stkTheme.buttonWidth
+        height: stkTheme.buttonHeight
         anchors.top: parent.top
         anchors.topMargin: 10
-        anchors.left: parent.left
-        anchors.right: parent.right
+        anchors.horizontalCenter: parent.horizontalCenter
         text: qsTr( "End")
         onClicked: {
             container.endSession()
@@ -68,14 +70,13 @@ Rectangle {
     Button {
         id: backRect
         objectName: "backRect"
-        height: 30
-        anchors.left: parent.left
+        width: stkTheme.buttonWidth
+        height: stkTheme.buttonHeight
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
-        anchors.right: parent.right
+        anchors.horizontalCenter: parent.horizontalCenter
         text: qsTr( "Back")
         onClicked: {
-            console.log("visible: ", visible, ", showBackButton: ", container.showBackButton);
             container.goBack()
         }
     }

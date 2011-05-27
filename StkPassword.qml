@@ -54,11 +54,12 @@ import "qrc:/StkUiCheck.js" as StkUiCheck
 Rectangle {
     id: view
     objectName: "view"
-    width: 480
-    height: 320
+    width: stkTheme.viewWidth
+    height: stkTheme.viewHeight
 
     Theme { id: theme }
-    color: theme.dialogBackgroundColor
+    StkTheming { id: stkTheme }
+    color: stkTheme.viewBackgroundColor
 
     signal accepted()
     onAccepted: {
@@ -111,8 +112,8 @@ Rectangle {
         anchors.right: panel.left
         anchors.rightMargin: 10
         wrapMode: Text.WordWrap
-        color: theme.dialogTitleFontColor
-        font.pixelSize: theme.dialogTitleFontPixelSize
+        color: stkTheme.titleFontColor
+        font.pixelSize: stkTheme.titleFontPixelSize
     }
 
     Image {
@@ -146,8 +147,8 @@ Rectangle {
     Button {
         id: okRect
         objectName: "okRect"
-        width: 80
-        height: 30
+        width: stkTheme.buttonWidth
+        height: stkTheme.buttonHeight
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10

@@ -33,11 +33,12 @@ import MeeGo.Components 0.1
 Rectangle {
     id: view
     objectName: "view"
-    width: 480
-    height: 320
+    width: stkTheme.viewWidth
+    height: stkTheme.viewHeight
 
     Theme { id: theme }
-    color: theme.dialogBackgroundColor
+    StkTheming { id: stkTheme }
+    color: stkTheme.viewBackgroundColor
 
     signal endSession()
     onEndSession: console.log("End session")
@@ -65,8 +66,8 @@ Rectangle {
         anchors.right: panel.left
         anchors.rightMargin: 10
         wrapMode: Text.WordWrap
-        color: theme.dialogTitleFontColor
-        font.pixelSize: theme.fontPixelSizeLarge
+        color: stkTheme.titleFontColor
+        font.pixelSize: stkTheme.titleFontPixelSize
     }
 
     Image {

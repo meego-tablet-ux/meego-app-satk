@@ -39,8 +39,8 @@ HEADERS += \
 
 OTHER_FILES += \
 	*.js \
-	*.qml \
-	interfaces/*.xml
+        *.qml \
+        interfaces/*.xml
 
 RESOURCES += \
 	*.qrc
@@ -73,4 +73,3 @@ dist.commands += tar jcpf $${PROJECT_NAME}-$${VERSION}.tar.bz2 $${PROJECT_NAME}-
 dist.commands += rm -fR $${PROJECT_NAME}-$${VERSION} &&
 dist.commands += echo; echo Created $${PROJECT_NAME}-$${VERSION}.tar.bz2
 QMAKE_EXTRA_TARGETS += dist
-

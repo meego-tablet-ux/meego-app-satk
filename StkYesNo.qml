@@ -46,11 +46,12 @@ import MeeGo.Components 0.1
 Rectangle {
     id: view
     objectName: "view"
-    width: 480
-    height: 320
+    width: stkTheme.viewWidth
+    height: stkTheme.viewHeight
 
     Theme { id: theme }
-    color: theme.dialogBackgroundColor
+    StkTheming { id: stkTheme }
+    color: stkTheme.viewBackgroundColor
 
     signal accepted()
     onAccepted: console.log("Accepted")
@@ -81,8 +82,8 @@ Rectangle {
         anchors.right: panel.left
         anchors.rightMargin: 10
         wrapMode: Text.WordWrap
-        color: theme.dialogTitleFontColor
-        font.pixelSize: theme.dialogTitleFontPixelSize
+        color: stkTheme.titleFontColor
+        font.pixelSize: stkTheme.titleFontPixelSize
     }
 
     Image {
@@ -99,9 +100,9 @@ Rectangle {
     Button {
         id: yesRect
         objectName: "yesRect"
-        width: 80
-        height: 30
-        anchors.horizontalCenterOffset: -50
+        width: stkTheme.buttonWidth
+        height: stkTheme.buttonHeight
+        anchors.horizontalCenterOffset: - (10 + width / 2)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
@@ -114,9 +115,9 @@ Rectangle {
     Button {
         id: noRect
         objectName: "noRect"
-        width: 80
-        height: 30
-        anchors.horizontalCenterOffset: 50
+        width: stkTheme.buttonWidth
+        height: stkTheme.buttonHeight
+        anchors.horizontalCenterOffset: 10 + width / 2
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10

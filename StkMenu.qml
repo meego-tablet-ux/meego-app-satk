@@ -43,11 +43,12 @@ import MeeGo.Components 0.1
 Rectangle {
     id: view
     objectName: "view"
-    width: 480
-    height: 320
+    width: stkTheme.viewWidth
+    height: stkTheme.viewHeight
 
     Theme { id: theme }
-    color: theme.dialogBackgroundColor
+    StkTheming { id: stkTheme }
+    color: stkTheme.viewBackgroundColor
 
     signal itemSelected(int selection)
     onItemSelected: console.log("Item selected: " + selection)
@@ -66,9 +67,9 @@ Rectangle {
             width: menuView.width
         }
         highlightFollowsCurrentItem: true
-        anchors.top: title.bottom
+        anchors.top: icon.bottom
         anchors.topMargin: 10
-        anchors.left: icon.right
+        anchors.left: parent.left
         anchors.leftMargin: 10
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 20
@@ -102,8 +103,8 @@ Rectangle {
         anchors.right: panel.left
         anchors.rightMargin: 10
         wrapMode: Text.WordWrap
-        color: theme.dialogTitleFontColor
-        font.pixelSize: theme.dialogTitleFontPixelSize
+        color: stkTheme.titleFontColor
+        font.pixelSize: stkTheme.titleFontPixelSize
     }
 
     Image {
@@ -131,8 +132,8 @@ Rectangle {
                 }
             }
             Text {
-                color: theme.contextMenuFontColor
-                font.pixelSize: theme.contextMenuFontPixelSize
+                color: stkTheme.menuItemFontColor
+                font.pixelSize: stkTheme.menuItemFontPixelSize
                 text: title
                 MouseArea {
                     width: menuView.width
