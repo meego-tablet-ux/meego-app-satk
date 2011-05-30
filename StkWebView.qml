@@ -19,12 +19,6 @@
     \li accepted()
 
     \subsection Objects
-    - \b title : Title bar.
-      - Properties
-        - text: "SIM Application Toolkit"
-    - \b icon : Main icon.
-      - Properties
-        - source
     - \b browserView : Web browser view.
       - Properties
         - url:  "http://127.0.0.1/"
@@ -39,15 +33,9 @@ import Qt 4.7
 import QtWebKit 1.0
 import MeeGo.Components 0.1
 
-Rectangle {
+StkView {
     id: view
     objectName: "view"
-    width: stkTheme.viewWidth
-    height: stkTheme.viewHeight
-
-    Theme { id: theme }
-    StkTheming { id: stkTheme }
-    color: stkTheme.viewBackgroundColor
 
     signal accepted()
     onAccepted: console.log("Accepted")
@@ -76,32 +64,6 @@ Rectangle {
             onHeightChanged: browserView.contentHeight = height
             onLoadFinished: browserView.contentY = -1 // redraw browserView
         }
-    }
-
-    Label {
-        id: title
-        objectName: "title"
-        text: "SIM Application Toolkit"
-        anchors.top: parent.top
-        anchors.topMargin: 10
-        anchors.left: icon.right
-        anchors.leftMargin: 10
-        anchors.right: parent.right
-        anchors.rightMargin: 10
-        wrapMode: Text.WordWrap
-        color: stkTheme.titleFontColor
-        font.pixelSize: stkTheme.titleFontPixelSize
-    }
-
-    Image {
-        id: icon
-        objectName: "icon"
-        width: 64
-        height: 64
-        anchors.top: parent.top
-        anchors.topMargin: 10
-        anchors.left: parent.left
-        anchors.leftMargin: 10
     }
 
     Button {

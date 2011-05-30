@@ -12,6 +12,7 @@
         <file>StkUiCheck.js</file>
         <file>StkPassword.qml</file>
         <file>StkTheming.qml</file>
+        <file>StkView.qml</file>
     </qresource>
     <qresource prefix="/audio">
         <file>audio/busy.wav</file>
