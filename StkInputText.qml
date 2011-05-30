@@ -160,8 +160,6 @@ Rectangle {
 
     ModalMessageBox {
         id: formatMsgBox
-        title: qsTr("Attention")
-        text: ""
         showAcceptButton: true
         showCancelButton: false
         fogClickable: false
