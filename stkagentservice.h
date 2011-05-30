@@ -19,6 +19,7 @@
 #include <QtDBus>
 #include "ofonodbustypes.h"
 #include "simif.h"
+#include "stkdialog.h"
 
 class StkAgentService : public QObject, protected QDBusContext
 {
@@ -63,6 +64,8 @@ private:
     SimIf *mSimIf;
     // stack non modal dialogs to close on cancel
     QList<QWidget*> mWidgetStack;
+    // create a new dialog and push it on the widget stack
+    StkDialog * addNewWidget(const QString &info, uchar icon, const QString &qmlViewUrl);
     // close last widget, delete it, return true if stack non-empty afterwards
     bool closeLastWidget();
 };
