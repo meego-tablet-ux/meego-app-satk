@@ -56,13 +56,14 @@ StkView {
     TextEntry {
         id: editText
         objectName: "editText"
-        width: 80
+        width: 120
+        height: 80
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: okRect.top
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: 20
         textInput.horizontalAlignment: TextInput.AlignHCenter
         textInput.focus: true
-        textInput.font.pixelSize: theme.fontPixelSizeLargest
+        textInput.font.pixelSize: 48
         property bool isNumeric: false
         onTextChanged: {
             if (text.length > 0) {
