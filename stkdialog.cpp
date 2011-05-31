@@ -17,7 +17,7 @@
 
 StkDialog::StkDialog(SimImageProvider * imageProvider, const QString &iconUrl,
                      const QString &title, const QString &qmlViewUrl, QWidget *parent) :
-    QDialog(parent)
+    QDialog(parent,Qt::Window)
 {
     mImageProvider = imageProvider;
     mIconUrl = iconUrl;
