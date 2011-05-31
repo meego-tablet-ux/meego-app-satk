@@ -19,7 +19,7 @@ Item {
 
     /* view properties */
     property int viewWidth: 480
-    property int viewHeight: 864
+    property int viewHeight: 640
     property string viewBackgroundColor: "#a0a0b0"
 
     /* title properties */
@@ -28,12 +28,12 @@ Item {
 
     /* panel properties */
     property int panelColumnWidth: 90
-    property int panelLineHeight: 40
+    property int panelLineHeight: 50
     property string panelBackgroundColor: "#808090"
 
     /* button properties */
     property int buttonWidth: 80
-    property int buttonHeight: 30
+    property int buttonHeight: 40
     property int buttonFontPixelSize: theme.fontPixelSizeMediumLarge
 
 
