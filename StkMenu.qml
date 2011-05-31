@@ -77,6 +77,7 @@ StkView {
             Image {
                 width: 32
                 height: 32
+                anchors.verticalCenter: parent.verticalCenter
                 source: icon
                 MouseArea {
                     anchors.fill: parent
@@ -84,6 +85,8 @@ StkView {
                 }
             }
             Text {
+                height: 48
+                verticalAlignment: Text.AlignVCenter
                 color: stkTheme.menuItemFontColor
                 font.pixelSize: stkTheme.menuItemFontPixelSize
                 text: title
