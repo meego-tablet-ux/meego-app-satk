@@ -42,6 +42,11 @@ StkView {
     signal endSession()
     onEndSession: console.log("End session")
 
+    title.anchors.top: icon.bottom
+    title.anchors.left: parent.left
+    title.anchors.bottom: okRect.top
+    title.anchors.bottomMargin:10
+
     StkButton {
         id: okRect
         objectName: "okRect"

@@ -27,6 +27,11 @@ StkView {
     id: view
     objectName: "view"
 
+    title.anchors.top: icon.bottom
+    title.anchors.left: parent.left
+    title.anchors.bottom: parent.bottom
+    title.anchors.bottomMargin:10
+
     signal endSession()
     onEndSession: console.log("End session")
 }
