@@ -53,11 +53,9 @@ Rectangle {
     signal endSession()
     onEndSession: console.log("StkPanel: End session")
 
-    Button {
+    StkButton {
         id: endRect
         objectName: "endRect"
-        width: stkTheme.buttonWidth
-        height: stkTheme.buttonHeight
         anchors.top: parent.top
         anchors.topMargin: 10
         anchors.horizontalCenter: parent.horizontalCenter
@@ -67,11 +65,9 @@ Rectangle {
         }
     }
 
-    Button {
+    StkButton {
         id: backRect
         objectName: "backRect"
-        width: stkTheme.buttonWidth
-        height: stkTheme.buttonHeight
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
         anchors.horizontalCenter: parent.horizontalCenter

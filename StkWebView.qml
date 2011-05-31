@@ -66,11 +66,9 @@ StkView {
         }
     }
 
-    Button {
+    StkButton {
         id: okRect
         objectName: "okRect"
-        width: stkTheme.buttonWidth
-        height: stkTheme.buttonHeight
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10

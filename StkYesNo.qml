@@ -48,11 +48,9 @@ StkView {
     signal endSession()
     onEndSession: console.log("End session")
 
-    Button {
+    StkButton {
         id: yesRect
         objectName: "yesRect"
-        width: stkTheme.buttonWidth
-        height: stkTheme.buttonHeight
         anchors.horizontalCenterOffset: - (10 + width / 2)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
@@ -63,11 +61,9 @@ StkView {
         }
     }
 
-    Button {
+    StkButton {
         id: noRect
         objectName: "noRect"
-        width: stkTheme.buttonWidth
-        height: stkTheme.buttonHeight
         anchors.horizontalCenterOffset: 10 + width / 2
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom

@@ -19,7 +19,7 @@ Item {
 
     /* view properties */
     property int viewWidth: 480
-    property int viewHeight: 320
+    property int viewHeight: 864
     property string viewBackgroundColor: "#a0a0b0"
 
     /* title properties */
@@ -34,6 +34,8 @@ Item {
     /* button properties */
     property int buttonWidth: 80
     property int buttonHeight: 30
+    property int buttonFontPixelSize: theme.fontPixelSizeMediumLarge
+
 
     /* menu properties */
     property string menuItemFontColor: theme.contextMenuFontColor
