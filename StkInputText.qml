@@ -82,11 +82,11 @@ StkView {
         objectName: "editText"
         anchors.top: title.bottom
         anchors.topMargin: 10
-        anchors.left: icon.right
+        anchors.left: parent.left
         anchors.leftMargin: 10
-        anchors.bottom: okRect.top
-        anchors.bottomMargin: 10
-        anchors.right: panel.left
+        anchors.bottom: panel.top
+        anchors.bottomMargin: 20
+        anchors.right: parent.right
         anchors.rightMargin: 10
         property bool isNumeric: false
         property bool hideTyping: false

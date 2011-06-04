@@ -59,7 +59,7 @@ StkView {
         width: 120
         height: 80
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: okRect.top
+        anchors.bottom: panel.top
         anchors.bottomMargin: 20
         textInput.horizontalAlignment: TextInput.AlignHCenter
         textInput.focus: true

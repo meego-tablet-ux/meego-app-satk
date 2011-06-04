@@ -82,7 +82,6 @@ Rectangle {
     StkPanel {
         id: panel
         objectName: "panel"
-        anchors.top: parent.top
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         onGoBack: view.goBack();
@@ -97,7 +96,7 @@ Rectangle {
         anchors.topMargin: 10
         anchors.left: icon.right
         anchors.leftMargin: 10
-        anchors.right: panel.left
+        anchors.right: parent.right
         anchors.rightMargin: 10
         wrapMode: Text.WordWrap
         color: stkTheme.titleFontColor

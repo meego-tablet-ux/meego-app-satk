@@ -83,9 +83,9 @@ StkView {
         id: editText
         objectName: "editText"
         anchors.verticalCenter: parent.verticalCenter
-        anchors.left: icon.right
+        anchors.left: parent.left
         anchors.leftMargin: 10
-        anchors.right: panel.left
+        anchors.right: parent.right
         anchors.rightMargin: 10
         textInput.horizontalAlignment: TextInput.AlignHCenter
         textInput.focus: true

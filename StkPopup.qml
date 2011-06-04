@@ -44,8 +44,9 @@ StkView {
 
     title.anchors.top: icon.bottom
     title.anchors.left: parent.left
-    title.anchors.bottom: okRect.top
-    title.anchors.bottomMargin:10
+    title.anchors.bottom: panel.top
+    title.anchors.bottomMargin: 10
+    title.anchors.right: parent.right
 
     StkButton {
         id: okRect

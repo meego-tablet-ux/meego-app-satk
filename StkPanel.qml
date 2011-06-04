@@ -40,7 +40,8 @@ import MeeGo.Components 0.1
 
 Rectangle {
     id: container
-    width: stkTheme.panelColumnWidth
+    width: stkTheme.panelWidth
+    height: stkTheme.panelHeight
 
     StkTheming { id: stkTheme }
     color: stkTheme.panelBackgroundColor
@@ -58,7 +59,8 @@ Rectangle {
         objectName: "endRect"
         anchors.top: parent.top
         anchors.topMargin: 10
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.right: parent.right
+        anchors.rightMargin: 10
         text: qsTr( "End")
         onClicked: {
             container.endSession()
@@ -70,7 +72,8 @@ Rectangle {
         objectName: "backRect"
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.right: parent.right
+        anchors.rightMargin: 10
         text: qsTr( "Back")
         onClicked: {
             container.goBack()
