@@ -27,7 +27,7 @@ Item {
     property int titleFontPixelSize: theme.dialogTitleFontPixelSize
 
     /* panel properties */
-    property int panelWidth: buttonWidth + 10
+    property int panelWidth: buttonWidth + 20
     property int panelHeight: (2 * buttonHeight) + 30
     property string panelBackgroundColor: "#808090"
 
