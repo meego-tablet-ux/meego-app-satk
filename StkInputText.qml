@@ -77,16 +77,17 @@ StkView {
     signal endSession()
     onEndSession: console.log("End session")
 
+    panel.anchors.top: title.bottom
+
     TextField {
         id: editText
         objectName: "editText"
+        height: 240
         anchors.top: title.bottom
         anchors.topMargin: 10
         anchors.left: parent.left
         anchors.leftMargin: 10
-        anchors.bottom: panel.top
-        anchors.bottomMargin: 20
-        anchors.right: parent.right
+        anchors.right: panel.left
         anchors.rightMargin: 10
         property bool isNumeric: false
         property bool hideTyping: false
@@ -97,9 +98,9 @@ StkView {
     StkButton {
         id: okRect
         objectName: "okRect"
+        anchors.top: editText.bottom
+        anchors.topMargin: 10
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
         text: qsTr( "Ok")
         onClicked: {
             view.accepted()

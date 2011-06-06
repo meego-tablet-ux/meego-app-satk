@@ -53,14 +53,16 @@ StkView {
     signal endSession()
     onEndSession: console.log("End session")
 
+    panel.anchors.top: title.bottom
+
     TextEntry {
         id: editText
         objectName: "editText"
         width: 120
         height: 80
+        anchors.top: title.bottom
+        anchors.topMargin: 20
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: panel.top
-        anchors.bottomMargin: 20
         textInput.horizontalAlignment: TextInput.AlignHCenter
         textInput.focus: true
         textInput.font.pixelSize: 48
@@ -77,9 +79,9 @@ StkView {
     StkButton {
         id: okRect
         objectName: "okRect"
+        anchors.top: editText.bottom
+        anchors.topMargin: 10
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
         text: qsTr( "Ok")
         onClicked: {
             view.accepted()

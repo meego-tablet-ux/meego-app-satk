@@ -70,8 +70,8 @@ Rectangle {
     StkButton {
         id: backRect
         objectName: "backRect"
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
+        anchors.top: endRect.bottom
+        anchors.topMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
         text: qsTr( "Back")
