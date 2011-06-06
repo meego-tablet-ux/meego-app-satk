@@ -66,8 +66,8 @@ Rectangle {
         anchors.topMargin: 10
         anchors.left: parent.left
         anchors.leftMargin: 10
-        anchors.bottom: panel.top
-        anchors.bottomMargin: 20
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
         signal itemSelected(int selection)
