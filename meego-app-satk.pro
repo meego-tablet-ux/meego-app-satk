@@ -32,18 +32,18 @@ INSTALLS=target
 # ---- Sources
 
 SOURCES += \
-	*.cpp
+    *.cpp
 
 HEADERS += \
-	*.h 
+    *.h
 
 OTHER_FILES += \
-	*.js \
-        *.qml \
-        interfaces/*.xml
+    *.js \
+    *.qml \
+    interfaces/*.xml
 
 RESOURCES += \
-	*.qrc
+    *.qrc
 
 
 # ---- Installation

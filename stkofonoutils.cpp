@@ -76,7 +76,7 @@ QList<StkIf*> StkOfonoUtils::findSimToolkitInterfaces(const QDBusConnection &con
 {
     QList<StkIf*> simToolkitInterfaces;
     OfonoModemList modems = StkOfonoUtils::findModems(mgrIf);
-    // loop foreach modem, find all org.ofono.SimManager interfaces
+    // loop foreach modem, find all org.ofono.SimToolkit interfaces
     foreach(const OfonoModem &pms, modems) {
         // loop interfaces to find "org.ofono.SimToolkit"
         foreach(const QString &interface, pms.varmap.value("Interfaces").toStringList()) {
