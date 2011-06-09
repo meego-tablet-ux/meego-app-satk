@@ -17,6 +17,8 @@
 #include "mgrif.h"
 #include "simif.h"
 #include "stkif.h"
+#include "stkagentservice.h"
+#include "stkagentifadaptor.h"
 
 class StkApplication : public QApplication
 {
@@ -25,10 +27,7 @@ public:
     explicit StkApplication(int &argc, char **argv, int version = QT_VERSION);
     ~StkApplication();
 
-    bool initOfonoConnection(const QDBusConnection &connection, MgrIf *mgrIf);
-
-    bool registerMgrPropertyChanged(MgrIf *mgrIf);
-    bool registerSimPropertyChanged(SimIf *simIf);
+    bool initOfonoConnection(bool agentMode);
 
     inline MgrIf *mgrIf()
     {
@@ -45,25 +44,45 @@ public:
         return mStkIf;
     }
 
+    inline StkAgentService *stkAgentService()
+    {
+        return mStkAgentService;
+    }
+
+    inline bool agentServiceRegistered()
+    {
+        return mAgentServiceRegistered;
+    }
+
 signals:
 
 private:
+    bool mAgentServiceRegistered;
+    bool mAgentMode;
+    // DBus interfaces
     MgrIf *mMgrIf;
     SimIf *mSimIf;
     StkIf *mStkIf;
-    const QDBusConnection *mConnection;
-
-    // interfaces freed at destruction
+    // interfaces explicitly freed at destruction
     QList<SimIf*> mSimIfs;
     QList<StkIf*> mStkIfs;
+    StkAgentService *mStkAgentService;
+    StkAgentIfAdaptor *mStkAgentIfAdaptor;
 
+    // methods
+    void resetInterfaces();
     void deleteInterfaces();
 
+    bool registerModemMgrChanges();
+    bool registerSimPropertyChanged();
+
+    bool registerStkAgentService();
+    void unRegisterStkAgentService();
+
 private slots:
-    void mgrPropertyChanged(const QString &property, const QDBusVariant &value);
+    void mgrModemAdded(const QDBusObjectPath &in0, const QVariantMap &in1);
+    void mgrModemRemoved(const QDBusObjectPath &in0);
     void simPropertyChanged(const QString &property, const QDBusVariant &value);
-
-
 };
 
 #endif // STKAPPLICATION_H

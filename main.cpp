@@ -20,11 +20,6 @@
 
 /* oFono DBus interfaces */
 #include "mgrif.h"
-#include "stkif.h"
-#include "stkagentifadaptor.h"
-
-/* oFono DBus services */
-#include "stkagentservice.h"
 
 /* oFono SIM Toolkit properties*/
 #include "stkofonoproperties.h"
@@ -64,60 +59,35 @@ int main(int argc, char *argv[])
     // Register meta types defined in ofonodbustypes.h"
     registerOfonoDbusTypes();
 
-    // DBus Connection systemBus
-    QDBusConnection systemBus = QDBusConnection::systemBus();
-    if( !systemBus.isConnected() ) {
-        QDBusError dbusError = systemBus.lastError();
-        qDebug() << "Error:" << dbusError.name() << ":" << dbusError.message();
-        return mainErr;
-    }
+    // Initiate connection with oFono
+    bool ofonoConnectionReady = app.initOfonoConnection(agentMode);
 
-    // Instanciate proxy for org.ofono.Manager interface
-    MgrIf mgrIf("org.ofono","/",systemBus,NULL);
-
-    // Look for SimManager and SimToolkit interfaces
-    if (!app.initOfonoConnection(systemBus,&mgrIf)) {
-        // in agent mode, just wait for SIM initialization,
-        // otherwise exit
-        if (!agentMode) {
-            qDebug() << "Can't connect to a SimToolkit interface, exiting";
+    StkMainWindow * mainWindow = NULL;
+    if (agentMode) {
+        // oFono connection can be deferred, but agent must be registered
+        if (ofonoConnectionReady && !app.agentServiceRegistered()) {
+            qDebug() << "Error: cannot register agent service";
             return mainErr;
         }
     }
-
-    // use just the first element of each interfaces list
-    StkIf *firstStkIf = app.stkIf();
-    SimIf *firstSimIf = app.simIf();
-
-    // Hook StkAgentIfAdaptor and StkAgentService together
-    StkAgentService * stkAgentService = new StkAgentService(firstSimIf);
-    StkAgentIfAdaptor stkAgentIfAdaptor(stkAgentService);
-
-    // Register stkAgentService
-    bool registered = true;
-    if (StkOfonoUtils::registerSimToolkitAgent(systemBus, stkAgentService, firstStkIf) != 0) {
-        registered = false;
-        // Don't run in agent mode if a stkAgentService is already registered
-        if (agentMode) {
-            qDebug() << "Agent registration failed, exiting";
+    else // Main menu mode
+    {   // Agent can be already registered, but
+        // oFono connection must be up from the start
+        if (!ofonoConnectionReady) {
+            qDebug() << "Error: oFono connection not ready";
             return mainErr;
         }
+        // hook Sim and Stk interfaces to the main window
+        // Open SimToolkit main window in menu mode only
+        mainWindow = new StkMainWindow(app.stkIf(),app.simIf(),app.stkAgentService());
+        mainWindow->show();
     }
-
-    // hook Sim and Stk interfaces to the main window
-    StkMainWindow mainWindow(firstStkIf,firstSimIf,stkAgentService);
-    // Open SimToolkit main window in menu mode only
-    if (!agentMode)
-        mainWindow.show();
 
     // Run SimToolkit application
     mainErr = app.exec();
 
-    // Unregister stkAgentService if we registered it
-    if (registered)
-        StkOfonoUtils::unRegisterSimToolkitAgent(firstStkIf);
-
-    // StkAgentService is deleted by StkAgentIfAdaptor destructor
+    if (mainWindow != NULL)
+        delete mainWindow;
 
     return mainErr;
 }

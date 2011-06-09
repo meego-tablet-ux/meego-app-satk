@@ -17,20 +17,40 @@
 StkApplication::StkApplication(int &argc, char **argv, int version) :
     QApplication(argc, argv, version)
 {
+    mAgentServiceRegistered = mAgentMode = false;
+    mStkAgentIfAdaptor = NULL;
+    mStkAgentService = NULL;
     mMgrIf = NULL;
     mSimIf = NULL;
     mStkIf = NULL;
-    mConnection = NULL;
 }
 
 StkApplication::~StkApplication()
 {
-    // only the interfaces lists were allocated here
     deleteInterfaces();
+}
+
+void StkApplication::resetInterfaces()
+{
+    // Unregister StkAgentService if we registered it
+    if (mAgentServiceRegistered)
+        StkOfonoUtils::unRegisterSimToolkitAgent(mStkIf);
+    // Disconnect all signals sent from oFono interfaces
+    if (mMgrIf != NULL) {
+        disconnect(mMgrIf, SIGNAL(ModemAdded(QDBusObjectPath, QVariantMap)), this, SLOT(mgrModemAdded(QDBusObjectPath, QVariantMap)));
+        disconnect(mMgrIf, SIGNAL(ModemRemoved(QDBusObjectPath)), this, SLOT(mgrModemRemoved(QDBusObjectPath)));
+    }
+    if (mSimIf != NULL)
+        disconnect(mSimIf, SIGNAL(PropertyChanged(QString, QDBusVariant)), this, SLOT(simPropertyChanged(QString, QDBusVariant)));
+    mSimIf = NULL; // delete with mSimIfs
+    mStkIf = NULL; // delete with mStkIfs
+    mStkAgentService = NULL; // delete with mStkAgentIfAdaptor
+    mAgentServiceRegistered = mAgentMode = false;
 }
 
 void StkApplication::deleteInterfaces()
 {
+    resetInterfaces();
     // delete all org.ofono.SimToolkit interfaces
     while (!mStkIfs.isEmpty()) {
         delete mStkIfs.first();
@@ -41,54 +61,101 @@ void StkApplication::deleteInterfaces()
         delete mSimIfs.first();
         mSimIfs.removeFirst();
     }
+    // StkAgentService is deleted by StkAgentIfAdaptor destructor
+    if (mStkAgentIfAdaptor != NULL) {
+        delete mStkAgentIfAdaptor;
+        mStkAgentIfAdaptor = NULL;
+    }
+    // disconnected by resetInterfaces
+    if (mMgrIf != NULL) {
+        delete mMgrIf;
+        mMgrIf = NULL;
+    }
 }
 
-bool StkApplication::initOfonoConnection(const QDBusConnection &connection, MgrIf *mgrIf)
+bool StkApplication::initOfonoConnection(bool agentMode)
 {
-    mMgrIf = NULL;
-    mSimIf = NULL;
-    mStkIf = NULL;
-    mConnection = NULL;
     deleteInterfaces();
-    mConnection = &connection;
-    mMgrIf = mgrIf;
+    mAgentMode = agentMode;
+    // DBus Connection systemBus
+    QDBusConnection connection = QDBusConnection::systemBus();
+    if( !connection.isConnected() ) {
+        QDBusError dbusError = connection.lastError();
+        qDebug() << "Error:" << dbusError.name() << ":" << dbusError.message();
+        return false;
+    }
+    // Instanciate proxy for org.ofono.Manager interface
+    mMgrIf = new MgrIf("org.ofono","/",connection,NULL);
+    // find all modems
+    OfonoModemList modems = StkOfonoUtils::findModems(mMgrIf);
+    if (modems.isEmpty()) {
+        qDebug() << "No modem found, registering for modem add / removed";
+        registerModemMgrChanges();
+        return false;
+    }
     // find org.ofono.SimManager interfaces for all modems
-    mSimIfs = StkOfonoUtils::findSimInterfaces(*mConnection, mMgrIf);
+    mSimIfs = StkOfonoUtils::findSimInterfaces(connection, mMgrIf);
     if (mSimIfs.isEmpty()) {
-        registerMgrPropertyChanged(mMgrIf);
+        qDebug() << "No SIM interface found, registering for ????";
         return false;
     }
     mSimIf = mSimIfs.first();
     // find org.ofono.SimToolkit interfaces for all modems
-    mStkIfs = StkOfonoUtils::findSimToolkitInterfaces(*mConnection, mMgrIf);
+    mStkIfs = StkOfonoUtils::findSimToolkitInterfaces(connection, mMgrIf);
     if (mStkIfs.isEmpty()) {
-        registerMgrPropertyChanged(mMgrIf);
+        qDebug() << "No SIM Toolkit interface found, registering for SIM property changes";
+        registerSimPropertyChanged();
         return false;
     }
     mStkIf = mStkIfs.first();
+    // Hook StkAgentIfAdaptor and StkAgentService together
+    mStkAgentService = new StkAgentService(mSimIf);
+    mStkAgentIfAdaptor = new StkAgentIfAdaptor(mStkAgentService);
+    // Register agent service
+    mAgentServiceRegistered = registerStkAgentService();
     return true;
 }
 
-bool StkApplication::registerMgrPropertyChanged(MgrIf *mgrIf)
+bool StkApplication::registerModemMgrChanges()
 {
-    mMgrIf = mgrIf;
-    // Connect mgrIf signals
-    return connect(mMgrIf, SIGNAL(PropertyChanged(QString, QDBusVariant)), this, SLOT(mgrPropertyChanged(QString, QDBusVariant)));
+    // Connect mgrIf modem added / removed signals
+    bool reg1 = connect(mMgrIf, SIGNAL(ModemAdded(QDBusObjectPath, QVariantMap)), this, SLOT(mgrModemAdded(QDBusObjectPath, QVariantMap)));
+    bool reg2 = connect(mMgrIf, SIGNAL(ModemRemoved(QDBusObjectPath)), this, SLOT(mgrModemRemoved(QDBusObjectPath)));
+    return reg1 && reg2;
 }
 
-bool StkApplication::registerSimPropertyChanged(SimIf *simIf)
+bool StkApplication::registerSimPropertyChanged()
 {
-    mSimIf = simIf;
     // Connect simIf signals
     return connect(mSimIf, SIGNAL(PropertyChanged(QString, QDBusVariant)), this, SLOT(simPropertyChanged(QString, QDBusVariant)));
 }
 
-void StkApplication::mgrPropertyChanged(const QString &property, const QDBusVariant &value)
+bool StkApplication::registerStkAgentService()
 {
-    qDebug() << "mgrPropertyChanged: " << property << " variant string : " << value.variant().toString();
+    if (mStkAgentService == NULL || mStkIf == NULL)
+        return false;
+    QDBusConnection connection = QDBusConnection::systemBus();
+    if (StkOfonoUtils::registerSimToolkitAgent(connection, mStkAgentService, mStkIf) != 0)
+        return false;
+    return true;
+}
+
+void StkApplication::unRegisterStkAgentService()
+{
+    StkOfonoUtils::unRegisterSimToolkitAgent(mStkIf);
+}
+
+void StkApplication::mgrModemAdded(const QDBusObjectPath &in0, const QVariantMap &in1)
+{
+    qDebug() << "mgrModemAdded: " << in0.path() << " variant map: " << in1;
+}
+
+void StkApplication::mgrModemRemoved(const QDBusObjectPath &in0)
+{
+    qDebug() << "mgrModemRemoved: " << in0.path();
 }
 
 void StkApplication::simPropertyChanged(const QString &property, const QDBusVariant &value)
 {
-    qDebug() << "mgrPropertyChanged: " << property << " variant string : " << value.variant().toString();
+    qDebug() << "simPropertyChanged: " << property << " variant string : " << value.variant().toString();
 }
