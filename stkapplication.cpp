@@ -21,6 +21,7 @@ StkApplication::StkApplication(int &argc, char **argv, int version) :
     mStkAgentIfAdaptor = NULL;
     mStkAgentService = NULL;
     mMgrIf = NULL;
+    mModemIf = NULL;
     mSimIf = NULL;
     mStkIf = NULL;
 }
@@ -40,8 +41,11 @@ void StkApplication::resetInterfaces()
         disconnect(mMgrIf, SIGNAL(ModemAdded(QDBusObjectPath, QVariantMap)), this, SLOT(mgrModemAdded(QDBusObjectPath, QVariantMap)));
         disconnect(mMgrIf, SIGNAL(ModemRemoved(QDBusObjectPath)), this, SLOT(mgrModemRemoved(QDBusObjectPath)));
     }
+    if (mModemIf != NULL)
+        disconnect(mModemIf, SIGNAL(PropertyChanged(QString, QDBusVariant)), this, SLOT(modemPropertyChanged(QString, QDBusVariant)));
     if (mSimIf != NULL)
         disconnect(mSimIf, SIGNAL(PropertyChanged(QString, QDBusVariant)), this, SLOT(simPropertyChanged(QString, QDBusVariant)));
+    mModemIf = NULL; // delete with mModemIfs
     mSimIf = NULL; // delete with mSimIfs
     mStkIf = NULL; // delete with mStkIfs
     mStkAgentService = NULL; // delete with mStkAgentIfAdaptor
@@ -60,6 +64,11 @@ void StkApplication::deleteInterfaces()
     while (!mSimIfs.isEmpty()) {
         delete mSimIfs.first();
         mSimIfs.removeFirst();
+    }
+    // delete all org.ofono.Modem interfaces
+    while (!mModemIfs.isEmpty()) {
+        delete mModemIfs.first();
+        mModemIfs.removeFirst();
     }
     // StkAgentService is deleted by StkAgentIfAdaptor destructor
     if (mStkAgentIfAdaptor != NULL) {
@@ -93,12 +102,23 @@ bool StkApplication::initOfonoConnection(bool agentMode)
         registerModemMgrChanges();
         return false;
     }
+    // find org.ofono.Modem interfaces
+    mModemIfs = StkOfonoUtils::findModemInterfaces(connection, mMgrIf);
+    if (mModemIfs.isEmpty()) {
+        qDebug() << "No modem interface found, registering for modem add / removed";
+        registerModemMgrChanges();
+        return false;
+    }
+    // Use the first Modem available
+    mModemIf = mModemIfs.first();
     // find org.ofono.SimManager interfaces for all modems
     mSimIfs = StkOfonoUtils::findSimInterfaces(connection, mMgrIf);
     if (mSimIfs.isEmpty()) {
-        qDebug() << "No SIM interface found, registering for ????";
+        qDebug() << "No SIM interface found, registering for Modem property changes";
+        registerModemPropertyChanged();
         return false;
     }
+    // Use the first SimManager available
     mSimIf = mSimIfs.first();
     // find org.ofono.SimToolkit interfaces for all modems
     mStkIfs = StkOfonoUtils::findSimToolkitInterfaces(connection, mMgrIf);
@@ -107,6 +127,7 @@ bool StkApplication::initOfonoConnection(bool agentMode)
         registerSimPropertyChanged();
         return false;
     }
+    // Use the first SimToolkit available
     mStkIf = mStkIfs.first();
     // Hook StkAgentIfAdaptor and StkAgentService together
     mStkAgentService = new StkAgentService(mSimIf);
@@ -122,6 +143,12 @@ bool StkApplication::registerModemMgrChanges()
     bool reg1 = connect(mMgrIf, SIGNAL(ModemAdded(QDBusObjectPath, QVariantMap)), this, SLOT(mgrModemAdded(QDBusObjectPath, QVariantMap)));
     bool reg2 = connect(mMgrIf, SIGNAL(ModemRemoved(QDBusObjectPath)), this, SLOT(mgrModemRemoved(QDBusObjectPath)));
     return reg1 && reg2;
+}
+
+bool StkApplication::registerModemPropertyChanged()
+{
+    // Connect simIf signals
+    return connect(mModemIf, SIGNAL(PropertyChanged(QString, QDBusVariant)), this, SLOT(modemPropertyChanged(QString, QDBusVariant)));
 }
 
 bool StkApplication::registerSimPropertyChanged()
@@ -153,6 +180,11 @@ void StkApplication::mgrModemAdded(const QDBusObjectPath &in0, const QVariantMap
 void StkApplication::mgrModemRemoved(const QDBusObjectPath &in0)
 {
     qDebug() << "mgrModemRemoved: " << in0.path();
+}
+
+void StkApplication::modemPropertyChanged(const QString &property, const QDBusVariant &value)
+{
+    qDebug() << "modemPropertyChanged: " << property << " variant string : " << value.variant().toString();
 }
 
 void StkApplication::simPropertyChanged(const QString &property, const QDBusVariant &value)

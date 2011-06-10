@@ -15,6 +15,7 @@
 
 #include <QApplication>
 #include "mgrif.h"
+#include "modemif.h"
 #include "simif.h"
 #include "stkif.h"
 #include "stkagentservice.h"
@@ -32,6 +33,11 @@ public:
     inline MgrIf *mgrIf()
     {
         return mMgrIf;
+    }
+
+    inline ModemIf *modemIf()
+    {
+        return mModemIf;
     }
 
     inline SimIf *simIf()
@@ -61,9 +67,11 @@ private:
     bool mAgentMode;
     // DBus interfaces
     MgrIf *mMgrIf;
+    ModemIf *mModemIf;
     SimIf *mSimIf;
     StkIf *mStkIf;
     // interfaces explicitly freed at destruction
+    QList<ModemIf*> mModemIfs;
     QList<SimIf*> mSimIfs;
     QList<StkIf*> mStkIfs;
     StkAgentService *mStkAgentService;
@@ -74,6 +82,7 @@ private:
     void deleteInterfaces();
 
     bool registerModemMgrChanges();
+    bool registerModemPropertyChanged();
     bool registerSimPropertyChanged();
 
     bool registerStkAgentService();
@@ -82,6 +91,7 @@ private:
 private slots:
     void mgrModemAdded(const QDBusObjectPath &in0, const QVariantMap &in1);
     void mgrModemRemoved(const QDBusObjectPath &in0);
+    void modemPropertyChanged(const QString &property, const QDBusVariant &value);
     void simPropertyChanged(const QString &property, const QDBusVariant &value);
 };
 

@@ -16,6 +16,7 @@
 #include <QPixmap>
 #include <QDBusConnection>
 #include "mgrif.h"
+#include "modemif.h"
 #include "stkif.h"
 #include "simif.h"
 #include "stkagentservice.h"
@@ -26,6 +27,7 @@ public:
     static QPixmap findIcon(SimIf * simIf, uchar id);
     static QString findIconUrl(uchar id);
     static OfonoModemList findModems(MgrIf *mgrIf);
+    static QList<ModemIf*> findModemInterfaces(const QDBusConnection &connection, MgrIf *mgrIf);
     static QList<SimIf*> findSimInterfaces(const QDBusConnection &connection, MgrIf *mgrIf);
     static QList<StkIf*> findSimToolkitInterfaces(const QDBusConnection &connection, MgrIf *mgrIf);
     static int registerSimToolkitAgent(QDBusConnection &connection, StkAgentService *stkAgentService, StkIf *stkIf);

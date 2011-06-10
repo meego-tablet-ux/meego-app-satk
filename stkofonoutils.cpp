@@ -54,6 +54,18 @@ OfonoModemList StkOfonoUtils::findModems(MgrIf *mgrIf)
     return modemsCall.value();
 }
 
+QList<ModemIf*> StkOfonoUtils::findModemInterfaces(const QDBusConnection &connection, MgrIf *mgrIf)
+{
+    QList<ModemIf*> modemInterfaces;
+    OfonoModemList modems = StkOfonoUtils::findModems(mgrIf);
+    // loop foreach modem, find all org.ofono.SimToolkit interfaces
+    foreach(const OfonoModem &pms, modems) {
+        // Instanciate proxy for org.ofono.Modem interface
+        modemInterfaces.append(new ModemIf("org.ofono",pms.objpath.path(),connection,NULL));
+    }
+    return modemInterfaces;
+}
+
 QList<SimIf*> StkOfonoUtils::findSimInterfaces(const QDBusConnection &connection, MgrIf *mgrIf)
 {
     QList<SimIf*> simInterfaces;
