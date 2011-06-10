@@ -11,24 +11,11 @@
 
 /* Qt includes */
 #include <QtGui/QApplication>
-#include <QDBusConnection>
 #include <QtDebug>
 
 /* SIM Toolkit app and main window */
 #include "stkapplication.h"
 #include "stkmainwindow.h"
-
-/* oFono DBus interfaces */
-#include "mgrif.h"
-
-/* oFono SIM Toolkit properties*/
-#include "stkofonoproperties.h"
-
-/* oFono SIM Toolkit utilities*/
-#include "stkofonoutils.h"
-
-/* oFono DBus types */
-#include "ofonodbustypes.h"
 
 /* local defines */
 #include "stkdefines.h"
