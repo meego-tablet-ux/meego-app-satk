@@ -15,6 +15,9 @@ INSTALLS=target
 
 # ---- Generated DBus Interfaces
 
+!exists(modemif.h) {
+    system(qdbusxml2cpp -v -c ModemIf -p modemif.h:modemif.cpp -i ofonodbustypes.h interfaces/org.ofono.Modem.xml)
+}
 !exists(mgrif.h) {
     system(qdbusxml2cpp -v -c MgrIf -p mgrif.h:mgrif.cpp -i ofonodbustypes.h interfaces/org.ofono.Manager.xml)
 }
