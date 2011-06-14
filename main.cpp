@@ -13,6 +13,9 @@
 #include <QtGui/QApplication>
 #include <QtDebug>
 
+/* oFono DBus types */
+#include "ofonodbustypes.h"
+
 /* SIM Toolkit app and main window */
 #include "stkapplication.h"
 #include "stkmainwindow.h"
