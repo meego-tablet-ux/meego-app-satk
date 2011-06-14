@@ -137,6 +137,9 @@ bool StkApplication::initOfonoConnection(bool agentMode)
     mStkAgentIfAdaptor = new StkAgentIfAdaptor(mStkAgentService);
     // Register agent service
     mAgentServiceRegistered = registerStkAgentService();
+    // In agent mode, don't exit when no popup is opened
+    if (mAgentMode)
+        setQuitOnLastWindowClosed(false);
     return true;
 }
 
