@@ -28,6 +28,7 @@ StkApplication::StkApplication(int &argc, char **argv, int version) :
 
 StkApplication::~StkApplication()
 {
+    // un-register, disconnect, delete all interfaces
     deleteInterfaces();
 }
 
@@ -54,6 +55,7 @@ void StkApplication::resetInterfaces()
 
 void StkApplication::deleteInterfaces()
 {
+    // un-register StkAgentService, disconnect from all oFono signals
     resetInterfaces();
     // delete all org.ofono.SimToolkit interfaces
     while (!mStkIfs.isEmpty()) {
@@ -84,6 +86,7 @@ void StkApplication::deleteInterfaces()
 
 bool StkApplication::initOfonoConnection(bool agentMode)
 {
+    // un-register, disconnect, delete all interfaces
     deleteInterfaces();
     mAgentMode = agentMode;
     // DBus Connection systemBus
@@ -175,19 +178,23 @@ void StkApplication::unRegisterStkAgentService()
 void StkApplication::mgrModemAdded(const QDBusObjectPath &in0, const QVariantMap &in1)
 {
     qDebug() << "mgrModemAdded: " << in0.path() << " variant map: " << in1;
+    initOfonoConnection(mAgentMode);
 }
 
 void StkApplication::mgrModemRemoved(const QDBusObjectPath &in0)
 {
     qDebug() << "mgrModemRemoved: " << in0.path();
+    initOfonoConnection(mAgentMode);
 }
 
 void StkApplication::modemPropertyChanged(const QString &property, const QDBusVariant &value)
 {
     qDebug() << "modemPropertyChanged: " << property << " variant string : " << value.variant().toString();
+    initOfonoConnection(mAgentMode);
 }
 
 void StkApplication::simPropertyChanged(const QString &property, const QDBusVariant &value)
 {
     qDebug() << "simPropertyChanged: " << property << " variant string : " << value.variant().toString();
+    initOfonoConnection(mAgentMode);
 }
