@@ -10,9 +10,13 @@
  */
 
 
+#include <QIcon>
+#include <QPixmap>
+
 #include "stkapplication.h"
 #include "stkofonoutils.h"
 
+#include "sim_32x32.xpm"
 
 StkApplication::StkApplication(int &argc, char **argv, int version) :
     QApplication(argc, argv, version)
@@ -24,6 +28,7 @@ StkApplication::StkApplication(int &argc, char **argv, int version) :
     mModemIf = NULL;
     mSimIf = NULL;
     mStkIf = NULL;
+    setWindowIcon(QIcon(QPixmap(sim_32x32_xpm)));
 }
 
 StkApplication::~StkApplication()
