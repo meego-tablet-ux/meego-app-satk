@@ -25,7 +25,7 @@ typedef enum {
 #define STK_ERR_END     "org.ofono.Error.EndSession"
 #define STK_ERR_BUSY    "org.ofono.Error.Busy"
 
-#define STK_AGENT_PATH  "/satk/agent"
+#define STK_AGENT_PATH  "/"
 
 #define SIM_IMAGE_PROVIDER "sim"
 #define SIM_ICON_PREFIX "image://" SIM_IMAGE_PROVIDER "/"
