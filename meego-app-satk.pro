@@ -9,7 +9,7 @@ CONFIG += qdbus
 
 TARGET = satk
 TEMPLATE = app
-target.path=/usr/local/bin
+target.path=/usr/bin
 INSTALLS=target
 
 
