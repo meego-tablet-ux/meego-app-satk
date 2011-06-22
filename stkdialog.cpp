@@ -92,8 +92,7 @@ void StkDialog::initView()
             object = panel->findChild<QObject*>("endRect");
             if (object)
                 connect(root, SIGNAL(endSession()), this, SLOT(responseEnd()));
-        }
-        else {
+        } else {
             panel->setProperty("showEndButton", false);
         }
         // Default StkPanel.qml showBackButton: true
@@ -101,8 +100,7 @@ void StkDialog::initView()
             object = panel->findChild<QObject*>("backRect");
             if (object)
                 connect(root, SIGNAL(goBack()), this, SLOT(responseBack()));
-        }
-        else {
+        } else {
             panel->setProperty("showBackButton", false);
         }
     }

@@ -31,9 +31,8 @@ StkOfonoProperties::StkOfonoProperties(StkIf *stkIf, SimIf *simIf, QObject *pare
     if (stkPropsCall.isError()) {
         QDBusError error = stkPropsCall.error();
         qDebug() << "Error:" << error.name() << ":" << error.message();
-    }
-    else
-    {   // get properties map
+    } else {
+        // get properties map
         mProperties = stkPropsCall.value();
     }
 }

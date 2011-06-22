@@ -38,9 +38,9 @@ int main(int argc, char *argv[])
     bool agentMode = false;
     if (argc == 2) {
         QString satkMode(argv[1]);
-        if (satkMode == "agent")
+        if (satkMode == "agent") {
             agentMode = true;
-        else if (satkMode != "menu") {
+        } else if (satkMode != "menu") {
             printf("%s\n",SATK_USAGE);
             return mainErr;
         }
@@ -59,9 +59,8 @@ int main(int argc, char *argv[])
             qDebug() << "Error: cannot register agent service";
             return mainErr;
         }
-    }
-    else // Main menu mode
-    {   // Agent can be already registered, but
+    } else { // Main menu mode
+        // Agent can be already registered, but
         // oFono connection must be up from the start
         if (!ofonoConnectionReady) {
             qDebug() << "Error: oFono connection not ready";
