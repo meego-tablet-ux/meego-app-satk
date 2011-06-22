@@ -15,6 +15,7 @@
 #include "stkdialog.h"
 #include "stkmenumodel.h"
 
+
 StkDialog::StkDialog(SimImageProvider * imageProvider, const QString &iconUrl,
                      const QString &title, const QString &qmlViewUrl, QWidget *parent) :
     QDialog(parent,Qt::Window)
@@ -28,10 +29,12 @@ StkDialog::StkDialog(SimImageProvider * imageProvider, const QString &iconUrl,
     mShowBackButton = mShowEndButton = true;
 }
 
+
 void StkDialog::initView()
 {
     // Create QML View as central widget
     mView = new QDeclarativeView;
+
     // Register image provider, deleted with the engine
     QDeclarativeEngine * engine = mView->engine();
     engine->addImageProvider(SIM_IMAGE_PROVIDER, mImageProvider);
@@ -40,9 +43,11 @@ void StkDialog::initView()
     QVBoxLayout *layout = new QVBoxLayout;
     layout->addWidget(mView);
     setLayout(layout);
+
     // Find qml objects and connect signals
     QObject *object;
     QObject *root = this->mView->rootObject();
+
     // Main icon and title
     object = root->findChild<QObject*>("icon");
     if (object)
@@ -50,6 +55,7 @@ void StkDialog::initView()
     object = root->findChild<QObject*>("title");
     if (object && !mTitle.isEmpty())
         object->setProperty("text", mTitle);
+
     // SIM Toolkit Menu
     QObject * menuView = root->findChild<QObject*>("menuView");
     if (menuView) {
@@ -62,6 +68,7 @@ void StkDialog::initView()
         if (mSelection != -1)
             menuView->setProperty("currentIndex", mSelection);
     }
+
     // Text edit / input
     QObject * editText = root->findChild<QObject*>("editText");
     if (editText) {
@@ -72,6 +79,7 @@ void StkDialog::initView()
         editText->setProperty("maxChars",mMaxChars);
         connect(root, SIGNAL(textEntered(QString)), this, SLOT(responseOkWithText(QString)));
     }
+
     // Audio tone
     QObject * audioTone = root->findChild<QObject*>("audioTone");
     if (audioTone && !mToneSource.isEmpty()) {
@@ -80,10 +88,12 @@ void StkDialog::initView()
             audioTone->setProperty("loops", 1);
         audioTone->setProperty("source", "qrc:/audio/" + mToneSource + ".wav");
     }
+
     // Browser View
     QObject * browserView = root->findChild<QObject*>("browserView");
     if (browserView && !mUrl.isEmpty())
         browserView->setProperty("url", mUrl);
+
     // SIM Toolkit Panel
     QObject * panel = root->findChild<QObject*>("panel");
     if (panel) {
@@ -104,18 +114,22 @@ void StkDialog::initView()
             panel->setProperty("showBackButton", false);
         }
     }
+
     // Yes button
     object = root->findChild<QObject*>("yesRect");
     if (object)
         connect(root, SIGNAL(accepted()), this, SLOT(responseYes()));
+
     // No button
     object = root->findChild<QObject*>("noRect");
     if (object)
         connect(root, SIGNAL(rejected()), this, SLOT(responseNo()));
+
     // Ok button
     object = root->findChild<QObject*>("okRect");
     if (object && !menuView && !editText)
         connect(root, SIGNAL(accepted()), this, SLOT(responseOk()));
+
     // default response: end session
     agentResponse = End;
 }

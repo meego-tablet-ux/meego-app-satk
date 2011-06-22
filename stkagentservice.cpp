@@ -193,7 +193,8 @@ void StkAgentService::LoopTone(const QString &tone, const QString &text, uchar i
     // handle method call org.ofono.SimToolkitAgent.LoopTone
 qDebug() << "LoopTone: " << tone << " : " << text << "(" << icon << ")";
     closeLastWidget();
-    StkDialog *dlg = addNewWidget(text + "(playing: " + tone + ")", icon,"qrc:/StkPlaySound.qml");
+    StkDialog *dlg = addNewWidget(text + "(playing: " + tone + ")",
+                                  icon, "qrc:/StkPlaySound.qml");
     dlg->setLoopTone(true);
     dlg->setToneSource(tone);
     dlg->initView();
@@ -206,7 +207,8 @@ void StkAgentService::PlayTone(const QString &tone, const QString &text, uchar i
     // handle method call org.ofono.SimToolkitAgent.PlayTone
 qDebug() << "PlayTone: " << tone << " : " << text << "(" << icon << ")";
     closeLastWidget();
-    StkDialog * dlg = addNewWidget(text + "(playing: " + tone + ")", icon,"qrc:/StkPlaySound.qml");
+    StkDialog * dlg = addNewWidget(text + "(playing: " + tone + ")",
+                                   icon, "qrc:/StkPlaySound.qml");
     dlg->setToneSource(tone);
     dlg->initView();
     dlg->exec();
@@ -291,13 +293,17 @@ qDebug() << "RequestDigit: " << title << "(" << icon << ")";
 }
 
 
-QString StkAgentService::RequestDigits(const QString &title, uchar icon, const QString &defaultValue, uchar minChars, uchar maxChars, bool hideTyping)
+QString StkAgentService::RequestDigits(const QString &title, uchar icon,
+                                       const QString &defaultValue,
+                                       uchar minChars, uchar maxChars, bool hideTyping)
 {
     // handle method call org.ofono.SimToolkitAgent.RequestDigits
     QString out0 = defaultValue;
-qDebug() << "RequestDigits: " << title << "(" << icon << ")" << " (" << defaultValue << ") [" << minChars << ".." << maxChars << "] passwd:" << hideTyping;
+qDebug() << "RequestDigits: " << title << "(" << icon << ")" << " (" << defaultValue
+         << ") [" << minChars << ".." << maxChars << "] passwd:" << hideTyping;
     closeLastWidget();
-    StkDialog * dlg = addNewWidget(title, icon, hideTyping ? "qrc:/StkPassword.qml" : "qrc:/StkInputText.qml");
+    StkDialog * dlg = addNewWidget(title, icon,
+                                   hideTyping ? "qrc:/StkPassword.qml" : "qrc:/StkInputText.qml");
     dlg->setDefaultText(defaultValue);
     dlg->setCharBounds((int)minChars,(int)maxChars);
     dlg->setHideTyping(hideTyping);
@@ -322,13 +328,17 @@ qDebug() << "RequestDigits: " << title << "(" << icon << ")" << " (" << defaultV
 }
 
 
-QString StkAgentService::RequestInput(const QString &title, uchar icon, const QString &defaultValue, uchar minChars, uchar maxChars, bool hideTyping)
+QString StkAgentService::RequestInput(const QString &title, uchar icon,
+                                      const QString &defaultValue,
+                                      uchar minChars, uchar maxChars, bool hideTyping)
 {
     // handle method call org.ofono.SimToolkitAgent.RequestInput
     QString out0 = defaultValue;
-qDebug() << "RequestInput: " << title << "(" << icon << ")" << " (" << defaultValue << ") [" << minChars << ".." << maxChars << "] passwd:" << hideTyping;
+qDebug() << "RequestInput: " << title << "(" << icon << ")" << " (" << defaultValue
+         << ") [" << minChars << ".." << maxChars << "] passwd:" << hideTyping;
     closeLastWidget();
-    StkDialog * dlg = addNewWidget(title, icon, hideTyping ? "qrc:/StkPassword.qml" : "qrc:/StkInputText.qml");
+    StkDialog * dlg = addNewWidget(title, icon,
+                                   hideTyping ? "qrc:/StkPassword.qml" : "qrc:/StkInputText.qml");
     dlg->setDefaultText(defaultValue);
     dlg->setCharBounds((int)minChars,(int)maxChars);
     dlg->setHideTyping(hideTyping);
@@ -381,7 +391,8 @@ qDebug() << "RequestKey: " << title << "(" << icon << ")";
 }
 
 
-uchar StkAgentService::RequestSelection(const QString &title, uchar icon, OfonoMenuList items, short defaultValue)
+uchar StkAgentService::RequestSelection(const QString &title, uchar icon, OfonoMenuList items,
+                                        short defaultValue)
 {
     // handle method call org.ofono.SimToolkitAgent.RequestSelection
     uchar out0 = FALLBACK_UCHAR;
@@ -414,11 +425,17 @@ qDebug() << "RequestSelection: " << title << "(" << icon << ")" << " default: " 
 
 
 /* private functions */
-StkDialog * StkAgentService::addNewWidget(const QString &info, uchar icon, const QString &qmlViewUrl) {
-    StkDialog * dlg = new StkDialog(new SimImageProvider(mSimIf), StkOfonoUtils::findIconUrl(icon), info, qmlViewUrl);
+
+
+StkDialog * StkAgentService::addNewWidget(const QString &info, uchar icon,
+                                          const QString &qmlViewUrl)
+{
+    StkDialog * dlg = new StkDialog(new SimImageProvider(mSimIf),
+                                    StkOfonoUtils::findIconUrl(icon), info, qmlViewUrl);
     mWidgetStack.append(dlg);
     return dlg;
 }
+
 
 bool StkAgentService::closeLastWidget()
 {

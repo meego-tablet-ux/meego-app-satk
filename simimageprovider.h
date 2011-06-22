@@ -16,6 +16,7 @@
 #include <QDeclarativeImageProvider>
 #include "simif.h"
 
+
 class SimImageProvider : public QDeclarativeImageProvider
 {
 public:

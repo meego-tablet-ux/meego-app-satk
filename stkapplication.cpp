@@ -18,6 +18,7 @@
 
 #include "sim_32x32.xpm"
 
+
 StkApplication::StkApplication(int &argc, char **argv, int version) :
     QApplication(argc, argv, version)
 {
@@ -31,11 +32,13 @@ StkApplication::StkApplication(int &argc, char **argv, int version) :
     setWindowIcon(QIcon(QPixmap(sim_32x32_xpm)));
 }
 
+
 StkApplication::~StkApplication()
 {
     // un-register, disconnect, delete all interfaces
     deleteInterfaces();
 }
+
 
 void StkApplication::resetInterfaces()
 {
@@ -44,19 +47,24 @@ void StkApplication::resetInterfaces()
         StkOfonoUtils::unRegisterSimToolkitAgent(mStkIf);
     // Disconnect all signals sent from oFono interfaces
     if (mMgrIf != NULL) {
-        disconnect(mMgrIf, SIGNAL(ModemAdded(QDBusObjectPath, QVariantMap)), this, SLOT(mgrModemAdded(QDBusObjectPath, QVariantMap)));
-        disconnect(mMgrIf, SIGNAL(ModemRemoved(QDBusObjectPath)), this, SLOT(mgrModemRemoved(QDBusObjectPath)));
+        disconnect(mMgrIf, SIGNAL(ModemAdded(QDBusObjectPath, QVariantMap)),
+                   this, SLOT(mgrModemAdded(QDBusObjectPath, QVariantMap)));
+        disconnect(mMgrIf, SIGNAL(ModemRemoved(QDBusObjectPath)),
+                   this, SLOT(mgrModemRemoved(QDBusObjectPath)));
     }
     if (mModemIf != NULL)
-        disconnect(mModemIf, SIGNAL(PropertyChanged(QString, QDBusVariant)), this, SLOT(modemPropertyChanged(QString, QDBusVariant)));
+        disconnect(mModemIf, SIGNAL(PropertyChanged(QString, QDBusVariant)),
+                   this, SLOT(modemPropertyChanged(QString, QDBusVariant)));
     if (mSimIf != NULL)
-        disconnect(mSimIf, SIGNAL(PropertyChanged(QString, QDBusVariant)), this, SLOT(simPropertyChanged(QString, QDBusVariant)));
+        disconnect(mSimIf, SIGNAL(PropertyChanged(QString, QDBusVariant)),
+                   this, SLOT(simPropertyChanged(QString, QDBusVariant)));
     mModemIf = NULL; // delete with mModemIfs
     mSimIf = NULL; // delete with mSimIfs
     mStkIf = NULL; // delete with mStkIfs
     mStkAgentService = NULL; // delete with mStkAgentIfAdaptor
     mAgentServiceRegistered = mAgentMode = false;
 }
+
 
 void StkApplication::deleteInterfaces()
 {
@@ -88,6 +96,7 @@ void StkApplication::deleteInterfaces()
         mMgrIf = NULL;
     }
 }
+
 
 bool StkApplication::initOfonoConnection(bool agentMode)
 {
@@ -148,25 +157,33 @@ bool StkApplication::initOfonoConnection(bool agentMode)
     return true;
 }
 
+
 bool StkApplication::registerModemMgrChanges()
 {
     // Connect mgrIf modem added / removed signals
-    bool reg1 = connect(mMgrIf, SIGNAL(ModemAdded(QDBusObjectPath, QVariantMap)), this, SLOT(mgrModemAdded(QDBusObjectPath, QVariantMap)));
-    bool reg2 = connect(mMgrIf, SIGNAL(ModemRemoved(QDBusObjectPath)), this, SLOT(mgrModemRemoved(QDBusObjectPath)));
+    bool reg1 = connect(mMgrIf, SIGNAL(ModemAdded(QDBusObjectPath, QVariantMap)),
+                        this, SLOT(mgrModemAdded(QDBusObjectPath, QVariantMap)));
+    bool reg2 = connect(mMgrIf, SIGNAL(ModemRemoved(QDBusObjectPath)),
+                        this, SLOT(mgrModemRemoved(QDBusObjectPath)));
     return reg1 && reg2;
 }
+
 
 bool StkApplication::registerModemPropertyChanged()
 {
     // Connect simIf signals
-    return connect(mModemIf, SIGNAL(PropertyChanged(QString, QDBusVariant)), this, SLOT(modemPropertyChanged(QString, QDBusVariant)));
+    return connect(mModemIf, SIGNAL(PropertyChanged(QString, QDBusVariant)),
+                   this, SLOT(modemPropertyChanged(QString, QDBusVariant)));
 }
+
 
 bool StkApplication::registerSimPropertyChanged()
 {
     // Connect simIf signals
-    return connect(mSimIf, SIGNAL(PropertyChanged(QString, QDBusVariant)), this, SLOT(simPropertyChanged(QString, QDBusVariant)));
+    return connect(mSimIf, SIGNAL(PropertyChanged(QString, QDBusVariant)),
+                   this, SLOT(simPropertyChanged(QString, QDBusVariant)));
 }
+
 
 bool StkApplication::registerStkAgentService()
 {
@@ -178,10 +195,12 @@ bool StkApplication::registerStkAgentService()
     return true;
 }
 
+
 void StkApplication::unRegisterStkAgentService()
 {
     StkOfonoUtils::unRegisterSimToolkitAgent(mStkIf);
 }
+
 
 void StkApplication::mgrModemAdded(const QDBusObjectPath &in0, const QVariantMap &in1)
 {
@@ -189,20 +208,25 @@ void StkApplication::mgrModemAdded(const QDBusObjectPath &in0, const QVariantMap
     initOfonoConnection(mAgentMode);
 }
 
+
 void StkApplication::mgrModemRemoved(const QDBusObjectPath &in0)
 {
     qDebug() << "mgrModemRemoved: " << in0.path();
     initOfonoConnection(mAgentMode);
 }
 
+
 void StkApplication::modemPropertyChanged(const QString &property, const QDBusVariant &value)
 {
-    qDebug() << "modemPropertyChanged: " << property << " variant string : " << value.variant().toString();
+    qDebug() << "modemPropertyChanged: " << property
+             << " variant string : " << value.variant().toString();
     initOfonoConnection(mAgentMode);
 }
 
+
 void StkApplication::simPropertyChanged(const QString &property, const QDBusVariant &value)
 {
-    qDebug() << "simPropertyChanged: " << property << " variant string : " << value.variant().toString();
+    qDebug() << "simPropertyChanged: " << property
+             << " variant string : " << value.variant().toString();
     initOfonoConnection(mAgentMode);
 }

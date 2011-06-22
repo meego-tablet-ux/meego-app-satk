@@ -21,11 +21,13 @@ StkMenuModel::StkMenuModel(QObject *parent) :
     setRoleNames(roles);
 }
 
+
 int StkMenuModel::rowCount(const QModelIndex & parent) const
 {
     Q_UNUSED(parent);
     return mItems.count();
 }
+
 
 QVariant StkMenuModel::data(const QModelIndex & index, int role) const
 {
@@ -39,6 +41,7 @@ QVariant StkMenuModel::data(const QModelIndex & index, int role) const
     }
     return QVariant();
 }
+
 
 void StkMenuModel::setMenuItems(const QList<StkMenuItem> &items)
 {

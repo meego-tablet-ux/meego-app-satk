@@ -13,12 +13,15 @@
 #include "simimageprovider.h"
 #include "stkofonoutils.h"
 
-SimImageProvider::SimImageProvider(SimIf *simIf) : QDeclarativeImageProvider (QDeclarativeImageProvider::Pixmap)
+SimImageProvider::SimImageProvider(SimIf *simIf) :
+    QDeclarativeImageProvider (QDeclarativeImageProvider::Pixmap)
 {
     mSimIf = simIf;
 }
 
-QPixmap SimImageProvider::requestPixmap(const QString &id, QSize *size, const QSize &requestedSize)
+
+QPixmap SimImageProvider::requestPixmap(const QString &id, QSize *size,
+                                        const QSize &requestedSize)
 {
 qDebug() << "request pixmap id: " << id << " char: " << id.at(0);
     QPixmap pixmap = StkOfonoUtils::findIcon(mSimIf, (uchar)(id.at(0).cell() - '0'));

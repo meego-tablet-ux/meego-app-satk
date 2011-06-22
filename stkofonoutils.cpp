@@ -16,6 +16,7 @@
 
 #include "sim_32x32.xpm"
 
+
 QPixmap StkOfonoUtils::findIcon(SimIf * simIf, uchar id)
 {
     if (!VALID_ICON_ID(id))
@@ -36,10 +37,12 @@ QPixmap StkOfonoUtils::findIcon(SimIf * simIf, uchar id)
     return icon;
 }
 
+
 QString StkOfonoUtils::findIconUrl(uchar id)
 {
     return SIM_ICON_PREFIX + QString::number((int)id);
 }
+
 
 OfonoModemList StkOfonoUtils::findModems(MgrIf *mgrIf)
 {
@@ -54,7 +57,9 @@ OfonoModemList StkOfonoUtils::findModems(MgrIf *mgrIf)
     return modemsCall.value();
 }
 
-QList<ModemIf*> StkOfonoUtils::findModemInterfaces(const QDBusConnection &connection, MgrIf *mgrIf)
+
+QList<ModemIf*> StkOfonoUtils::findModemInterfaces(const QDBusConnection &connection,
+                                                   MgrIf *mgrIf)
 {
     QList<ModemIf*> modemInterfaces;
     OfonoModemList modems = StkOfonoUtils::findModems(mgrIf);
@@ -65,6 +70,7 @@ QList<ModemIf*> StkOfonoUtils::findModemInterfaces(const QDBusConnection &connec
     }
     return modemInterfaces;
 }
+
 
 QList<SimIf*> StkOfonoUtils::findSimInterfaces(const QDBusConnection &connection, MgrIf *mgrIf)
 {
@@ -84,7 +90,9 @@ QList<SimIf*> StkOfonoUtils::findSimInterfaces(const QDBusConnection &connection
     return simInterfaces;
 }
 
-QList<StkIf*> StkOfonoUtils::findSimToolkitInterfaces(const QDBusConnection &connection, MgrIf *mgrIf)
+
+QList<StkIf*> StkOfonoUtils::findSimToolkitInterfaces(const QDBusConnection &connection,
+                                                      MgrIf *mgrIf)
 {
     QList<StkIf*> simToolkitInterfaces;
     OfonoModemList modems = StkOfonoUtils::findModems(mgrIf);
@@ -94,7 +102,8 @@ QList<StkIf*> StkOfonoUtils::findSimToolkitInterfaces(const QDBusConnection &con
         foreach(const QString &interface, pms.varmap.value("Interfaces").toStringList()) {
             if (interface == "org.ofono.SimToolkit") {
                 // Instanciate proxy for org.ofono.SimToolkit interface
-                simToolkitInterfaces.append(new StkIf("org.ofono",pms.objpath.path(),connection,NULL));
+                simToolkitInterfaces.append(new StkIf("org.ofono",pms.objpath.path(),
+                                                      connection,NULL));
                 break;
             }
         }
@@ -102,7 +111,9 @@ QList<StkIf*> StkOfonoUtils::findSimToolkitInterfaces(const QDBusConnection &con
     return simToolkitInterfaces;
 }
 
-int StkOfonoUtils::registerSimToolkitAgent(QDBusConnection &connection, StkAgentService *stkAgentService, StkIf *stkIf)
+
+int StkOfonoUtils::registerSimToolkitAgent(QDBusConnection &connection,
+                                           StkAgentService *stkAgentService, StkIf *stkIf)
 {
     QDBusError dbusError;
     QDBusObjectPath stkAgentPath(STK_AGENT_PATH);
@@ -121,6 +132,7 @@ int StkOfonoUtils::registerSimToolkitAgent(QDBusConnection &connection, StkAgent
     }
     return 0;
 }
+
 
 int StkOfonoUtils::unRegisterSimToolkitAgent(StkIf *stkIf)
 {

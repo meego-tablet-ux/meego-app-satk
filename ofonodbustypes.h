@@ -19,6 +19,7 @@
 #include <QtDBus/QtDBus>
 
 
+
 /*
  * Interface: org.ofono.Manager
  * Method: GetModems
@@ -52,6 +53,7 @@ typedef QList<OfonoModem> OfonoModemList;
 Q_DECLARE_METATYPE(OfonoModemList)   /* a(oa{sv}) */
 
 
+
 /*
  * Interface: org.ofono.SimToolkitAgent
  * Method: RequestSelection
@@ -83,6 +85,7 @@ inline const QDBusArgument &operator>>(const QDBusArgument &arg,OfonoMenuEntry &
 
 typedef QList<OfonoMenuEntry> OfonoMenuList;
 Q_DECLARE_METATYPE(OfonoMenuList)       /* a(sy) */
+
 
 
 /* Register all meta types declared above */

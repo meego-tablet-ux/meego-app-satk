@@ -12,16 +12,19 @@
 
 #include "stkmenuitem.h"
 
+
 StkMenuItem::StkMenuItem(const QString &icon, const QString &title)
 {
     mIcon = icon;
     mTitle = title;
 }
 
+
 QString StkMenuItem::icon() const
 {
     return mIcon;
 }
+
 
 QString StkMenuItem::title() const
 {

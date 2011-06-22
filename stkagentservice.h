@@ -21,6 +21,7 @@
 #include "simif.h"
 #include "stkdialog.h"
 
+
 class StkAgentService : public QObject, protected QDBusContext
 {
     Q_OBJECT
@@ -51,10 +52,13 @@ public Q_SLOTS: // METHODS
     void Release();
     bool RequestConfirmation(const QString &title, uchar icon);
     QString RequestDigit(const QString &title, uchar icon);
-    QString RequestDigits(const QString &title, uchar icon, const QString &defaultValue, uchar minChars, uchar maxChars, bool hideTyping);
-    QString RequestInput(const QString &title, uchar icon, const QString &defaultValue, uchar minChars, uchar maxChars, bool hideTyping);
+    QString RequestDigits(const QString &title, uchar icon, const QString &defaultValue,
+                          uchar minChars, uchar maxChars, bool hideTyping);
+    QString RequestInput(const QString &title, uchar icon, const QString &defaultValue,
+                         uchar minChars, uchar maxChars, bool hideTyping);
     QString RequestKey(const QString &title, uchar icon);
-    uchar RequestSelection(const QString &title, uchar icon, OfonoMenuList items, short defaultValue);
+    uchar RequestSelection(const QString &title, uchar icon,
+                           OfonoMenuList items, short defaultValue);
 Q_SIGNALS: // SIGNALS
 
 private:

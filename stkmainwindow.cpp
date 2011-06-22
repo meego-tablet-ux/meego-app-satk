@@ -15,6 +15,7 @@
 #include "stkdefines.h"
 #include "simimageprovider.h"
 
+
 StkMainWindow::StkMainWindow(StkIf *stkIf, SimIf *simIf,
                              StkAgentService *stkAgentService, QWidget *parent) :
     QMainWindow(parent)
@@ -25,8 +26,10 @@ StkMainWindow::StkMainWindow(StkIf *stkIf, SimIf *simIf,
     // Create main view from properties
     createMainView();
     // Connect stkIf signals
-    connect(mStkIf, SIGNAL(PropertyChanged(QString, QDBusVariant)), this, SLOT(stkPropertyChanged(QString, QDBusVariant)));
+    connect(mStkIf, SIGNAL(PropertyChanged(QString, QDBusVariant)),
+            this, SLOT(stkPropertyChanged(QString, QDBusVariant)));
 }
+
 
 StkMainWindow::~StkMainWindow()
 {
@@ -34,11 +37,13 @@ StkMainWindow::~StkMainWindow()
     // mView is deleted as QMainWindow's centralWidget
 }
 
+
 void StkMainWindow::onEndSession()
 {
     mStkAgentService->setExitOnRelease(true);
     close();
 }
+
 
 void StkMainWindow::responseOkWithSelection(int selection)
 {
@@ -46,6 +51,7 @@ void StkMainWindow::responseOkWithSelection(int selection)
     QDBusObjectPath stkAgentPath(STK_AGENT_PATH);
     mStkIf->SelectItem(sel,stkAgentPath);
 }
+
 
 void StkMainWindow::stkPropertyChanged(const QString &property, const QDBusVariant &value)
 {
@@ -64,6 +70,7 @@ void StkMainWindow::stkPropertyChanged(const QString &property, const QDBusVaria
     delete delView;
 }
 
+
 void StkMainWindow::createMainView() {
     // Store SimToolkit interface properties
     mStkProperties = new StkOfonoProperties(mStkIf,mSimIf);
@@ -72,12 +79,15 @@ void StkMainWindow::createMainView() {
     // Register image provider, deleted with the engine
     QDeclarativeEngine * engine = mView->engine();
     engine->addImageProvider(SIM_IMAGE_PROVIDER, new SimImageProvider(mSimIf));
+
     // Load a qml main menu
     mView->setSource(QUrl("qrc:/StkMenu.qml"));
     // Set it as central widget
     mView->setResizeMode(QDeclarativeView::SizeRootObjectToView);
     setCentralWidget(mView);
     QObject *root = mView->rootObject();
+
+    // Main icon and title
     QObject *icon = root->findChild<QObject*>("icon");
     if (icon)
         icon->setProperty("source", mStkProperties->mainMenuIconUrl());
@@ -87,14 +97,18 @@ void StkMainWindow::createMainView() {
         if (!mainMenuTitle.isEmpty())
             title->setProperty("text", mainMenuTitle);
     }
+
+    // SIM Toolkit Menu
     QDeclarativeContext *context = mView->rootContext();
     StkMenuModel * menuModel = new StkMenuModel();
     menuModel->setMenuItems(mStkProperties->mainMenuItems());
     context->setContextProperty("menuModel",menuModel);
+
     // Hide back button in main view
     QObject *panel = root->findChild<QObject*>("panel");
     if (panel)
         panel->setProperty("showBackButton", false);
+
     // Connect view signals
     connect(root, SIGNAL(itemSelected(int)), this, SLOT(responseOkWithSelection(int)));
     connect(root, SIGNAL(endSession()), this, SLOT(onEndSession()));
