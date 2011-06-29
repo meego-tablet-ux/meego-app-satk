@@ -23,13 +23,10 @@ SimImageProvider::SimImageProvider(SimIf *simIf) :
 QPixmap SimImageProvider::requestPixmap(const QString &id, QSize *size,
                                         const QSize &requestedSize)
 {
-qDebug() << "request pixmap id: " << id << " char: " << id.at(0);
     QPixmap pixmap = StkOfonoUtils::findIcon(mSimIf, (uchar)(id.at(0).cell() - '0'));
-qDebug() << "found pixmap " << pixmap.width() << "x" << pixmap.height();
     if (requestedSize.isValid())
         pixmap = pixmap.scaled(requestedSize);
     if (size)
         *size = pixmap.size();
-qDebug() << "returning pixmap " << pixmap.width() << "x" << pixmap.height();
     return pixmap;
 }
