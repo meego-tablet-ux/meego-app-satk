@@ -1,0 +1,35 @@
+====== satk - SIM Application Toolkit ======
+
+Copyright (C) 2011  Intel Corporation. All rights reserved.
+
+
+satk - SIM Application Toolkit is a graphical user interface for oFono SimToolkitAgent.
+
+===== Compilation =====
+
+In order to build satk you need the following modules:
+
+  * QtDeclarative
+  * QtCore
+  * QtGui
+  * QtDBus
+
+From satk root directory, execute the following commands:
+
+  qmake
+  make
+
+===== Installing =====
+
+Execute the compilation commands above, then:
+
+  sudo make install
+
+===== Distribution =====
+
+From satk root directory, execute the following commands:
+
+  qmake
+  make dist
+
+
