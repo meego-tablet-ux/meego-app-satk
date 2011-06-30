@@ -169,7 +169,7 @@ public slots:
     inline void responseNo()
     {
         agentResponse = No;
-        reject();
+        accept();
     }
 
     inline void responseOk()
@@ -195,13 +195,13 @@ public slots:
     inline void responseBack()
     {
         agentResponse = Back;
-        reject();
+        accept();
     }
 
     inline void responseEnd()
     {
         agentResponse = End;
-        reject();
+        accept();
     }
 
 };

@@ -54,7 +54,8 @@ qDebug() << "ConfirmCallSetup: " << info << "(" << icon << ")";
     StkDialog * dlg = addNewWidget(info, icon,"qrc:/StkYesNo.qml");
     dlg->setShowBackButton(false);
     dlg->initView();
-    dlg->exec();
+    if (dlg->exec() != QDialog::Accepted)
+        return out0;
     AgentResponse ret = dlg->getAgentResponse();
     switch (ret) {
     case Yes:
@@ -84,7 +85,8 @@ qDebug() << "ConfirmLaunchBrowser: " << info << "(" << icon << ")" << " -- url: 
     dlg->setShowBackButton(false);
     dlg->setShowEndButton(false);
     dlg->initView();
-    dlg->exec();
+    if (dlg->exec() != QDialog::Accepted)
+        return out0;
     AgentResponse ret = dlg->getAgentResponse();
     switch (ret) {
     case Yes:
@@ -114,7 +116,8 @@ qDebug() << "ConfirmOpenChannel: " << info << "(" << icon << ")";
     StkDialog * dlg = addNewWidget(info, icon,"qrc:/StkYesNo.qml");
     dlg->setShowBackButton(false);
     dlg->initView();
-    dlg->exec();
+    if (dlg->exec() != QDialog::Accepted)
+        return out0;
     AgentResponse ret = dlg->getAgentResponse();
     switch (ret) {
     case Yes:
@@ -140,7 +143,8 @@ qDebug() << "DisplayAction: " << text << "(" << icon << ")";
     closeLastWidget();
     StkDialog * dlg = addNewWidget(text, icon,"qrc:/StkMessage.qml");
     dlg->initView();
-    dlg->exec();
+    if (dlg->exec() != QDialog::Accepted)
+        return;
     AgentResponse ret = dlg->getAgentResponse();
     switch (ret) {
     case End:
@@ -171,7 +175,8 @@ qDebug() << "DisplayText: " << title << "(" << icon << ")" << " urgent: " << urg
     closeLastWidget();
     StkDialog * dlg = addNewWidget(title, icon,"qrc:/StkPopup.qml");
     dlg->initView();
-    dlg->exec();
+    if (dlg->exec() != QDialog::Accepted)
+        return;
     AgentResponse ret = dlg->getAgentResponse();
     switch (ret) {
     case Ok:
@@ -211,7 +216,8 @@ qDebug() << "PlayTone: " << tone << " : " << text << "(" << icon << ")";
                                    icon, "qrc:/StkPlaySound.qml");
     dlg->setToneSource(tone);
     dlg->initView();
-    dlg->exec();
+    if (dlg->exec() != QDialog::Accepted)
+        return;
     AgentResponse ret = dlg->getAgentResponse();
     switch (ret) {
     case Ok:
@@ -243,7 +249,8 @@ qDebug() << "RequestConfirmation: " << title << "(" << icon << ")";
     closeLastWidget();
     StkDialog * dlg = addNewWidget(title, icon,"qrc:/StkYesNo.qml");
     dlg->initView();
-    dlg->exec();
+    if (dlg->exec() != QDialog::Accepted)
+        return out0;
     AgentResponse ret = dlg->getAgentResponse();
     switch (ret) {
     case Yes:
@@ -274,7 +281,8 @@ qDebug() << "RequestDigit: " << title << "(" << icon << ")";
     StkDialog * dlg = addNewWidget(title, icon,"qrc:/StkInputKey.qml");
     dlg->setNumeric(true);
     dlg->initView();
-    dlg->exec();
+    if (dlg->exec() != QDialog::Accepted)
+        return out0;
     AgentResponse ret = dlg->getAgentResponse();
     switch (ret) {
     case Ok:
@@ -309,7 +317,8 @@ qDebug() << "RequestDigits: " << title << "(" << icon << ")" << " (" << defaultV
     dlg->setHideTyping(hideTyping);
     dlg->setNumeric(true);
     dlg->initView();
-    dlg->exec();
+    if (dlg->exec() != QDialog::Accepted)
+        return out0;
     AgentResponse ret = dlg->getAgentResponse();
     switch (ret) {
     case Ok:
@@ -344,7 +353,8 @@ qDebug() << "RequestInput: " << title << "(" << icon << ")" << " (" << defaultVa
     dlg->setHideTyping(hideTyping);
     dlg->setNumeric(false);
     dlg->initView();
-    dlg->exec();
+    if (dlg->exec() != QDialog::Accepted)
+        return out0;
     AgentResponse ret = dlg->getAgentResponse();
     switch (ret) {
     case Ok:
@@ -372,7 +382,8 @@ qDebug() << "RequestKey: " << title << "(" << icon << ")";
     StkDialog * dlg = addNewWidget(title, icon,"qrc:/StkInputKey.qml");
     dlg->setNumeric(false);
     dlg->initView();
-    dlg->exec();
+    if (dlg->exec() != QDialog::Accepted)
+        return out0;
     AgentResponse ret = dlg->getAgentResponse();
     switch (ret) {
     case Ok:
@@ -405,7 +416,8 @@ qDebug() << "RequestSelection: " << title << "(" << icon << ")" << " default: " 
     dlg->setMenuItems(dlgitems);
     dlg->setSelection(int(defaultValue));
     dlg->initView();
-    dlg->exec();
+    if (dlg->exec() != QDialog::Accepted)
+        return out0;
     AgentResponse ret = dlg->getAgentResponse();
     switch (ret) {
     case Ok:
@@ -441,7 +453,6 @@ bool StkAgentService::closeLastWidget()
 {
     if (!mWidgetStack.isEmpty()) {
         QWidget * widget = mWidgetStack.takeLast();
-qDebug() << "closing widget: " << widget;
         widget->close();
         delete widget;
     }
