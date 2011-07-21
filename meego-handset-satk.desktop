@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=SIM Agent
+Exec=satk agent
+Terminal=false
+Icon=sim_32x32
+X-Meego-Priority=Highest
+X-MeeGo-Watchdog=Restart
