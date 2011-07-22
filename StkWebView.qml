@@ -60,6 +60,7 @@ Rectangle {
         anchors.rightMargin: 10
         contentWidth: childrenRect.width
         contentHeight: childrenRect.height
+        clip: true
         property alias url: browserContent.url
         WebView {
             id: browserContent
