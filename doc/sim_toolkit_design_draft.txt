@@ -1,7 +1,7 @@
 ====== SIM Toolkit design draft ======
 
 The MeeGo SIM Application Toolkit (SATK) handles user interaction for the proactive SIM commands, through the oFono stk-agent DBus API. 
-The application provides a simple Qt-based user interface for the oFono SIM toolkit agent, and is completely stateless.
+The application provides a simple QML-based user interface for the oFono SIM toolkit agent, and is completely stateless.
 
 
 ===== Summary =====
@@ -136,14 +136,9 @@ For each method, the possible user interactions and method response are listed. 
 | none                   | ''Error.SimToolkit.Busy''   | ''12'' No response from user | 
 
 **TODO** Need to figure out what to do for non-urgent actions, when the SIM session is not initiated by the user.
+Check with Handset idle-screen app.
 For NOTIF or MESSAGE widgets, there would be no explicit user response, oFono returns ''00'' or ''12'' to SIM.
-http://172.20.20.40/git/ofono/doc/stk-api.txt
 
-  It might be required to pass a flag to the UI to
-  hint it that allocation of an 'acknowledgement'
-  button is required in the case of a longer timeout.
-  However, the UI can figure this out itself as well
-  based on a timer threshold.  More input needed.
 
 === RequestInput ===
 
@@ -153,14 +148,6 @@ http://172.20.20.40/git/ofono/doc/stk-api.txt
 | OK                       | text string entered         | ''00'' Command performed successfully |
 | BACK                     | ''Error.SimToolkit.GoBack'' | ''11'' Backward move in the proactive SIM session requested by the user | 
 
-**TODO** charset ?
-http://172.20.20.40/git/ofono/doc/stk-api.txt
-
-  It is still unclear how to handle gsm vs ucs2
-  accepted alphabet selection.  Can the reduced
-  character set functionality from SMS be applied
-  here?  If not, then an extra gsm vs ucs2 acceptance
-  argument needs to be added.
 
 === RequestDigits ===
 
@@ -233,7 +220,6 @@ http://172.20.20.40/git/ofono/doc/stk-api.txt
 | NO                   | FALSE                           |  |
 | END                  | ''Error.SimToolkit.EndSession'' | ''10'' Proactive SIM session terminated by user |
 
-**TODO** ''15 LAUNCH BROWSER'' proactive SIM command is not mentioned as supported in oFono feature list http://172.20.20.40/git/ofono/doc/features.txt
 
 === Cancel ===
 
@@ -256,9 +242,9 @@ http://172.20.20.40/git/ofono/doc/stk-api.txt
 The SIM Application Toolkit appears in the launcher with a name and an icon provided by the SIM card. This information is provided as properties by the **org.ofono.SimToolkit** DBUS interface. 
 
   * string MainMenuTitle : Contains the title of the main menu.
-  * string MainMenuIcon : Contains the identifier of the icon for the main menu. **TODO** check if documentation is correct, should be a byte.
+  * byte MainMenuIcon : Contains the identifier of the icon for the main menu. 
 
-**TODO** Need to investigate how applications resources are handled by the MeeGo launcher. 
+**TODO** The meego-app-satk.desktop file is not currently modified at runtime, the default title / icon appears in the launcher.
 
 ==== Window stacking ====
 
@@ -278,82 +264,5 @@ Idle screen information is provided as properties by the **org.ofono.SimToolkit*
 
   * string IdleModeText : Contains the text to be used when the home screen is idle.
   * byte IdleModeIcon : Contains the identifier of the icon for the main menu.
-**TODO** Need to investigate Idle screen UI on MeeGo platform.
+**TODO** Need to investigate Idle screen UI on MeeGo Handset platform.
 
-
-===== Project scoping =====
-
-
-==== Deliverables ====
-
-This is the feature set that should be implemented.  
-
-There are two sets of deliverables. The **core features** are browsing the SIM menu, and providing a user interface to interact with the proactive SIM commands. The **MeeGo integration features** can be added once the core features are implemented. 
-
-=== Core features ===
-
-The list below is a subset of the proactive SIM commands supported by oFono, as mentioned in the "Summary" section. Only the commands that need user interaction are listed here. For each command, the SATK application feature is briefly described.
-
-  * 10 SETUP CALL : Open a Yes / No dialog to confirm call setup. The user can end the SIM session from this dialog.
-  * 15 LAUNCH BROWSER : Open a Yes / No dialog to confirm browser launch. If confirmed, launch the browser with the ConfirmLaunchBrowser url parameter. The user can end the SIM session from this dialog.
-  * 20 PLAY TONE : Display a message dialog, play the sound identified by the PlayTone / LoopTone tone parameter. The user can end the SIM session from this dialog.
-  * 21 DISPLAY TEXT : Open a OK / Back dialog with the message to display.
-  * 22 GET INKEY : Open a single char / digit input dialog witk Ok / Back buttons.
-  * 23 GET INPUT : Open a multiple char / digit input dialog witk Ok / Back buttons.
-  * 24 SELECT ITEM : Open a menu dialog with the RequestSelection items parameter. User can select an item, click Ok or Back.
-  * 25 SETUP MENU : Open the main SIM toolkit menu when launched from the launcher.
-
-=== MeeGo integration features ===
-
-These features will be implemented using the properties exported by the org.ofono.SimToolkit DBUS interface. The user interface for these features is not provided directly by SATK, but relies on other MeeGo platform components: Launcher application, notifications area, idle screen.
-
-== Launcher integration ==
-  * MainMenuTitle : update the SATK application title in the MeeGo launcher according to the MainMenuTitle property. 
-  * MainMenuIcon : update the SATK application icon in the MeeGo launcher according to the MainMenuIcon property. 
-== Notifications ==
-  * 21 DISPLAY TEXT in non urgent, non user initiated mode : display text in the MeeGo notifications area.
-== Idle screen ==
-  * IdleModeText : update the idle screen text according to the IdleModeText property. 
-  * IdleModeIcon : update the idle screen icon according to the IdleModeIcon property. 
-
-
-==== Tasks ====
-
-Total work estimate is 45 man-days, detailed below. 
-
-The first two items (oFono rampup, core features) are a pre-requisite for the rest (MeeGo rampup / integration). Items coming after oFono rampup can be parallelized.
-
-=== oFono rampup ===
-Total 15 man-days.
-
-  * Review and discuss org.ofono.SimToolkitAgent DBus API, **TODO** parts (5 md)
-  * Skeleton Qt app implementing org.ofono.SimToolkitAgent DBus API, unit test, no GUI (5 md)
-  * GUI elements design, review with UX (5 md)
-
-=== Core features ===
-Total 15 man-days.
-
-  * 10 SETUP CALL : (1md)
-  * 15 LAUNCH BROWSER : (2md)
-  * 20 PLAY TONE : (2md)
-  * 21 DISPLAY TEXT : (1md)
-  * 22 GET INKEY : (2md)
-  * 23 GET INPUT : (2md)
-  * 24 SELECT ITEM : (2md)
-  * 25 SETUP MENU : (3md)
-
-=== MeeGo platform rampup ===
-Total 10 man-days.
-
-  * Investigate launcher integration or placeholder app / script (5md)
-  * Investigate notifications management (2md)
-  * Investigate idle mode or remplacement by equivalent functionality (3md)
-
-=== MeeGo integration features ===
-Total 5 man-days.
-
-  * MainMenuTitle : (1md)
-  * MainMenuIcon : (1md)
-  * 21 DISPLAY TEXT : (1md)
-  * IdleModeText : (1md)
-  * IdleModeIcon :(1md)

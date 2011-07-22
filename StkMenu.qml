@@ -70,6 +70,7 @@ Rectangle {
         anchors.bottomMargin: 10
         anchors.right: parent.right
         anchors.rightMargin: 10
+        clip: true
         signal itemSelected(int selection)
         onItemSelected: {
             currentIndex = selection;

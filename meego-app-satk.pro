@@ -51,13 +51,16 @@ RESOURCES += \
 
 # ---- Installation
 
-desktop.files += *.desktop
+autostart.files += meego-handset-satk.desktop
+autostart.path += $$INSTALL_ROOT/etc/xdg/autostart
+
+desktop.files += meego-app-satk.desktop
 desktop.path += $$INSTALL_ROOT/usr/share/applications
 
 pixmaps.files += *.xpm *.png
 pixmaps.path += $$INSTALL_ROOT/usr/share/pixmaps
 
-INSTALLS += pixmaps desktop
+INSTALLS += pixmaps desktop autostart
 
 
 # ---- Distribution
