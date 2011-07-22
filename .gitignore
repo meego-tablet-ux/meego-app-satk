@@ -15,4 +15,5 @@ stkif.h
 moc_*.cpp
 *.pro.user
 *.tar.bz2
-
+qtc_packaging
+qrc_meego-app-satk.cpp
